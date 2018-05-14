@@ -9,7 +9,7 @@ window.onload = function() {
     AFRAME.registerComponent('move-on-mouseenter', {
         schema: {
             to: {
-                default: '0 0 0' 
+                default: '0 0 0'
             }
         },
         init: function() {
@@ -20,7 +20,9 @@ window.onload = function() {
                 anim.setAttribute('dur', '2000');
                 anim.setAttribute('easing', 'linear');
                 anim.setAttribute('to', data.to);
+                camera.removeChild(camera.lastChild);
                 camera.append(anim);
+                console.log(camera);
             });
         }
     });
