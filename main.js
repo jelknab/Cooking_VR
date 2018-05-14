@@ -22,7 +22,6 @@ window.onload = function() {
                 anim.setAttribute('to', data.to);
                 camera.removeChild(camera.lastChild);
                 camera.append(anim);
-                console.log(camera);
             });
         }
     });
