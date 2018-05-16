@@ -27,17 +27,21 @@
         <a-box id="gasknop4" color="green" width="0.2" height="0.2" depth="0.2" position="-7.2 -2.1 -2.8" furnace-button="x: -6.6; z: -4.2; index: 4"></a-box>
 
         <!-- gas -->
-        <a-box id="gas0" color="red" width="0.5" height="0.5" depth="0.5" position="-8.5 -3.5 -4.2"></a-box>
-        <a-box id="gas1" color="red" width="0.5" height="0.5" depth="0.5" position="-8.5 -3.5 -6.1"></a-box>
-        <a-box id="gas2" color="red" width="0.5" height="0.5" depth="0.5" position="-7.5 -3.5 -5.15"></a-box>
-        <a-box id="gas3" color="red" width="0.5" height="0.5" depth="0.5" position="-6.6 -3.5 -6.1"></a-box>
-        <a-box id="gas4" color="red" width="0.5" height="0.5" depth="0.5" position="-6.6 -3.5 -4.2"></a-box>
+        <a-obj-model id="gas0" src="#fire-obj" mtl="#fire-mtl" width="0.5" height="0.5" depth="0.5" position="-8.5 -3.5 -4.2"></a-obj-model>
+        <a-obj-model id="gas1" src="#fire-obj" mtl="#fire-mtl" width="0.5" height="0.5" depth="0.5" position="-8.5 -3.5 -6.1"></a-obj-model>
+        <a-obj-model id="gas2" src="#fire-obj" mtl="#fire-mtl" width="0.5" height="0.5" depth="0.5" position="-7.5 -3.5 -5.15"></a-obj-model>
+        <a-obj-model id="gas3" src="#fire-obj" mtl="#fire-mtl" width="0.5" height="0.5" depth="0.5" position="-6.6 -3.5 -6.1"></a-obj-model>
+        <a-obj-model id="gas4" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -3.5 -4.2"></a-obj-model>
         <a-sky color="#EFEFEF"></a-sky>
 
+        <!-- <a-obj-model src="#fire-obj" mtl="#fire-mtl" scale="1 1 1" position="0 0 0">
+        </a-obj-model> -->
 
         <a-assets>
             <a-asset-item id="kitchen-obj" src="kitchen.obj"></a-asset-item>
             <a-asset-item id="kitchen-mtl" src="kitchen.mtl"></a-asset-item>
+            <a-asset-item id="fire-obj" src="fire.obj"></a-asset-item>
+            <a-asset-item id="fire-mtl" src="fire.mtl"></a-asset-item>
         </a-assets>
 
         <a-obj-model src="#kitchen-obj" mtl="#kitchen-mtl" scale="0.05 0.05 0.05" position="0 -5 -5">

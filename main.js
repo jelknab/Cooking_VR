@@ -49,7 +49,7 @@ window.onload = function() {
                 } else {
                     anim.setAttribute('to', '0 -180 0');
                     gasbools[data.index] = true;
-                    gases[data.index].setAttribute('position', data.x + ' -2.5 ' + data.z);
+                    gases[data.index].setAttribute('position', data.x + ' -2.3 ' + data.z);
                 }
                 this.append(anim);
             });
