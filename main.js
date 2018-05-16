@@ -26,11 +26,11 @@ window.onload = function() {
 
     AFRAME.registerComponent('furnace-button', {
         schema: {
-            fireOn: {
-                default: '0 0 0'
+            x: {
+                default: '0'
             },
-            fireOff: {
-                default: '0 0 0'
+            z: {
+                default: '0'
             },
             index: {
                 default: '0'
@@ -45,30 +45,14 @@ window.onload = function() {
                 if(gasbools[data.index]) {
                     anim.setAttribute('to', '0 0 0');
                     gasbools[data.index] = false;
-                    gases[data.index].setAttribute('position', data.fireOff);
+                    gases[data.index].setAttribute('position', data.x + ' -3.5 ' + data.z);
                 } else {
                     anim.setAttribute('to', '0 -180 0');
                     gasbools[data.index] = true;
-                    gases[data.index].setAttribute('position', data.fireOn);
+                    gases[data.index].setAttribute('position', data.x + ' -2.5 ' + data.z);
                 }
                 this.append(anim);
             });
         }
     });
-
-    // gasknop5.addEventListener('mouseenter', function() {
-    //     let anim = document.createElement('a-animation');
-    //     anim.setAttribute('attribute', 'rotation');
-    //     anim.setAttribute('dur', '1500');
-    //     if(!gasbool5) {
-    //         anim.setAttribute('to', '0 -180 0');
-    //         gasbool5 = true;
-    //         gas5.setAttribute('position', '-6.6 -2.5 -4.2');
-    //     } else {
-    //         anim.setAttribute('to', '0 0 0');
-    //         gasbool5 = false;
-    //         gas5.setAttribute('position', '-6.6 -3.5 -4.2');
-    //     };
-    //     this.append(anim);
-    // })
 };

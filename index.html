@@ -8,6 +8,8 @@
         <a-camera id="camera" position="0 0 0">
             <a-cursor></a-cursor>
         </a-camera>
+
+        <!-- navigation boxes -->
         <a-box id="box1" position="-7 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -7 0 0">
         </a-box>
         <a-box id="box2" position="-2 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -2 0 0">
@@ -16,11 +18,15 @@
         </a-box>
         <a-box id="box4" position="16 -0.5 0" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: 8 0 0">
         </a-box>
-        <a-box id="gasknop0" color="green" width="0.2" height="0.2" depth="0.2" position="-9.2 -2.1 -2.8" furnace-button="fireOn: -8.5 -2.5 -4.2; fireOff: -8.5 -3.5 -4.2; index: 0"></a-box>
-        <a-box id="gasknop1" color="green" width="0.2" height="0.2" depth="0.2" position="-8.7 -2.1 -2.8" furnace-button="fireOn: -8.5 -2.5 -6.1; fireOff: -8.5 -3.5 -6.1; index: 1"></a-box>
-        <a-box id="gasknop2" color="green" width="0.2" height="0.2" depth="0.2" position="-8.2 -2.1 -2.8" furnace-button="fireOn: -7.5 -2.5 -5.15; fireOff: -7.5 -3.5 -5.15; index: 2"></a-box>
-        <a-box id="gasknop3" color="green" width="0.2" height="0.2" depth="0.2" position="-7.7 -2.1 -2.8" furnace-button="fireOn: -6.6 -2.5 -6.1; fireOff: -6.6 -3.5 -6.1; index: 3"></a-box>
-        <a-box id="gasknop4" color="green" width="0.2" height="0.2" depth="0.2" position="-7.2 -2.1 -2.8" furnace-button="fireOn: -6.6 -2.5 -4.2; fireOff: -6.6 -3.5 -4.2; index: 4"></a-box>
+
+        <!-- gasknoppen -->
+        <a-box id="gasknop0" color="green" width="0.2" height="0.2" depth="0.2" position="-9.2 -2.1 -2.8" furnace-button="x: -8.5; z: -4.2; index: 0"></a-box>
+        <a-box id="gasknop1" color="green" width="0.2" height="0.2" depth="0.2" position="-8.7 -2.1 -2.8" furnace-button="x: -8.5; z: -6.1; index: 1"></a-box>
+        <a-box id="gasknop2" color="green" width="0.2" height="0.2" depth="0.2" position="-8.2 -2.1 -2.8" furnace-button="x: -7.5; z: -5.15; index: 2"></a-box>
+        <a-box id="gasknop3" color="green" width="0.2" height="0.2" depth="0.2" position="-7.7 -2.1 -2.8" furnace-button="x: -6.6; z: -6.1; index: 3"></a-box>
+        <a-box id="gasknop4" color="green" width="0.2" height="0.2" depth="0.2" position="-7.2 -2.1 -2.8" furnace-button="x: -6.6; z: -4.2; index: 4"></a-box>
+
+        <!-- gas -->
         <a-box id="gas0" color="red" width="0.5" height="0.5" depth="0.5" position="-8.5 -3.5 -4.2"></a-box>
         <a-box id="gas1" color="red" width="0.5" height="0.5" depth="0.5" position="-8.5 -3.5 -6.1"></a-box>
         <a-box id="gas2" color="red" width="0.5" height="0.5" depth="0.5" position="-7.5 -3.5 -5.15"></a-box>
