@@ -16,6 +16,7 @@ window.onload = function () {
 
     var steak = document.getElementById('steak');
     var tapButton = document.getElementById('tap_trigger');
+    var spaghetPan = document.getElementById('spaghet-pan');
 
     // Variables
     var gasActive = [false, false, false, false, false];
@@ -23,6 +24,9 @@ window.onload = function () {
     var steakEquipped = false;
     var steakInPan = false;
     var tapOn = false;
+    var panHasWater = false;
+    var panInSink = false;
+    var panHasSpaghetti= false;
 
     // Steak oppak functie
     steak.addEventListener('mouseenter', function () {
@@ -52,27 +56,58 @@ window.onload = function () {
 
     // Maakt alle pan plaats posities zichtbaar
     function showPanPositions() {
-      for (i = 0; i < 5; i++) {
+      for (var i = 0; i < 5; i++) {
         panSpots[i].setAttribute('visible', 'true');
       }
     };
 
     // Maakt alle pan plaats posities onzichtbaar
     function hidePanPositions() {
-      for (i = 0; i < 5; i++) {
+      for (var i = 0; i < 5; i++) {
         panSpots[i].setAttribute('visible', 'false');
       }
     };
 
-    tapButton.addEventListener('mouseenter', function () {
-        this.tapOn = !this.tapOn;
+    function fillpan() {
+        if (panInSink && !panHasWater && tapOn) {
+            var panwat = document.getElementById('pan-water');
+            panwat.setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 1');
 
-        if (this.tapOn) {
-          document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0.5');
-        } else {
-          document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0');
+            panHasWater = true;
         }
-      });
+    }
+
+    document.getElementById('tap_trigger').addEventListener('mouseenter', function () {
+        tapOn = !tapOn;
+
+        if (tapOn) {
+            document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0.5');
+            fillpan();
+        } else {
+            document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0');
+        }
+    });
+
+    spaghetPan.addEventListener('mouseenter', function () {
+        if (spaghetPan.parentNode == camera) {
+            console.log("YES")
+        } else {
+            if (!panHasWater && !panInSink) {
+                camera.appendChild(spaghetPan);
+            }
+        }
+    });
+
+    document.getElementById('sink_trigger').addEventListener('mouseenter', function () {
+        if (spaghetPan.parentNode == camera && !panHasWater) {
+            scene.appendChild(spaghetPan);
+            spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
+            spaghetPan.setAttribute('rotation', '180 -44 180');
+
+            panInSink = true;
+            fillpan();
+        }
+    });
 
     // Plaats de pan op de meegegeven x en z coordinaten
     AFRAME.registerComponent('place-pan', {
