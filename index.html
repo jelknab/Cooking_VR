@@ -4,10 +4,18 @@
 </head>
 
 <body>
-    <a-scene id='scene'>
+    <a-scene stats id='scene'>
         <a-camera id="camera" position="0 0 0">
             <a-cursor id='cursor'></a-cursor>
         </a-camera>
+
+        <!--Room-->
+        <a-plane position="3 -7.25 0" rotation="-90 0 0" color="green" width="30" height="20"></a-plane>
+        <a-plane position="3 3.5 0" rotation="90 0 0" color="magenta" width="30" height="20"></a-plane>
+        <a-plane position="-12 -1.75 0" rotation="0 90 0" color="#FFFFcc" width="20" height="11"></a-plane>
+        <a-plane position="18 -1.75 0" rotation="0 -90 0" color="#FFFFcc" width="20" height="11"></a-plane>
+        <a-plane position="3 -1.75 10" rotation="0 180 0" color="#FFFFcc" width="30" height="11"></a-plane>
+        <a-plane position="3 -1.75 -10" rotation="0 0 0" color="#FFFFcc" width="30" height="11"></a-plane>
 
         <!-- navigation boxes -->
         <a-box id="box1" position="-7 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -7 0 0">
@@ -32,7 +40,7 @@
         <a-obj-model id="gas2" src="#fire-obj" mtl="#fire-mtl" position="-7.5 -2.3 -5.15" visible="false"></a-obj-model>
         <a-obj-model id="gas3" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -6.1" visible="false"></a-obj-model>
         <a-obj-model id="gas4" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -4.2" visible="false"></a-obj-model>
-        <a-sky color="#EFEFEF"></a-sky>
+        <!--<a-sky color="#EFEFEF"></a-sky>-->
 
         <!-- assets imports -->
         <a-assets>
