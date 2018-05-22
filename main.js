@@ -11,13 +11,27 @@ window.onload = function () {
     var panSpot2 = document.getElementById('panSpot2');
     var panSpot3 = document.getElementById('panSpot3');
     var panSpot4 = document.getElementById('panSpot4');
+    var steak = document.getElementById('steak');
+    var steakEquiped = false;
+
+    // Steak oppak functie
+    steak.addEventListener('mouseenter', function () {
+        if (!panEquiped) {
+          camera.append(this);
+          steakEquiped = true;
+        }
+      });
 
     // Pan oppak functie
     pan.addEventListener('mouseenter', function () {
-        cursor.append(this);
-        panEquiped = true;
-        showPanPositions();
-      });
+          cursor.append(this);
+          panEquiped = true;
+          showPanPositions();
+          if (steakEquiped) {
+            pan.append(steak);
+            steak.setAttribute('position', '0 0.1 0');
+          }
+        });
 
     // Maakt alle pan plaats posities zichtbaar
     function showPanPositions() {
