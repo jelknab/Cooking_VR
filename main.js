@@ -1,55 +1,78 @@
 window.onload = function () {
+    // Objects
     var scene = document.getElementById('scene');
     var camera = document.getElementById('camera');
     var cursor = document.getElementById('cursor');
-    var gases = [document.getElementById('gas0'), document.getElementById('gas1'), document.getElementById('gas2'), document.getElementById('gas3'), document.getElementById('gas4')];
-    var gasbools = [false, false, false, false, false];
+    var gases = [];
+    for (i = 0; i < 5; i++) {
+      gases[i] = document.getElementById('gas' + i);
+    };
+
     var pan = document.getElementById('pan');
-    var panEquiped = false;
-    var panSpot0 = document.getElementById('panSpot0');
-    var panSpot1 = document.getElementById('panSpot1');
-    var panSpot2 = document.getElementById('panSpot2');
-    var panSpot3 = document.getElementById('panSpot3');
-    var panSpot4 = document.getElementById('panSpot4');
+    var panSpots = [];
+    for (i = 0; i < 5; i++) {
+      panSpots[i] = document.getElementById('panSpot' + i);
+    };
+
     var steak = document.getElementById('steak');
-    var steakEquiped = false;
+    var tapButton = document.getElementById('tap_trigger');
+
+    // Variables
+    var gasActive = [false, false, false, false, false];
+    var panEquipped = false;
+    var steakEquipped = false;
+    var steakInPan = false;
+    var tapOn = false;
 
     // Steak oppak functie
     steak.addEventListener('mouseenter', function () {
-        if (!panEquiped) {
-          camera.append(this);
-          steakEquiped = true;
+        if (!panEquipped) {
+          cursor.append(this);
+          steakEquipped = true;
         }
       });
 
     // Pan oppak functie
     pan.addEventListener('mouseenter', function () {
-          cursor.append(this);
-          panEquiped = true;
-          showPanPositions();
-          if (steakEquiped) {
-            pan.append(steak);
-            steak.setAttribute('position', '0 0.1 0');
-          }
-        });
+        if (steakEquipped) {
+          this.append(steak);
+          steak.setAttribute('position', '0 0.1 0');
+          steakEquipped = false;
+          steakInPan = true;
+        }
+
+        cursor.append(this);
+        panEquipped = true;
+        showPanPositions();
+        if (steakInPan) {
+          console.log('steak in pan');
+          steak.setAttribute('position', '0 0.1 0');
+        }
+      });
 
     // Maakt alle pan plaats posities zichtbaar
     function showPanPositions() {
-      panSpot0.setAttribute('visible', 'true');
-      panSpot1.setAttribute('visible', 'true');
-      panSpot2.setAttribute('visible', 'true');
-      panSpot3.setAttribute('visible', 'true');
-      panSpot4.setAttribute('visible', 'true');
+      for (i = 0; i < 5; i++) {
+        panSpots[i].setAttribute('visible', 'true');
+      }
     };
 
     // Maakt alle pan plaats posities onzichtbaar
     function hidePanPositions() {
-      panSpot0.setAttribute('visible', 'false');
-      panSpot1.setAttribute('visible', 'false');
-      panSpot2.setAttribute('visible', 'false');
-      panSpot3.setAttribute('visible', 'false');
-      panSpot4.setAttribute('visible', 'false');
+      for (i = 0; i < 5; i++) {
+        panSpots[i].setAttribute('visible', 'false');
+      }
     };
+
+    tapButton.addEventListener('mouseenter', function () {
+        this.tapOn = !this.tapOn;
+
+        if (this.tapOn) {
+          document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0.5');
+        } else {
+          document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0');
+        }
+      });
 
     // Plaats de pan op de meegegeven x en z coordinaten
     AFRAME.registerComponent('place-pan', {
@@ -64,12 +87,17 @@ window.onload = function () {
         init: function () {
             var data = this.data;
             this.el.addEventListener('mouseenter', function () {
-                if (panEquiped) {
+                if (panEquipped) {
                   hidePanPositions();
                   scene.append(pan);
-                  panEquiped = false;
+                  panEquipped = false;
                   pan.setAttribute('position', data.x + ' -2.2 ' + data.z);
-                };
+                  if (steakInPan) {
+                    steak.setAttribute('position', '0 0.1 0');
+                  }
+                }
+
+                ;
               });
           },
       });
@@ -108,13 +136,13 @@ window.onload = function () {
                 let anim = document.createElement('a-animation');
                 anim.setAttribute('attribute', 'rotation');
                 anim.setAttribute('dur', '1500');
-                if (gasbools[data.index]) {
+                if (gasActive[data.index]) {
                   anim.setAttribute('to', '0 0 0');
-                  gasbools[data.index] = false;
+                  gasActive[data.index] = false;
                   gases[data.index].setAttribute('visible', 'false');
                 } else {
                   anim.setAttribute('to', '0 -180 0');
-                  gasbools[data.index] = true;
+                  gasActive[data.index] = true;
                   gases[data.index].setAttribute('visible', 'true');
                 }
 
