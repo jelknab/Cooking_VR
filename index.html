@@ -1,96 +1,133 @@
 <head>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-    <script src="main.js"></script>
+    <!--<script src="main.js"></script>-->
+    <script src="objectives.js"></script>
 </head>
 
 <body>
-    <a-scene stats id='scene'>
-        <a-camera id="camera" position="0 0 0">
-            <a-cursor id='cursor'></a-cursor>
-        </a-camera>
+<a-scene stats id='scene'>
+    <a-camera id="camera" position="0 0 0">
+        <a-cursor id='cursor'></a-cursor>
+    </a-camera>
 
-        <!--Room-->
-        <a-plane position="3 -7.25 0" rotation="-90 0 0" color="green" width="30" height="20"></a-plane>
-        <a-plane position="3 3.5 0" rotation="90 0 0" color="magenta" width="30" height="20"></a-plane>
-        <a-plane position="-12 -1.75 0" rotation="0 90 0" color="#FFFFcc" width="20" height="11"></a-plane>
-        <a-plane position="18 -1.75 0" rotation="0 -90 0" color="#FFFFcc" width="20" height="11"></a-plane>
-        <a-plane position="3 -1.75 10" rotation="0 180 0" color="#FFFFcc" width="30" height="11"></a-plane>
-        <a-plane position="3 -1.75 -10" rotation="0 0 0" color="#FFFFcc" width="30" height="11"></a-plane>
+    <!--Room-->
+    <a-plane position="3 -7.25 0" rotation="-90 0 0" color="green" width="30" height="20"></a-plane>
+    <a-plane position="3 3.5 0" rotation="90 0 0" color="magenta" width="30" height="20"></a-plane>
+    <a-plane position="-12 -1.75 0" rotation="0 90 0" color="#FFFFcc" width="20" height="11"></a-plane>
+    <a-plane position="18 -1.75 0" rotation="0 -90 0" color="#FFFFcc" width="20" height="11"></a-plane>
+    <a-plane position="3 -1.75 10" rotation="0 180 0" color="#FFFFcc" width="30" height="11"></a-plane>
+    <a-plane position="3 -1.75 -10" rotation="0 0 0" color="#FFFFcc" width="30" height="11"></a-plane>
 
-        <!-- navigation boxes -->
-        <a-box id="box1" position="-7 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -7 0 0">
-        </a-box>
-        <a-box id="box2" position="-2 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -2 0 0">
-        </a-box>
-        <a-box id="box3" position="6 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: 6 0 0">
-        </a-box>
-        <a-box id="box4" position="16 -0.5 0" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: 8 0 0">
-        </a-box>
+    <!-- navigation boxes -->
+    <a-box id="box1" position="-7 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -7 0 0">
+    </a-box>
+    <a-box id="box2" position="-2 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -2 0 0">
+    </a-box>
+    <a-box id="box3" position="6 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: 6 0 0">
+    </a-box>
+    <a-box id="box4" position="16 -0.5 0" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: 8 0 0">
+    </a-box>
 
-        <!-- gasknoppen -->
-        <a-box id="gasknop0" color="green" width="0.2" height="0.2" depth="0.2" position="-9.2 -2.1 -2.8" furnace-button="index: 0"></a-box>
-        <a-box id="gasknop1" color="green" width="0.2" height="0.2" depth="0.2" position="-8.7 -2.1 -2.8" furnace-button="index: 1"></a-box>
-        <a-box id="gasknop2" color="green" width="0.2" height="0.2" depth="0.2" position="-8.2 -2.1 -2.8" furnace-button="index: 2"></a-box>
-        <a-box id="gasknop3" color="green" width="0.2" height="0.2" depth="0.2" position="-7.7 -2.1 -2.8" furnace-button="index: 3"></a-box>
-        <a-box id="gasknop4" color="green" width="0.2" height="0.2" depth="0.2" position="-7.2 -2.1 -2.8" furnace-button="index: 4"></a-box>
+    <!-- gasknoppen -->
+    <a-box id="gasknop0" color="green" width="0.2" height="0.2" depth="0.2" position="-9.2 -2.1 -2.8"
+           furnace-button="index: 0"></a-box>
+    <a-box id="gasknop1" color="green" width="0.2" height="0.2" depth="0.2" position="-8.7 -2.1 -2.8"
+           furnace-button="index: 1"></a-box>
+    <a-box id="gasknop2" color="green" width="0.2" height="0.2" depth="0.2" position="-8.2 -2.1 -2.8"
+           furnace-button="index: 2"></a-box>
+    <a-box id="gasknop3" color="green" width="0.2" height="0.2" depth="0.2" position="-7.7 -2.1 -2.8"
+           furnace-button="index: 3"></a-box>
+    <a-box id="gasknop4" color="green" width="0.2" height="0.2" depth="0.2" position="-7.2 -2.1 -2.8"
+           furnace-button="index: 4"></a-box>
 
-        <!-- gas -->
-        <a-obj-model id="gas0" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -4.2" visible="false"></a-obj-model>
-        <a-obj-model id="gas1" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -6.1" visible="false"></a-obj-model>
-        <a-obj-model id="gas2" src="#fire-obj" mtl="#fire-mtl" position="-7.5 -2.3 -5.15" visible="false"></a-obj-model>
-        <a-obj-model id="gas3" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -6.1" visible="false"></a-obj-model>
-        <a-obj-model id="gas4" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -4.2" visible="false"></a-obj-model>
+    <!-- gas -->
+    <a-obj-model id="gas0" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -4.2" visible="false"></a-obj-model>
+    <a-obj-model id="gas1" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -6.1" visible="false"></a-obj-model>
+    <a-obj-model id="gas2" src="#fire-obj" mtl="#fire-mtl" position="-7.5 -2.3 -5.15" visible="false"></a-obj-model>
+    <a-obj-model id="gas3" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -6.1" visible="false"></a-obj-model>
+    <a-obj-model id="gas4" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -4.2" visible="false"></a-obj-model>
 
-        <a-box id="tap_trigger" position="-0.077 -1.72 -7.036" material="transparent: true; opacity: 0" geometry=""></a-box>
-        <a-box id="sink_trigger" position="-0.38 -3 -4.58" material="transparent:true; opacity: 0" geometry=""></a-box>
-        <a-cylinder id="water" material="side: double; color: #0000FF; transparent: true; opacity: 0" position="-.6 -2.4 -6" geometry="segmentsRadial:10;segmentsHeight:1" scale="0.1 2 0.1"></a-cylinder>
+    <a-box id="tap_trigger" position="-0.077 -1.72 -7.036" material="transparent: true; opacity: 0" geometry=""></a-box>
+    <a-box id="sink_trigger" position="-0.54 -3 -4.69" visible="false" scale="4.11 0.26 3.16"></a-box>
+    <a-cylinder id="water" material="side: double; color: #0000FF; transparent: true; opacity: 0" position="-.6 -2.4 -6"
+                geometry="segmentsRadial:10;segmentsHeight:1" scale="0.1 2 0.1"></a-cylinder>
 
-        <!-- assets imports -->
-        <a-assets>
-            <a-asset-item id="kitchen-obj" src="Models/Kitchen_model/kitchen.obj"></a-asset-item>
-            <a-asset-item id="kitchen-mtl" src="Models/Kitchen_model/kitchen.mtl"></a-asset-item>
+    <!-- assets imports -->
+    <a-assets>
+        <a-asset-item id="kitchen-obj" src="Models/Kitchen_model/kitchen.obj"></a-asset-item>
+        <a-asset-item id="kitchen-mtl" src="Models/Kitchen_model/kitchen.mtl"></a-asset-item>
 
-            <!-- Source: https://poly.google.com/view/1QpMTUO7P-G -->
-            <a-asset-item id="fire-obj" src="Models/Fire_model/fire.obj"></a-asset-item>
-            <a-asset-item id="fire-mtl" src="Models/Fire_model/fire.mtl"></a-asset-item>
+        <!-- Source: https://poly.google.com/view/1QpMTUO7P-G -->
+        <a-asset-item id="fire-obj" src="Models/Fire_model/fire.obj"></a-asset-item>
+        <a-asset-item id="fire-mtl" src="Models/Fire_model/fire.mtl"></a-asset-item>
 
-            <!-- Source: https://poly.google.com/view/adp5MvenMQm -->
-            <a-asset-item id="Saucepan-obj" src="Models/Saucepan_model/Saucepan.obj"></a-asset-item>
-            <a-asset-item id="Saucepan-mtl" src="Models/Saucepan_model/Saucepan.mtl"></a-asset-item>
+        <!-- Source: https://poly.google.com/view/adp5MvenMQm -->
+        <a-asset-item id="Saucepan-obj" src="Models/Saucepan_model/Saucepan.obj"></a-asset-item>
+        <a-asset-item id="Saucepan-mtl" src="Models/Saucepan_model/Saucepan.mtl"></a-asset-item>
 
-            <!-- Source: https://poly.google.com/view/9WkoCTU8IA1 -->
-            <a-asset-item id="steak-obj" src="Models/Steak_model/steak.obj"></a-asset-item>
-            <a-asset-item id="steak-mtl" src="Models/Steak_model/steak.mtl"></a-asset-item>
+        <!-- Source: https://poly.google.com/view/9WkoCTU8IA1 -->
+        <a-asset-item id="steak-obj" src="Models/Steak_model/steak.obj"></a-asset-item>
+        <a-asset-item id="steak-mtl" src="Models/Steak_model/steak.mtl"></a-asset-item>
 
-            <!--Source: https://poly.google.com/view/9W7fuCdO6j2-->
-            <a-asset-item id="pan-obj" src="Models/Pan_model/506 Sauce Pan.obj"></a-asset-item>
-            <a-asset-item id="pan-mtl" src="Models/Pan_model/506 Sauce Pan.mtl"></a-asset-item>
-        </a-assets>
+        <!--Source: https://poly.google.com/view/9W7fuCdO6j2-->
+        <a-asset-item id="pan-obj" src="Models/Pan_model/506 Sauce Pan.obj"></a-asset-item>
+        <a-asset-item id="pan-mtl" src="Models/Pan_model/506 Sauce Pan.mtl"></a-asset-item>
+    </a-assets>
 
-        <!-- pan plaats knoppen -->
-        <a-box id="panSpot0" color="yellow" width="0.2" height="0.2" depth="0.2" position="-7.8 -2.3 -4.2" visible='false' place-pan="x: -8.5; z: -4.2; index: 0"></a-box>
-        <a-box id="panSpot1" color="yellow" width="0.2" height="0.2" depth="0.2" position="-7.8 -2.3 -6.1" visible='false' place-pan="x: -8.5; z: -6.1; index: 1"></a-box>
-        <a-box id="panSpot2" color="yellow" width="0.2" height="0.2" depth="0.2" position="-6.8 -2.3 -5.2" visible='false' place-pan="x: -7.5; z: -5.15; index: 2"></a-box>
-        <a-box id="panSpot3" color="yellow" width="0.2" height="0.2" depth="0.2" position="-5.9 -2.3 -6.1" visible='false' place-pan="x: -6.6; z: -6.1; index: 3"></a-box>
-        <a-box id="panSpot4" color="yellow" width="0.2" height="0.2" depth="0.2" position="-5.9 -2.3 -4.2" visible='false' place-pan="x: -6.6; z: -4.2; index: 4"></a-box>
+    <!-- pan plaats knoppen -->
+    <a-box id="panSpot0" color="yellow" width="0.2" height="0.2" depth="0.2" position="-7.8 -2.3 -4.2" visible='false'
+           place-pan="x: -8.5; z: -4.2; index: 0"></a-box>
+    <a-box id="panSpot1" color="yellow" width="0.2" height="0.2" depth="0.2" position="-7.8 -2.3 -6.1" visible='false'
+           place-pan="x: -8.5; z: -6.1; index: 1"></a-box>
+    <a-box id="panSpot2" color="yellow" width="0.2" height="0.2" depth="0.2" position="-6.8 -2.3 -5.2" visible='false'
+           place-pan="x: -7.5; z: -5.15; index: 2"></a-box>
+    <a-box id="panSpot3" color="yellow" width="0.2" height="0.2" depth="0.2" position="-5.9 -2.3 -6.1" visible='false'
+           place-pan="x: -6.6; z: -6.1; index: 3"></a-box>
+    <a-box id="panSpot4" color="yellow" width="0.2" height="0.2" depth="0.2" position="-5.9 -2.3 -4.2" visible='false'
+           place-pan="x: -6.6; z: -4.2; index: 4"></a-box>
 
-        <!-- keuken -->
-        <a-obj-model src="#kitchen-obj" mtl="#kitchen-mtl" scale="0.05 0.05 0.05" position="0 -5 -5">
-        </a-obj-model>
+    <!-- keuken -->
+    <a-obj-model src="#kitchen-obj" mtl="#kitchen-mtl" scale="0.05 0.05 0.05" position="0 -5 -5">
+    </a-obj-model>
 
-        <!-- pan -->
-        <a-obj-model id='pan' src="#Saucepan-obj" mtl="#Saucepan-mtl" scale="1 1 1" position="-4.4 -2.1 -3.75 ">
-        </a-obj-model>
+    <!-- pan -->
+    <a-obj-model id='pan' src="#Saucepan-obj" mtl="#Saucepan-mtl" scale="1 1 1" position="-4.4 -2.1 -3.75 ">
+    </a-obj-model>
 
-        <!-- spaghetti pan -->
-        <a-obj-model id='spaghet-pan' src="#pan-obj" mtl="#pan-mtl" scale=".05 .05 .05" position="-4.4 -2.1 -3.75 ">
-            <a-cylinder id="pan-water" position="0 10 0" scale="17 10 17" material="side: double; color: #0000FF; transparent: true; opacity: 0" geometry="segmentsRadial:10;segmentsHeight:1"></a-cylinder>
-        </a-obj-model>
+    <!-- spaghetti pan -->
+    <a-obj-model id='spaghet-pan' src="#pan-obj" mtl="#pan-mtl" scale=".05 .05 .05" position="-4.4 -2.1 -3.75 ">
+        <a-cylinder id="pan-water" position="0 10 0" scale="17 10 17"
+                    material="side: double; color: #0000FF; transparent: true; opacity: 0"
+                    geometry="segmentsRadial:10;segmentsHeight:1"></a-cylinder>
+    </a-obj-model>
 
-        <!-- steak -->
-        <a-box id='steak' src="groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-4.4 -2.1 -5">
-        </a-box>
+    <!-- steak -->
+    <a-box id='steak' src="groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-4.4 -2.1 -5">
+    </a-box>
 
-    </a-scene>
+    <!-- Instruction text -->
+    <a-text id="instructions" value="" align="center" width="15" color="#000" position="0 1 -9"></a-text>
 
-    <body>
+    <!-- Marker arrow -->
+    <a-entity id="marker" visible="false">
+        <a-cylinder scale="0.1 0.3 0.1" material="color:#ff8c8c" geometry="segmentsRadial:16;segmentsHeight:1">
+            <a-animation
+                    attribute="position"
+                    dur="1000"
+                    direction="alternate"
+                    to="0 1 0"
+                    repeat="indefinite"
+            ></a-animation>
+
+            <a-cone material="color:#ff8c8c"
+                    geometry="segmentsRadial:16;segmentsHeight:1"
+                    position="0 -1 0"
+                    rotation="0 0 180"
+                    scale="1.5 1 1.5"></a-cone>
+        </a-cylinder>
+    </a-entity>
+
+
+</a-scene>
+
+<body>
