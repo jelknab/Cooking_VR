@@ -20,37 +20,32 @@ window.onload = function () {
 
     // Variables
     var gasActive = [false, false, false, false, false];
-    var panEquipped = false;
-    var steakEquipped = false;
-    var steakInPan = false;
     var tapOn = false;
     var panHasWater = false;
     var panInSink = false;
-    var panHasSpaghetti= false;
+    var panHasSpaghetti = false;
 
     // Steak oppak functie
     steak.addEventListener('mouseenter', function () {
-        if (!panEquipped) {
+        if (!holdingItem()) {
           cursor.append(this);
-          steakEquipped = true;
         }
       });
 
     // Pan oppak functie
     pan.addEventListener('mouseenter', function () {
-        if (steakEquipped) {
+        if (steak.parentNode == cursor) {
           this.append(steak);
           steak.setAttribute('position', '0 0.1 0');
-          steakEquipped = false;
-          steakInPan = true;
         }
 
-        cursor.append(this);
-        panEquipped = true;
-        showPanPositions();
-        if (steakInPan) {
-          console.log('steak in pan');
-          steak.setAttribute('position', '0 0.1 0');
+        if (!holdingItem()) {
+          cursor.append(this);
+          showPanPositions();
+          if (steak.parentNode == pan) {
+            console.log('steak in pan');
+            steak.setAttribute('position', '0 0.1 0');
+          }
         }
       });
 
@@ -69,45 +64,51 @@ window.onload = function () {
     };
 
     function fillpan() {
-        if (panInSink && !panHasWater && tapOn) {
-            var panwat = document.getElementById('pan-water');
-            panwat.setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 1');
-
-            panHasWater = true;
-        }
+      if (panInSink && !panHasWater && tapOn) {
+        var panwat = document.getElementById('pan-water');
+        panwat.setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 1');
+        panHasWater = true;
+      }
     }
 
     document.getElementById('tap_trigger').addEventListener('mouseenter', function () {
         tapOn = !tapOn;
 
         if (tapOn) {
-            document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0.5');
-            fillpan();
+          document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0.5');
+          fillpan();
         } else {
-            document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0');
+          document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0');
         }
-    });
+      });
 
     spaghetPan.addEventListener('mouseenter', function () {
         if (spaghetPan.parentNode == camera) {
-            console.log("YES")
+          console.log('YES');
         } else {
-            if (!panHasWater && !panInSink) {
-                camera.appendChild(spaghetPan);
-            }
+          if (!panHasWater && !panInSink && !holdingItem()) {
+            camera.appendChild(spaghetPan);
+          }
         }
-    });
+      });
+
+    function holdingItem() {
+      if (steak.parentNode == cursor
+        || pan.parentNode == cursor
+        || spaghetPan.parentNode == camera
+        ) return true;
+      else return false;
+    }
 
     document.getElementById('sink_trigger').addEventListener('mouseenter', function () {
         if (spaghetPan.parentNode == camera && !panHasWater) {
-            scene.appendChild(spaghetPan);
-            spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
-            spaghetPan.setAttribute('rotation', '180 -44 180');
-
-            panInSink = true;
-            fillpan();
+          scene.appendChild(spaghetPan);
+          spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
+          spaghetPan.setAttribute('rotation', '180 -44 180');
+          panInSink = true;
+          fillpan();
         }
-    });
+      });
 
     // Plaats de pan op de meegegeven x en z coordinaten
     AFRAME.registerComponent('place-pan', {
@@ -122,12 +123,11 @@ window.onload = function () {
         init: function () {
             var data = this.data;
             this.el.addEventListener('mouseenter', function () {
-                if (panEquipped) {
+                if (pan.parentNode == cursor) {
                   hidePanPositions();
                   scene.append(pan);
-                  panEquipped = false;
                   pan.setAttribute('position', data.x + ' -2.2 ' + data.z);
-                  if (steakInPan) {
+                  if (steak.parentNode == pan) {
                     steak.setAttribute('position', '0 0.1 0');
                   }
                 }
@@ -152,7 +152,6 @@ window.onload = function () {
                 anim.setAttribute('dur', '2000');
                 anim.setAttribute('easing', 'linear');
                 anim.setAttribute('to', data.to);
-                camera.removeChild(camera.lastChild);
                 camera.append(anim);
               });
           },
