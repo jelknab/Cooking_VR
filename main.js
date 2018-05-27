@@ -24,6 +24,8 @@ window.onload = function () {
     var panHasWater = false;
     var panInSink = false;
     var panHasSpaghetti = false;
+    var panPositionIndex = 5;
+    var steakCookingTime = 0;
 
     // Steak oppak functie
     steak.addEventListener('mouseenter', function () {
@@ -31,6 +33,19 @@ window.onload = function () {
           cursor.append(this);
         }
       });
+
+    window.setInterval(function () {
+        cookBeef();
+      }, 1000);
+
+    function cookBeef() {
+      if (panPositionIndex < 5 && gasActive[panPositionIndex] && steak.parentNode == pan) {
+        steakCookingTime = steakCookingTime + 1;
+        if (steakCookingTime > 5) {
+          steak.setAttribute('src', 'groundbeefCooked.png');
+        }
+      };
+    }
 
     // Pan oppak functie
     pan.addEventListener('mouseenter', function () {
@@ -43,7 +58,6 @@ window.onload = function () {
           cursor.append(this);
           showPanPositions();
           if (steak.parentNode == pan) {
-            console.log('steak in pan');
             steak.setAttribute('position', '0 0.1 0');
           }
         }
@@ -119,6 +133,9 @@ window.onload = function () {
             z: {
                 default: '0',
               },
+            index: {
+                default: '0',
+              },
           },
         init: function () {
             var data = this.data;
@@ -127,6 +144,7 @@ window.onload = function () {
                   hidePanPositions();
                   scene.append(pan);
                   pan.setAttribute('position', data.x + ' -2.2 ' + data.z);
+                  panPositionIndex = data.index;
                   if (steak.parentNode == pan) {
                     steak.setAttribute('position', '0 0.1 0');
                   }
