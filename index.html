@@ -76,16 +76,21 @@
 
         <!-- pan -->
         <a-obj-model id='pan' src="#Saucepan-obj" mtl="#Saucepan-mtl" scale="1 1 1" position="-4.4 -2.1 -3.75 ">
+            <!-- toevoeg knop -->
+            <a-box id="panAddSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="0 0.4 0" visible='false'></a-box>
         </a-obj-model>
 
         <!-- spaghetti pan -->
-        <a-obj-model id='spaghet-pan' src="#pan-obj" mtl="#pan-mtl" scale=".05 .05 .05" position="-4.4 -2.1 -3.75 ">
+        <a-obj-model id='spaghet-pan' src="#pan-obj" mtl="#pan-mtl" scale=".05 .05 .05" position="3 -2.1 -3.75 ">
             <a-cylinder id="pan-water" position="0 10 0" scale="17 10 17" material="side: double; color: #0000FF; transparent: true; opacity: 0" geometry="segmentsRadial:10;segmentsHeight:1"></a-cylinder>
         </a-obj-model>
 
         <!-- gehakt -->
-        <a-box id='steak' src="groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-4.4 -2.1 -5">
+        <a-box id='beef' src="groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-4.4 -2.1 -5">
         </a-box>
+
+        <!-- gehakt op aanrecht spot -->
+        <a-box id="beefCounterSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-4.4 -1.8 -5" visible='false'></a-box>
 
     </a-scene>
 
