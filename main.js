@@ -28,7 +28,7 @@ window.onload = function () {
     var steakCookingTime = 0;
 
     // Steak oppak functie
-    steak.addEventListener('mouseenter', function () {
+    steak.addEventListener('click', function () {
         if (!holdingItem()) {
           cursor.append(this);
         }
@@ -48,7 +48,7 @@ window.onload = function () {
     }
 
     // Pan oppak functie
-    pan.addEventListener('mouseenter', function () {
+    pan.addEventListener('click', function () {
         if (steak.parentNode == cursor) {
           this.append(steak);
           steak.setAttribute('position', '0 0.1 0');
@@ -85,7 +85,7 @@ window.onload = function () {
       }
     }
 
-    document.getElementById('tap_trigger').addEventListener('mouseenter', function () {
+    document.getElementById('tap_trigger').addEventListener('click', function () {
         tapOn = !tapOn;
 
         if (tapOn) {
@@ -96,7 +96,7 @@ window.onload = function () {
         }
       });
 
-    spaghetPan.addEventListener('mouseenter', function () {
+    spaghetPan.addEventListener('click', function () {
         if (spaghetPan.parentNode == camera) {
           console.log('YES');
         } else {
@@ -114,7 +114,7 @@ window.onload = function () {
       else return false;
     }
 
-    document.getElementById('sink_trigger').addEventListener('mouseenter', function () {
+    document.getElementById('sink_trigger').addEventListener('click', function () {
         if (spaghetPan.parentNode == camera && !panHasWater) {
           scene.appendChild(spaghetPan);
           spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
@@ -139,7 +139,7 @@ window.onload = function () {
           },
         init: function () {
             var data = this.data;
-            this.el.addEventListener('mouseenter', function () {
+            this.el.addEventListener('click', function () {
                 if (pan.parentNode == cursor) {
                   hidePanPositions();
                   scene.append(pan);
@@ -164,7 +164,7 @@ window.onload = function () {
           },
         init: function () {
             var data = this.data;
-            this.el.addEventListener('mouseenter', function () {
+            this.el.addEventListener('click', function () {
                 let anim = document.createElement('a-animation');
                 anim.setAttribute('attribute', 'position');
                 anim.setAttribute('dur', '2000');
@@ -184,7 +184,7 @@ window.onload = function () {
           },
         init: function () {
             var data = this.data;
-            this.el.addEventListener('mouseenter', function () {
+            this.el.addEventListener('click', function () {
                 let anim = document.createElement('a-animation');
                 anim.setAttribute('attribute', 'rotation');
                 anim.setAttribute('dur', '1500');
