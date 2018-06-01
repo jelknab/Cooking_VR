@@ -14,7 +14,10 @@ window.onload = function () {
       panSpots[i] = document.getElementById('panSpot' + i);
     };
 
-    var steak = document.getElementById('steak');
+    var beef = document.getElementById('beef');
+    var panAddSpot = document.getElementById('panAddSpot');
+    var beefCounterSpot = document.getElementById('beefCounterSpot');
+
     var tapButton = document.getElementById('tap_trigger');
     var spaghetPan = document.getElementById('spaghet-pan');
 
@@ -25,12 +28,34 @@ window.onload = function () {
     var panInSink = false;
     var panHasSpaghetti = false;
     var panPositionIndex = 5;
-    var steakCookingTime = 0;
+    var beefCookingTime = 0;
 
-    // Steak oppak functie
-    steak.addEventListener('mouseenter', function () {
+    // gehakt oppak functie
+    beef.addEventListener('click', function () {
         if (!holdingItem()) {
           cursor.append(this);
+          panAddSpot.setAttribute('visible', 'true');
+          beefCounterSpot.setAttribute('visible', 'true');
+        }
+      });
+
+    // gehakt in pan functie
+    panAddSpot.addEventListener('mouseenter', function () {
+        if (beef.parentNode == cursor) {
+          pan.append(beef);
+          beef.setAttribute('position', '0 0.1 0');
+          panAddSpot.setAttribute('visible', 'false');
+          beefCounterSpot.setAttribute('visible', 'false');
+        }
+      });
+
+    // gehakt op aanrecht functie
+    document.getElementById('beefCounterSpot').addEventListener('click', function () {
+        if (beef.parentNode == cursor) {
+          scene.append(beef);
+          beef.setAttribute('position', '-4.4 -2.1 -5');
+          panAddSpot.setAttribute('visible', 'false');
+          beefCounterSpot.setAttribute('visible', 'false');
         }
       });
 
@@ -39,26 +64,21 @@ window.onload = function () {
       }, 1000);
 
     function cookBeef() {
-      if (panPositionIndex < 5 && gasActive[panPositionIndex] && steak.parentNode == pan) {
-        steakCookingTime = steakCookingTime + 1;
-        if (steakCookingTime > 5) {
-          steak.setAttribute('src', 'groundbeefCooked.png');
+      if (panPositionIndex < 5 && gasActive[panPositionIndex] && beef.parentNode == pan) {
+        beefCookingTime = beefCookingTime + 1;
+        if (beefCookingTime > 5) {
+          beef.setAttribute('src', 'groundbeefCooked.png');
         }
       };
     }
 
     // Pan oppak functie
-    pan.addEventListener('mouseenter', function () {
-        if (steak.parentNode == cursor) {
-          this.append(steak);
-          steak.setAttribute('position', '0 0.1 0');
-        }
-
+    pan.addEventListener('click', function () {
         if (!holdingItem()) {
           cursor.append(this);
           showPanPositions();
-          if (steak.parentNode == pan) {
-            steak.setAttribute('position', '0 0.1 0');
+          if (beef.parentNode == pan) {
+            beef.setAttribute('position', '0 0.1 0');
           }
         }
       });
@@ -85,7 +105,7 @@ window.onload = function () {
       }
     }
 
-    document.getElementById('tap_trigger').addEventListener('mouseenter', function () {
+    document.getElementById('tap_trigger').addEventListener('click', function () {
         tapOn = !tapOn;
 
         if (tapOn) {
@@ -96,7 +116,7 @@ window.onload = function () {
         }
       });
 
-    spaghetPan.addEventListener('mouseenter', function () {
+    spaghetPan.addEventListener('click', function () {
         if (spaghetPan.parentNode == camera) {
           console.log('YES');
         } else {
@@ -107,14 +127,14 @@ window.onload = function () {
       });
 
     function holdingItem() {
-      if (steak.parentNode == cursor
+      if (beef.parentNode == cursor
         || pan.parentNode == cursor
         || spaghetPan.parentNode == camera
         ) return true;
       else return false;
     }
 
-    document.getElementById('sink_trigger').addEventListener('mouseenter', function () {
+    document.getElementById('sink_trigger').addEventListener('click', function () {
         if (spaghetPan.parentNode == camera && !panHasWater) {
           scene.appendChild(spaghetPan);
           spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
@@ -139,14 +159,14 @@ window.onload = function () {
           },
         init: function () {
             var data = this.data;
-            this.el.addEventListener('mouseenter', function () {
+            this.el.addEventListener('click', function () {
                 if (pan.parentNode == cursor) {
                   hidePanPositions();
                   scene.append(pan);
                   pan.setAttribute('position', data.x + ' -2.2 ' + data.z);
                   panPositionIndex = data.index;
-                  if (steak.parentNode == pan) {
-                    steak.setAttribute('position', '0 0.1 0');
+                  if (beef.parentNode == pan) {
+                    beef.setAttribute('position', '0 0.1 0');
                   }
                 }
 
@@ -164,7 +184,7 @@ window.onload = function () {
           },
         init: function () {
             var data = this.data;
-            this.el.addEventListener('mouseenter', function () {
+            this.el.addEventListener('click', function () {
                 let anim = document.createElement('a-animation');
                 anim.setAttribute('attribute', 'position');
                 anim.setAttribute('dur', '2000');
@@ -184,7 +204,7 @@ window.onload = function () {
           },
         init: function () {
             var data = this.data;
-            this.el.addEventListener('mouseenter', function () {
+            this.el.addEventListener('click', function () {
                 let anim = document.createElement('a-animation');
                 anim.setAttribute('attribute', 'rotation');
                 anim.setAttribute('dur', '1500');
