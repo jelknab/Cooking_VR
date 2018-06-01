@@ -60,7 +60,7 @@ window.onload = function () {
             objectiveText.appendChild(button);
 
             // On mouseover remove button
-            new ObjectiveListener(button, 'mouseenter', function() {
+            new ObjectiveListener(button, 'click', function() {
                 objectiveText.removeChild(button);
                 completeObjective();
             }).listenAndRemove();
@@ -77,7 +77,7 @@ window.onload = function () {
             setObjectiveText("I've marked the pan.\nLook at it to pick it up.");
             setObjectiveArrow(pan.getAttribute('position'), 1.5);
 
-            new ObjectiveListener(pan, 'mouseenter', function() {
+            new ObjectiveListener(pan, 'click', function() {
                 grabObject(pan);
                 completeObjective();
             }).listenAndRemove();
@@ -91,7 +91,7 @@ window.onload = function () {
             setObjectiveText("Good job!\nPut it in the sink and we'll fill it up.");
             setObjectiveArrow(sink.getAttribute('position'), 1);
 
-            new ObjectiveListener(sink, 'mouseenter', function() {
+            new ObjectiveListener(sink, 'click', function() {
                 placeObject(pan, '-0.69 -3.21 -5.52');
                 completeObjective();
             }).listenAndRemove();
