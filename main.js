@@ -46,8 +46,7 @@ window.onload = function () {
         if (beef.parentNode == cursor) {
           pan.append(beef);
           beef.setAttribute('position', '0 0.1 0');
-          panAddSpot.setAttribute('visible', 'false');
-          beefCounterSpot.setAttribute('visible', 'false');
+          hideBeefPositions();
         }
       });
 
@@ -61,6 +60,7 @@ window.onload = function () {
         }
       });
 
+    // gehakt in koelkast functie
     beefFridgeSpot.addEventListener('click', function () {
         if (beef.parentNode == cursor) {
             scene.append(beef);
@@ -118,6 +118,7 @@ window.onload = function () {
     function hideBeefPositions() {
         beefCounterSpot.setAttribute('visible', 'false');
         beefFridgeSpot.setAttribute('visible', 'false');
+        panAddSpot.setAttribute('visible', 'false');
     }
 
     function fillpan() {
