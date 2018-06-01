@@ -79,17 +79,19 @@
         <a-box id="panSpot2" color="yellow" width="0.2" height="0.2" depth="0.2" position="-6.8 -2.3 -5.2" visible='false' place-pan="x: -7.5; z: -5.15; index: 2"></a-box>
         <a-box id="panSpot3" color="yellow" width="0.2" height="0.2" depth="0.2" position="-5.9 -2.3 -6.1" visible='false' place-pan="x: -6.6; z: -6.1; index: 3"></a-box>
         <a-box id="panSpot4" color="yellow" width="0.2" height="0.2" depth="0.2" position="-5.9 -2.3 -4.2" visible='false' place-pan="x: -6.6; z: -4.2; index: 4"></a-box>
+        <a-box id="panSpot5" color="yellow" width="0.2" height="0.2" depth="0.2" position="-3.7 -2 -3.7" visible='false' place-pan="x: -4.4; z: -3.75; index: 5"></a-box>
 
         <!-- keuken -->
         <a-obj-model src="#kitchen-obj" mtl="#kitchen-mtl" scale="0.05 0.05 0.05" position="0 -5 -5">
         </a-obj-model>
 
+        <!--koelkast-->
         <a-obj-model src="#fridge-obj" mtl="#fridge-mtl" scale="3.5 3.5 3.5" position="-10 -7 3" rotation="0 90 0">
         </a-obj-model>
-        <a-obj-model src="#fridge_door-obj" mtl="#fridge_door-mtl" scale="3.5 3.5 3.5" position="-10 -7 3" rotation="0 90 0">
-            <a-animation attribute="rotation" from="0 90 0" to="0 0 0" repeat="indefinite" dur="1500"></a-animation>
+        <a-obj-model id="fridgeDoor" src="#fridge_door-obj" mtl="#fridge_door-mtl" scale="3.5 3.5 3.5" position="-10 -7 3" rotation="0 90 0">
         </a-obj-model>
 
+        <!--lamp-->
         <a-obj-model src="#lamp-obj" mtl="#lamp-mtl" scale=".5 .5 .5" position="-3 2 -5" rotation="0 0 0">
         </a-obj-model>
         <a-obj-model src="#lamp-obj" mtl="#lamp-mtl" scale=".5 .5 .5" position="2 2 -5" rotation="0 0 0">
@@ -109,11 +111,14 @@
         </a-obj-model>
 
         <!-- gehakt -->
-        <a-box id='beef' src="groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-4.4 -2.1 -5">
+        <a-box id='beef' src="groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-10.5 -2.5 0.3">
         </a-box>
 
         <!-- gehakt op aanrecht spot -->
         <a-box id="beefCounterSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-4.4 -1.8 -5" visible='false'></a-box>
+
+        <!--gehakt koelkast spot-->
+        <a-box id="beefFridgeSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-10.5 -2 0.3" visible='false'></a-box>
 
         <!--Ambient-->
         <a-entity light="type:ambient;intensity:.4;color:#fff"></a-entity>

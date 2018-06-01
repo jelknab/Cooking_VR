@@ -10,13 +10,15 @@ window.onload = function () {
 
     var pan = document.getElementById('pan');
     var panSpots = [];
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 6; i++) {
+        console.log("doing this")
       panSpots[i] = document.getElementById('panSpot' + i);
     };
 
     var beef = document.getElementById('beef');
     var panAddSpot = document.getElementById('panAddSpot');
     var beefCounterSpot = document.getElementById('beefCounterSpot');
+    var beefFridgeSpot = document.getElementById('beefFridgeSpot');
 
     var tapButton = document.getElementById('tap_trigger');
     var spaghetPan = document.getElementById('spaghet-pan');
@@ -34,8 +36,8 @@ window.onload = function () {
     beef.addEventListener('click', function () {
         if (!holdingItem()) {
           cursor.append(this);
-          panAddSpot.setAttribute('visible', 'true');
-          beefCounterSpot.setAttribute('visible', 'true');
+          this.setAttribute('position', '-0.7 -0.5 0');
+          showBeefPositions();
         }
       });
 
@@ -50,14 +52,23 @@ window.onload = function () {
       });
 
     // gehakt op aanrecht functie
-    document.getElementById('beefCounterSpot').addEventListener('click', function () {
+    beefCounterSpot.addEventListener('click', function () {
         if (beef.parentNode == cursor) {
           scene.append(beef);
           beef.setAttribute('position', '-4.4 -2.1 -5');
           panAddSpot.setAttribute('visible', 'false');
-          beefCounterSpot.setAttribute('visible', 'false');
+          hideBeefPositions();
         }
       });
+
+    beefFridgeSpot.addEventListener('click', function () {
+        if (beef.parentNode == cursor) {
+            scene.append(beef);
+            beef.setAttribute('position', '-10.5 -2.5 0.3');
+            panAddSpot.setAttribute('visible', 'false');
+            hideBeefPositions();
+        }
+    });
 
     window.setInterval(function () {
         cookBeef();
@@ -76,6 +87,7 @@ window.onload = function () {
     pan.addEventListener('click', function () {
         if (!holdingItem()) {
           cursor.append(this);
+          this.setAttribute('position', '-0.7 -0.5 0');
           showPanPositions();
           if (beef.parentNode == pan) {
             beef.setAttribute('position', '0 0.1 0');
@@ -85,17 +97,28 @@ window.onload = function () {
 
     // Maakt alle pan plaats posities zichtbaar
     function showPanPositions() {
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < panSpots.length; i++) {
         panSpots[i].setAttribute('visible', 'true');
       }
     };
 
     // Maakt alle pan plaats posities onzichtbaar
     function hidePanPositions() {
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < panSpots.length; i++) {
         panSpots[i].setAttribute('visible', 'false');
       }
     };
+
+    function showBeefPositions() {
+        beefCounterSpot.setAttribute('visible', 'true');
+        beefFridgeSpot.setAttribute('visible', 'true');
+        panAddSpot.setAttribute('visible', 'true');
+    }
+
+    function hideBeefPositions() {
+        beefCounterSpot.setAttribute('visible', 'false');
+        beefFridgeSpot.setAttribute('visible', 'false');
+    }
 
     function fillpan() {
       if (panInSink && !panHasWater && tapOn) {
@@ -104,6 +127,19 @@ window.onload = function () {
         panHasWater = true;
       }
     }
+
+    document.getElementById('fridgeDoor').addEventListener('click', function () {
+        let anim = document.createElement('a-animation');
+        anim.setAttribute('attribute', 'rotation');
+        anim.setAttribute('dur', '2000');
+        anim.setAttribute('easing', 'linear');
+        if(this.getAttribute('rotation').y == 0) {
+            anim.setAttribute('to', '0 90 0');
+        } else {
+            anim.setAttribute('to', '0 0 0');
+        }
+        this.append(anim);
+    });
 
     document.getElementById('tap_trigger').addEventListener('click', function () {
         tapOn = !tapOn;
@@ -160,6 +196,7 @@ window.onload = function () {
         init: function () {
             var data = this.data;
             this.el.addEventListener('click', function () {
+                console.log('im doing shit')
                 if (pan.parentNode == cursor) {
                   hidePanPositions();
                   scene.append(pan);
