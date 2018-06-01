@@ -10,12 +10,13 @@
         </a-camera>
 
         <!--Room-->
-        <a-plane position="2 -7.25 0" rotation="-90 0 0" color="green" width="32" height="20"></a-plane>
-        <a-plane position="2 3.5 0" rotation="90 0 0" color="magenta" width="32" height="20"></a-plane>
-        <a-plane position="-14 -1.75 0" rotation="0 90 0" color="#FFFFcc" width="20" height="11"></a-plane>
-        <a-plane position="18 -1.75 0" rotation="0 -90 0" color="#FFFFcc" width="20" height="11"></a-plane>
-        <a-plane position="2 -1.75 10" rotation="0 180 0" color="#FFFFcc" width="32" height="11"></a-plane>
-        <a-plane position="2 -1.75 -10" rotation="0 0 0" color="#FFFFcc" width="32" height="11"></a-plane>
+        <a-plane position="2 -7.25 0" rotation="-90 0 0" color="#999" width="32" height="20"></a-plane>
+        <a-plane position="2 3.5 0" rotation="90 0 0" color="#CCF" width="32" height="20"></a-plane>
+        <a-plane position="-14 -1.75 0" rotation="0 90 0" color="#DEC" width="20" height="11"></a-plane>
+        <a-plane position="12 -1.75 0" rotation="0 -90 0" color="#DEC" width="20" height="11"></a-plane>
+        <a-plane position="2 -1.75 10" rotation="0 180 0" color="#DEC" width="32" height="11"></a-plane>
+        <a-plane position="2 -1.75 -8.2" rotation="0 0 0" color="#DEC" width="32" height="11"></a-plane>
+        <a-box depth="7" height="11" width="3.5" position="-12.27 -1.90 -5.07" color="#CDB"></a-box>
 
         <!-- navigation boxes -->
         <a-box id="box1" position="-7 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -7 0 0">
@@ -67,6 +68,9 @@
 
             <a-asset-item id="fridge_door-obj" src="Models/Fridge/fridge_door.obj"></a-asset-item>
             <a-asset-item id="fridge_door-mtl" src="Models/Fridge/fridge_door.mtl"></a-asset-item>
+
+            <a-asset-item id="lamp-obj" src="Models/Lamp/lamp.obj"></a-asset-item>
+            <a-asset-item id="lamp-mtl" src="Models/Lamp/lamp.mtl"></a-asset-item>
         </a-assets>
 
         <!-- pan plaats knoppen -->
@@ -83,9 +87,14 @@
         <a-obj-model src="#fridge-obj" mtl="#fridge-mtl" scale="3.5 3.5 3.5" position="-10 -7 3" rotation="0 90 0">
         </a-obj-model>
         <a-obj-model src="#fridge_door-obj" mtl="#fridge_door-mtl" scale="3.5 3.5 3.5" position="-10 -7 3" rotation="0 90 0">
-            <a-animation attribute="rotation" from="0 90 0" to="0 0 0" repeat="indefinite" dur="1500">
+            <a-animation attribute="rotation" from="0 90 0" to="0 0 0" repeat="indefinite" dur="1500"></a-animation>
+        </a-obj-model>
 
-            </a-animation>
+        <a-obj-model src="#lamp-obj" mtl="#lamp-mtl" scale=".5 .5 .5" position="-3 2 -5" rotation="0 0 0">
+        </a-obj-model>
+        <a-obj-model src="#lamp-obj" mtl="#lamp-mtl" scale=".5 .5 .5" position="2 2 -5" rotation="0 0 0">
+        </a-obj-model>
+        <a-obj-model src="#lamp-obj" mtl="#lamp-mtl" scale=".5 .5 .5" position="7 2 -5" rotation="0 0 0">
         </a-obj-model>
 
         <!-- pan -->
@@ -105,6 +114,21 @@
 
         <!-- gehakt op aanrecht spot -->
         <a-box id="beefCounterSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-4.4 -1.8 -5" visible='false'></a-box>
+
+        <!--Ambient-->
+        <a-entity light="type:ambient;intensity:.4;color:#fff"></a-entity>
+        <a-light type="directional" target="#directionaltarget" light="target:#directionaltarget">
+            <a-entity id="directionaltarget" position="-1 -1 -1"></a-entity>
+        </a-light>
+        <!--<a-entity light="type:point;intensity:0.3;distance:20"></a-entity>-->
+
+        <!--Spots-->
+        <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01" position="-3 2 -5"></a-entity>
+        <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01" position="2 2 -5"></a-entity>
+        <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01" position="7 2 -5"></a-entity>
+
+        <!--Fridge-->
+        <a-entity light="type:point;intensity:0.8;distance:3.99" position="-11 -1 2"></a-entity>
 
     </a-scene>
 
