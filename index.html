@@ -19,13 +19,13 @@
         <a-box depth="7" height="11" width="3.5" position="-12.27 -1.90 -5.07" color="#CDB"></a-box>
 
         <!-- navigation boxes -->
-        <a-box id="box1" position="-7 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -7 0 0">
+        <a-box id="box1" position="-7 -0.5 -8.5" color="#4CC3D9" src="Textures/texture.jpeg" move-on-mouseenter="to: -7 0 0">
         </a-box>
-        <a-box id="box2" position="-2 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -2 0 0">
+        <a-box id="box2" position="-2 -0.5 -8.5" color="#4CC3D9" src="Textures/texture.jpeg" move-on-mouseenter="to: -2 0 0">
         </a-box>
-        <a-box id="box3" position="6 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: 6 0 0">
+        <a-box id="box3" position="6 -0.5 -8.5" color="#4CC3D9" src="Textures/texture.jpeg" move-on-mouseenter="to: 6 0 0">
         </a-box>
-        <a-box id="box4" position="16 -0.5 0" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: 8 0 0">
+        <a-box id="box4" position="16 -0.5 0" color="#4CC3D9" src="Textures/texture.jpeg" move-on-mouseenter="to: 8 0 0">
         </a-box>
 
         <!-- gasknoppen -->
@@ -71,6 +71,10 @@
 
             <a-asset-item id="lamp-obj" src="Models/Lamp/lamp.obj"></a-asset-item>
             <a-asset-item id="lamp-mtl" src="Models/Lamp/lamp.mtl"></a-asset-item>
+
+            <!--Source: https://poly.google.com/view/3TnnfzKfHrq-->
+            <a-asset-item id="knife-obj" src="Models/Knife_model/knife.obj"></a-asset-item>
+            <a-asset-item id="knife-mtl" src="Models/Knife_model/knife.mtl"></a-asset-item>
         </a-assets>
 
         <!-- pan plaats knoppen -->
@@ -111,7 +115,7 @@
         </a-obj-model>
 
         <!-- gehakt -->
-        <a-box id='beef' src="groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-10.5 -2.5 0.3">
+        <a-box id='beef' src="Textures/groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-10.5 -2.5 0.3">
         </a-box>
 
         <!-- gehakt op aanrecht spot -->
@@ -134,6 +138,14 @@
 
         <!--Fridge-->
         <a-entity light="type:point;intensity:0.8;distance:3.99" position="-11 -1 2"></a-entity>
+
+        <!--Mes-->
+        <a-obj-model id='knife' src="#knife-obj" mtl="#knife-mtl" scale="1 1 1" position="-6.5 -2.2 4.5" rotation="0 -90 0">
+        </a-obj-model>
+        <a-box id="knifeSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-7 -2 4.5" visible='false'></a-box>
+
+        <!--Snijplank-->
+        <a-box src="Textures/wood.jpg" width="2" height="0.2" depth="1.5" position="-4.8 -2.2 4.8"></a-box>
 
     </a-scene>
 

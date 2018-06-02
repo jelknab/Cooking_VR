@@ -11,7 +11,6 @@ window.onload = function () {
     var pan = document.getElementById('pan');
     var panSpots = [];
     for (i = 0; i < 6; i++) {
-        console.log("doing this")
       panSpots[i] = document.getElementById('panSpot' + i);
     };
 
@@ -22,6 +21,9 @@ window.onload = function () {
 
     var tapButton = document.getElementById('tap_trigger');
     var spaghetPan = document.getElementById('spaghet-pan');
+
+    var knife = document.getElementById('knife');
+    var knifeSpot = document.getElementById('knifeSpot');
 
     // Variables
     var gasActive = [false, false, false, false, false];
@@ -78,7 +80,7 @@ window.onload = function () {
       if (panPositionIndex < 5 && gasActive[panPositionIndex] && beef.parentNode == pan) {
         beefCookingTime = beefCookingTime + 1;
         if (beefCookingTime > 5) {
-          beef.setAttribute('src', 'groundbeefCooked.png');
+          beef.setAttribute('src', 'Textures/groundbeefCooked.png');
         }
       };
     }
@@ -162,6 +164,18 @@ window.onload = function () {
           }
         }
       });
+
+    knife.addEventListener('click', function () {
+        cursor.append(this);
+        this.setAttribute('position', '0.7 -0.5 0');
+        this.setAttribute('rotation', '-90 90 -20')
+        knifeSpot.setAttribute('visible', 'true');
+    });
+
+    knifeSpot.addEventListener('click', function () {
+        scene.append(knife);
+        knifeSpot.setAttribute('visible', 'false');
+    })
 
     function holdingItem() {
       if (beef.parentNode == cursor
