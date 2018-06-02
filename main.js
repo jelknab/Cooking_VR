@@ -1,5 +1,6 @@
 window.onload = function () {
-    // Objects
+
+    // Objects  --------------------------------------------------------------------------------------------------------
     var scene = document.getElementById('scene');
     var camera = document.getElementById('camera');
     var cursor = document.getElementById('cursor');
@@ -7,25 +8,28 @@ window.onload = function () {
     for (i = 0; i < 5; i++) {
       gases[i] = document.getElementById('gas' + i);
     };
-
     var pan = document.getElementById('pan');
+    var beef = document.getElementById('beef');
+    var tapButton = document.getElementById('tap_trigger');
+    var spaghetPan = document.getElementById('spaghet-pan');
+    var knife = document.getElementById('knife');
+    var carrot = document.getElementById('carrot');
+
+
+    // Placement cubes  ------------------------------------------------------------------------------------------------
     var panSpots = [];
     for (i = 0; i < 6; i++) {
-      panSpots[i] = document.getElementById('panSpot' + i);
+        panSpots[i] = document.getElementById('panSpot' + i);
     };
-
-    var beef = document.getElementById('beef');
     var panAddSpot = document.getElementById('panAddSpot');
     var beefCounterSpot = document.getElementById('beefCounterSpot');
     var beefFridgeSpot = document.getElementById('beefFridgeSpot');
-
-    var tapButton = document.getElementById('tap_trigger');
-    var spaghetPan = document.getElementById('spaghet-pan');
-
-    var knife = document.getElementById('knife');
     var knifeSpot = document.getElementById('knifeSpot');
+    var carrotFridgeSpot = document.getElementById('carrotFridgeSpot');
+    var cutSpot = document.getElementById('cutSpot');
 
-    // Variables
+
+    // Variables -------------------------------------------------------------------------------------------------------
     var gasActive = [false, false, false, false, false];
     var tapOn = false;
     var panHasWater = false;
@@ -34,7 +38,8 @@ window.onload = function () {
     var panPositionIndex = 5;
     var beefCookingTime = 0;
 
-    // gehakt oppak functie
+
+    // beef ------------------------------------------------------------------------------------------------------------
     beef.addEventListener('click', function () {
         if (!holdingItem()) {
           cursor.append(this);
@@ -43,7 +48,6 @@ window.onload = function () {
         }
       });
 
-    // gehakt in pan functie
     panAddSpot.addEventListener('mouseenter', function () {
         if (beef.parentNode == cursor) {
           pan.append(beef);
@@ -52,7 +56,6 @@ window.onload = function () {
         }
       });
 
-    // gehakt op aanrecht functie
     beefCounterSpot.addEventListener('click', function () {
         if (beef.parentNode == cursor) {
           scene.append(beef);
@@ -62,7 +65,6 @@ window.onload = function () {
         }
       });
 
-    // gehakt in koelkast functie
     beefFridgeSpot.addEventListener('click', function () {
         if (beef.parentNode == cursor) {
             scene.append(beef);
@@ -85,32 +87,6 @@ window.onload = function () {
       };
     }
 
-    // Pan oppak functie
-    pan.addEventListener('click', function () {
-        if (!holdingItem()) {
-          cursor.append(this);
-          this.setAttribute('position', '-0.7 -0.5 0');
-          showPanPositions();
-          if (beef.parentNode == pan) {
-            beef.setAttribute('position', '0 0.1 0');
-          }
-        }
-      });
-
-    // Maakt alle pan plaats posities zichtbaar
-    function showPanPositions() {
-      for (var i = 0; i < panSpots.length; i++) {
-        panSpots[i].setAttribute('visible', 'true');
-      }
-    };
-
-    // Maakt alle pan plaats posities onzichtbaar
-    function hidePanPositions() {
-      for (var i = 0; i < panSpots.length; i++) {
-        panSpots[i].setAttribute('visible', 'false');
-      }
-    };
-
     function showBeefPositions() {
         beefCounterSpot.setAttribute('visible', 'true');
         beefFridgeSpot.setAttribute('visible', 'true');
@@ -123,14 +99,32 @@ window.onload = function () {
         panAddSpot.setAttribute('visible', 'false');
     }
 
-    function fillpan() {
-      if (panInSink && !panHasWater && tapOn) {
-        var panwat = document.getElementById('pan-water');
-        panwat.setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 1');
-        panHasWater = true;
-      }
-    }
 
+    // Pan  ------------------------------------------------------------------------------------------------------------
+    pan.addEventListener('click', function () {
+        if (!holdingItem()) {
+          cursor.append(this);
+          this.setAttribute('position', '-0.7 -0.5 0');
+          showPanPositions();
+          if (beef.parentNode == pan) {
+            beef.setAttribute('position', '0 0.1 0');
+          }
+        }
+      });
+
+    function showPanPositions() {
+        for (var i = 0; i < panSpots.length; i++) {
+            panSpots[i].setAttribute('visible', 'true');
+        }
+    };
+
+    function hidePanPositions() {
+        for (var i = 0; i < panSpots.length; i++) {
+            panSpots[i].setAttribute('visible', 'false');
+        }
+    };
+
+    // fridge   --------------------------------------------------------------------------------------------------------
     document.getElementById('fridgeDoor').addEventListener('click', function () {
         let anim = document.createElement('a-animation');
         anim.setAttribute('attribute', 'rotation');
@@ -144,6 +138,7 @@ window.onload = function () {
         this.append(anim);
     });
 
+    // sink ------------------------------------------------------------------------------------------------------------
     document.getElementById('tap_trigger').addEventListener('click', function () {
         tapOn = !tapOn;
 
@@ -155,6 +150,16 @@ window.onload = function () {
         }
       });
 
+    document.getElementById('sink_trigger').addEventListener('click', function () {
+        if (spaghetPan.parentNode == camera && !panHasWater) {
+            scene.appendChild(spaghetPan);
+            spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
+            spaghetPan.setAttribute('rotation', '180 -44 180');
+            panInSink = true;
+            fillpan();
+        }
+    });
+
     spaghetPan.addEventListener('click', function () {
         if (spaghetPan.parentNode == camera) {
           console.log('YES');
@@ -165,35 +170,73 @@ window.onload = function () {
         }
       });
 
+    function fillpan() {
+        if (panInSink && !panHasWater && tapOn) {
+            var panwat = document.getElementById('pan-water');
+            panwat.setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 1');
+            panHasWater = true;
+        }
+    };
+
+
+    // knife    --------------------------------------------------------------------------------------------------------
     knife.addEventListener('click', function () {
-        cursor.append(this);
-        this.setAttribute('position', '0.7 -0.5 0');
-        this.setAttribute('rotation', '-90 90 -20')
-        knifeSpot.setAttribute('visible', 'true');
+        if (!holdingItem()) {
+            cursor.append(this);
+            this.setAttribute('position', '0.7 -0.5 0');
+            this.setAttribute('rotation', '-90 90 -20')
+            knifeSpot.setAttribute('visible', 'true');
+        }
     });
 
     knifeSpot.addEventListener('click', function () {
         scene.append(knife);
         knifeSpot.setAttribute('visible', 'false');
+    });
+
+
+    // carrot   --------------------------------------------------------------------------------------------------------
+    carrot.addEventListener('click', function () {
+        if (!holdingItem()) {
+            cursor.append(this)
+            this.setAttribute('position', '-0.7 -0.5 0');
+            showCarrotPositions()
+        }
+    });
+
+    carrotFridgeSpot.addEventListener('click', function () {
+        scene.append(carrot);
+        hideCarrotPositions();
+    });
+
+    function showCarrotPositions() {
+        carrotFridgeSpot.setAttribute('visible', 'true');
+        cutSpot.setAttribute('visible', 'true');
+    };
+
+    function hideCarrotPositions() {
+        carrotFridgeSpot.setAttribute('visible', 'false');
+        cutSpot.setAttribute('visible', 'false');
+    };
+
+    // shared stuff ----------------------------------------------------------------------------------------------------
+    cutSpot.addEventListener('click', function () {
+        if (carrot.parentNode == cursor) {
+            scene.append(carrot);
+            carrot.setAttribute('position', '-4.8 -2.05 4.8');
+            hideCarrotPositions();
+        }
     })
 
     function holdingItem() {
       if (beef.parentNode == cursor
         || pan.parentNode == cursor
         || spaghetPan.parentNode == camera
+        || carrot.parentNode == cursor
+        || knife.parentNode == cursor
         ) return true;
       else return false;
     }
-
-    document.getElementById('sink_trigger').addEventListener('click', function () {
-        if (spaghetPan.parentNode == camera && !panHasWater) {
-          scene.appendChild(spaghetPan);
-          spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
-          spaghetPan.setAttribute('rotation', '180 -44 180');
-          panInSink = true;
-          fillpan();
-        }
-      });
 
     // Plaats de pan op de meegegeven x en z coordinaten
     AFRAME.registerComponent('place-pan', {
@@ -226,6 +269,8 @@ window.onload = function () {
               });
           },
       });
+
+    // Components   ----------------------------------------------------------------------------------------------------
 
     // Verplaatst de camera naar de mee gegeven coordinaten bij een mouseenter event
     AFRAME.registerComponent('move-on-mouseenter', {
