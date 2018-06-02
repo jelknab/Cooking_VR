@@ -238,6 +238,8 @@ window.onload = function () {
       else return false;
     }
 
+    // Components   ----------------------------------------------------------------------------------------------------
+
     // Plaats de pan op de meegegeven x en z coordinaten
     AFRAME.registerComponent('place-pan', {
         schema: {
@@ -269,8 +271,6 @@ window.onload = function () {
               });
           },
       });
-
-    // Components   ----------------------------------------------------------------------------------------------------
 
     // Verplaatst de camera naar de mee gegeven coordinaten bij een mouseenter event
     AFRAME.registerComponent('move-on-mouseenter', {
