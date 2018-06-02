@@ -2,13 +2,6 @@ window.onload = function () {
     const scene = document.getElementById('scene');
     const camera = document.getElementById('camera');
 
-    const interactables = [
-        new Pan('pan'),
-        new Beef('beef')
-    ];
-
-    const player = new Player(interactables);
-
     class Beef extends Interactable {
         constructor (id) {
             super(id);
@@ -33,7 +26,7 @@ window.onload = function () {
             if (this.canInteractWithPan(player.heltItem)) {
                 switch (player.heltItem.id) {
                     case 'beef':
-                        this.putInPan(player.heltItem);
+                        player.placeItemInObject(this, '0 0.1 0');
                         this.hasBeef = true;
                 }
             }
@@ -49,11 +42,6 @@ window.onload = function () {
             if (this.canInteractWithPan(Interactable)) {
                 // Remove visible hint that item can be put in pan
             }
-        }
-
-        putInPan(Interactable) {
-            this.object.appendChild(Interactable.object);
-            Interactable.object.setAttribute('position', '0 0.1 0');
         }
 
         canInteractWithPan(Interactable) {
@@ -79,8 +67,18 @@ window.onload = function () {
         placeItem(position) {
             if (!this.isHoldingItem()) {console.log(`Could not place item, player is not holding anything.`); return;}
 
-            scene.appendChild(this.heltItem);
+            scene.appendChild(this.heltItem.object);
             this.heltItem.setAttribute('position', position);
+            this.heltItem = null;
+
+            for (let interactable of interactables) interactable.onItemPlaced.call(interactable, Interactable);
+        }
+
+        placeItemInObject(Interactable, position) {
+            if (!this.isHoldingItem()) {console.log(`Could not place item, player is not holding anything.`); return;}
+
+            Interactable.object.appendChild(this.heltItem.object);
+            this.heltItem.object.setAttribute('position', position);
             this.heltItem = null;
 
             for (let interactable of interactables) interactable.onItemPlaced.call(interactable, Interactable);
@@ -90,6 +88,13 @@ window.onload = function () {
             return this.heltItem != null;
         }
     }
+
+    const interactables = [
+        new Pan('pan'),
+        new Beef('beef')
+    ];
+
+    const player = new Player();
 };
 
 class Interactable {
