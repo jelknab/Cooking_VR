@@ -1,5 +1,6 @@
 import {Interactable} from "../Interactable";
 import {Application} from "../index";
+import {GasPit} from "./GasPit";
 
 export class Pan extends Interactable {
     constructor (id: string) {
@@ -7,15 +8,23 @@ export class Pan extends Interactable {
     }
 
     interact() {
-        Application.player.grabItem(this);
+        Application.player.equip(this);
     }
 
     onPlayerPickup() {
-        const placeables = document.querySelector(".firePit");
-
+        for (let interactable of Application.interactables) {
+            console.log(interactable.id);
+            if (interactable.id.indexOf('panSpot') != -1) {
+                (<GasPit>interactable).setVisible(true);
+            }
+        }
     }
 
     onPlayerSetDown() {
-
+        for (let interactable of Application.interactables) {
+            if (interactable.id.indexOf('panSpot') != -1) {
+                (<GasPit>interactable).setVisible(false);
+            }
+        }
     }
 }

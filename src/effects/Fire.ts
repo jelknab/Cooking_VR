@@ -1,3 +1,5 @@
+import {Application} from "../index";
+
 export class Fire {
     constructor (private html: HTMLElement) {
     }

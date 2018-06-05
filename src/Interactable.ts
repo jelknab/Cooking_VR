@@ -1,7 +1,7 @@
 export abstract class Interactable {
     public html: HTMLElement;
 
-    protected constructor (private id: string) {
+    protected constructor (public id: string) {
         this.html = <HTMLElement>document.getElementById(id);
 
         if (this.html == null) {

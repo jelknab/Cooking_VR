@@ -6,6 +6,8 @@ import {Fire} from "./effects/Fire";
 import {GasKnob} from "./Interactables/GasKnob";
 
 export class Application {
+    static world: HTMLElement = document.getElementById('scene');
+
     static player: Player = new Player(
         document.getElementById('camera')
     );
@@ -15,25 +17,9 @@ export class Application {
         new FridgeDoor('fridge_door')
     ];
 
-    static fireEffects: any[] = [];
-
     static loadApplication() {
-        // Load pit fires
-        const fires = document.querySelectorAll(".fire");
-        for (let i = 0; i < fires.length; i++) {
-            Application.fireEffects.push(
-                new Fire(<HTMLElement>fires.item(i))
-            );
-        }
-
         // Load gas knobs
-        const gasKnobs = document.querySelectorAll(".gas-knob")
-        for (let i = 0; i < gasKnobs.length; i++) {
-            Application.interactables.push(
-                new GasKnob((<HTMLElement>gasKnobs.item(i)).id, Application.fireEffects[i])
-            );
-        }
-
+        GasKnob.load();
     }
 }
 
