@@ -15,7 +15,7 @@ window.onload = function () {
     var spaghetPan = document.getElementById('spaghet-pan');
     var knife = document.getElementById('knife');
     var carrots = [];
-    var carrot = document.getElementById('Carrot');
+    var carrot = document.getElementById('carrot');
     for (i = 0; i < 4; i++) {
         carrots[i] = document.getElementById('carrot_' + i);
     }
