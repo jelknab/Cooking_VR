@@ -37,9 +37,11 @@
             <a-asset-item id="knife-obj" src="Models/Knife_model/knife.obj"></a-asset-item>
             <a-asset-item id="knife-mtl" src="Models/Knife_model/knife.mtl"></a-asset-item>
 
-            <!--Source: https://poly.google.com/view/8mSuB-1kfRm-->
-            <a-asset-item id="carrot-obj" src="Models/Carrot_model/carrot.obj"></a-asset-item>
-            <a-asset-item id="carrot-mtl" src="Models/Carrot_model/carrot.mtl"></a-asset-item>
+            <a-asset-item id="carrot_0-obj" src="Models/Carrot/carrot_0.obj"></a-asset-item>
+            <a-asset-item id="carrot_1-obj" src="Models/Carrot/carrot_1.obj"></a-asset-item>
+            <a-asset-item id="carrot_2-obj" src="Models/Carrot/carrot_2.obj"></a-asset-item>
+            <a-asset-item id="carrot_3-obj" src="Models/Carrot/carrot_3.obj"></a-asset-item>
+            <a-asset-item id="carrot-mtl" src="Models/Carrot/carrot.mtl"></a-asset-item>
         </a-assets>
 
         <!--Camera-->
@@ -136,8 +138,16 @@
         <a-box id="cutSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-4.8 -1.9 4.8" visible='false'></a-box>
 
         <!--carrot-->
-        <a-obj-model id='carrot' src="#carrot-obj" mtl="#carrot-mtl" scale="0.008 0.008 0.008" position="-10.5 -2.5 0.8" rotation="0 0 -6">
-        </a-obj-model>
+        <a-entity id="carrot" position="-11.2 -2.5 0.8" scale="0.1 0.1 0.1">
+            <a-obj-model id='carrot_0' src="#carrot_0-obj" mtl="#carrot-mtl" rotation="0 0 0">
+            </a-obj-model>
+            <a-obj-model id='carrot_1' src="#carrot_1-obj" mtl="#carrot-mtl" rotation="0 0 0">
+            </a-obj-model>
+            <a-obj-model id='carrot_2' src="#carrot_2-obj" mtl="#carrot-mtl" rotation="0 0 0">
+            </a-obj-model>
+            <a-obj-model id='carrot_3' src="#carrot_3-obj" mtl="#carrot-mtl" rotation="0 0 0">
+            </a-obj-model>
+        </a-entity>
         <a-box id="carrotFridgeSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-10.5 -2 0.8" visible='false'></a-box>
 
         <!-- beef -->
