@@ -1,10 +1,10 @@
 <head>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <!--<script src="main.js"></script>-->
-    <script src="main_new.js"></script>
 </head>
 
 <body>
+
 <a-scene stats id='scene'>
     <a-camera id="camera" position="0 0 0">
         <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor>
@@ -30,23 +30,23 @@
     </a-box>
 
     <!-- gasknoppen -->
-    <a-box id="gasknop0" color="green" width="0.2" height="0.2" depth="0.2" position="-9.2 -2.1 -2.8"
+    <a-box class="gas-knob" id="gasknop0" color="green" width="0.2" height="0.2" depth="0.2" position="-9.2 -2.1 -2.8"
            furnace-button="index: 0"></a-box>
-    <a-box id="gasknop1" color="green" width="0.2" height="0.2" depth="0.2" position="-8.7 -2.1 -2.8"
+    <a-box class="gas-knob" id="gasknop1" color="green" width="0.2" height="0.2" depth="0.2" position="-8.7 -2.1 -2.8"
            furnace-button="index: 1"></a-box>
-    <a-box id="gasknop2" color="green" width="0.2" height="0.2" depth="0.2" position="-8.2 -2.1 -2.8"
+    <a-box class="gas-knob" id="gasknop2" color="green" width="0.2" height="0.2" depth="0.2" position="-8.2 -2.1 -2.8"
            furnace-button="index: 2"></a-box>
-    <a-box id="gasknop3" color="green" width="0.2" height="0.2" depth="0.2" position="-7.7 -2.1 -2.8"
+    <a-box class="gas-knob" id="gasknop3" color="green" width="0.2" height="0.2" depth="0.2" position="-7.7 -2.1 -2.8"
            furnace-button="index: 3"></a-box>
-    <a-box id="gasknop4" color="green" width="0.2" height="0.2" depth="0.2" position="-7.2 -2.1 -2.8"
+    <a-box class="gas-knob" id="gasknop4" color="green" width="0.2" height="0.2" depth="0.2" position="-7.2 -2.1 -2.8"
            furnace-button="index: 4"></a-box>
 
     <!-- gas -->
-    <a-obj-model id="gas0" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -4.2" visible="false"></a-obj-model>
-    <a-obj-model id="gas1" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -6.1" visible="false"></a-obj-model>
-    <a-obj-model id="gas2" src="#fire-obj" mtl="#fire-mtl" position="-7.5 -2.3 -5.15" visible="false"></a-obj-model>
-    <a-obj-model id="gas3" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -6.1" visible="false"></a-obj-model>
-    <a-obj-model id="gas4" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -4.2" visible="false"></a-obj-model>
+    <a-obj-model class="fire" id="gas0" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -4.2" visible="false"></a-obj-model>
+    <a-obj-model class="fire" id="gas1" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -6.1" visible="false"></a-obj-model>
+    <a-obj-model class="fire" id="gas2" src="#fire-obj" mtl="#fire-mtl" position="-7.5 -2.3 -5.15" visible="false"></a-obj-model>
+    <a-obj-model class="fire" id="gas3" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -6.1" visible="false"></a-obj-model>
+    <a-obj-model class="fire" id="gas4" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -4.2" visible="false"></a-obj-model>
 
     <a-box id="tap_trigger" position="-0.077 -1.72 -7.036" material="transparent: true; opacity: 0" geometry=""></a-box>
     <a-box id="sink_trigger" position="-0.54 -3 -4.69" visible="false" scale="4.11 0.26 3.16"></a-box>
@@ -98,9 +98,8 @@
 
     <a-obj-model src="#fridge-obj" mtl="#fridge-mtl" scale="3.5 3.5 3.5" position="-10 -7 3" rotation="0 90 0">
     </a-obj-model>
-    <a-obj-model src="#fridge_door-obj" mtl="#fridge_door-mtl" scale="3.5 3.5 3.5" position="-10 -7 3"
+    <a-obj-model id="fridge_door" src="#fridge_door-obj" mtl="#fridge_door-mtl" scale="3.5 3.5 3.5" position="-10 -7 3"
                  rotation="0 90 0">
-        <a-animation attribute="rotation" from="0 90 0" to="0 0 0" repeat="indefinite" dur="1500"></a-animation>
     </a-obj-model>
 
     <a-obj-model src="#lamp-obj" mtl="#lamp-mtl" scale=".5 .5 .5" position="-3 2 -5" rotation="0 0 0">
@@ -148,7 +147,7 @@
     <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01"
               position="7 2 -5"></a-entity>
 
-    <!--Fridge-->
+    <!--FridgeDoor-->
     <a-entity light="type:point;intensity:0.8;distance:3.99" position="-11 -1 2"></a-entity>
 
     <!-- Instruction text -->
@@ -173,4 +172,7 @@
         </a-cylinder>
     </a-entity>
 </a-scene>
+
+
+<script src="bundle.js"></script>
 <body>
