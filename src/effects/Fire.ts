@@ -5,7 +5,6 @@ export class Fire {
     }
 
     setState(on: boolean) {
-        console.log(String(on));
         this.html.setAttribute('visible', String(on));
     }
 }
