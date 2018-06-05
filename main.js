@@ -15,7 +15,7 @@ window.onload = function () {
     var spaghetPan = document.getElementById('spaghet-pan');
     var knife = document.getElementById('knife');
     var carrots = [];
-    var carrot = document.getElementById('carrot');
+    var carrot = document.getElementById('Carrot');
     for (i = 0; i < 4; i++) {
         carrots[i] = document.getElementById('carrot_' + i);
     }
@@ -204,7 +204,7 @@ window.onload = function () {
     });
 
 
-    // carrot   --------------------------------------------------------------------------------------------------------
+    // Carrot   --------------------------------------------------------------------------------------------------------
     carrot.addEventListener('click', function () {
         if (!holdingItem()) {
             cursor.append(this)
