@@ -78,6 +78,10 @@
 
         <a-asset-item id="lamp-obj" src="Models/Lamp/lamp.obj"></a-asset-item>
         <a-asset-item id="lamp-mtl" src="Models/Lamp/lamp.mtl"></a-asset-item>
+
+        <!--Source: https://poly.google.com/view/3TnnfzKfHrq-->
+        <a-asset-item id="knife-obj" src="Models/Knife_model/knife.obj"></a-asset-item>
+        <a-asset-item id="knife-mtl" src="Models/Knife_model/knife.mtl"></a-asset-item>
     </a-assets>
 
     <!-- pan plaats knoppen -->
@@ -131,6 +135,11 @@
     <!-- gehakt op aanrecht spot -->
     <a-box id="beefCounterSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-4.4 -1.8 -5"
            visible='false'></a-box>
+
+    <!--knife-->
+    <a-obj-model id='knife' src="#knife-obj" mtl="#knife-mtl" scale="1 1 1" position="-6.5 -2.2 4.5" rotation="0 -90 0">
+    </a-obj-model>
+    <a-box id="knifeSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-7 -2 4.5" visible='false'></a-box>
 
     <!--Ambient-->
     <a-entity light="type:ambient;intensity:.4;color:#fff"></a-entity>
