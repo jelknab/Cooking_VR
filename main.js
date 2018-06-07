@@ -1,26 +1,29 @@
 window.onload = function () {
 
     // Objects  --------------------------------------------------------------------------------------------------------
-    var scene = document.getElementById('scene');
-    var camera = document.getElementById('camera');
-    var cursor = document.getElementById('cursor');
-    var gases = [];
-    for (i = 0; i < 5; i++) {
-        gases[i] = document.getElementById('gas' + i);
-    }
-    ;
-    var pan = document.getElementById('pan');
     var beef = document.getElementById('beef');
-    var tapButton = document.getElementById('tap_trigger');
-    var spaghetPan = document.getElementById('spaghet-pan');
-    var knife = document.getElementById('knife');
-    var carrots = [];
+    var camera = document.getElementById('camera');
     var carrot = document.getElementById('carrot');
+    var carrots = []
     for (i = 0; i < 4; i++) {
         carrots[i] = document.getElementById('carrot_' + i);
     }
     var carrotPositions = [0, 0, 0];
     var carrotCuts = [0, -1.8];
+    var cursor = document.getElementById('cursor');
+    var gases = [];
+    for (i = 0; i < 5; i++) {
+        gases[i] = document.getElementById('gas' + i);
+    };
+    var knife = document.getElementById('knife');
+    var pan = document.getElementById('pan');
+    var scene = document.getElementById('scene');
+    var spaghetPan = document.getElementById('spaghet-pan');
+    var tapButton = document.getElementById('tap_trigger');
+    var tomatoCan = document.getElementById('tomatoCan');
+    var tomatoSauce = document.getElementById('tomatoSauce');
+
+
 
 
     // Placement cubes  ------------------------------------------------------------------------------------------------
@@ -35,16 +38,19 @@ window.onload = function () {
     var knifeSpot = document.getElementById('knifeSpot');
     var carrotFridgeSpot = document.getElementById('carrotFridgeSpot');
     var cutSpot = document.getElementById('cutSpot');
+    var tomatoCanFridgeSpot = document.getElementById('tomatoCanFridgeSpot');
+    var tomatoCanCounterSpot = document.getElementById('tomatoCanCounterSpot');
 
 
     // Variables -------------------------------------------------------------------------------------------------------
+    var beefCookingTime = 0;
     var gasActive = [false, false, false, false, false];
-    var tapOn = false;
+    var panHasSpaghetti = false;
     var panHasWater = false;
     var panInSink = false;
-    var panHasSpaghetti = false;
     var panPositionIndex = 5;
-    var beefCookingTime = 0;
+    var tapOn = false
+    var tomatoSauceInPan = false;
 
 
     // beef ------------------------------------------------------------------------------------------------------------
@@ -101,6 +107,90 @@ window.onload = function () {
     }
 
 
+    // Carrot   --------------------------------------------------------------------------------------------------------
+    carrot.addEventListener('click', function () {
+        if (!holdingItem()) {
+            cursor.append(this)
+            this.setAttribute('position', '-0.7 -0.5 0');
+            showCarrotPositions();
+            loadCarrotPositions()
+        }
+
+        if (knife.parentNode == cursor
+            && carrot.getAttribute('position').x == '-5.2'
+            && carrot.getAttribute('position').y == '-2.05'
+            && carrot.getAttribute('position').z == '4.8'
+            && carrotCuts[0] < 3) {
+            carrots[carrotCuts[0]].setAttribute('position', carrotCuts[1] + ' 0 0');
+            carrotCuts[0] += 1;
+            carrotCuts[1] += 0.6;
+            saveCarrotPositions();
+            cuttingSound();
+        }
+    });
+
+    carrotFridgeSpot.addEventListener('click', function () {
+        scene.append(carrot);
+        hideCarrotPositions();
+        loadCarrotPositions();
+    });
+
+    function showCarrotPositions() {
+        carrotFridgeSpot.setAttribute('visible', 'true');
+        cutSpot.setAttribute('visible', 'true');
+        panAddSpot.setAttribute('visible', 'true');
+    };
+
+    function hideCarrotPositions() {
+        carrotFridgeSpot.setAttribute('visible', 'false');
+        cutSpot.setAttribute('visible', 'false');
+        panAddSpot.setAttribute('visible', 'false');
+    };
+
+    function saveCarrotPositions() {
+        for (i = 0; i < 3; i++) {
+            carrotPositions[i] = carrots[i].getAttribute('position').x;
+        }
+    }
+
+    function loadCarrotPositions() {
+        for (i = 0; i < 3; i++) {
+            carrots[i].setAttribute('position', carrotPositions[i] + ' 0 0');
+        }
+    }
+
+
+    // fridge   --------------------------------------------------------------------------------------------------------
+    document.getElementById('fridgeDoor').addEventListener('click', function () {
+        let anim = document.createElement('a-animation');
+        anim.setAttribute('attribute', 'rotation');
+        anim.setAttribute('dur', '2000');
+        anim.setAttribute('easing', 'linear');
+        if (this.getAttribute('rotation').y == 0) {
+            anim.setAttribute('to', '0 90 0');
+        } else {
+            anim.setAttribute('to', '0 0 0');
+        }
+        this.append(anim);
+    });
+
+
+    // knife    --------------------------------------------------------------------------------------------------------
+    knife.addEventListener('click', function () {
+        if (!holdingItem()) {
+            cursor.append(this);
+            this.setAttribute('position', '0.7 -0.5 0');
+            this.setAttribute('rotation', '-90 90 -20')
+            knifeSpot.setAttribute('visible', 'true');
+        }
+    });
+
+    knifeSpot.addEventListener('click', function () {
+        scene.append(knife);
+        knifeSpot.setAttribute('visible', 'false');
+    });
+
+
     // Pan  ------------------------------------------------------------------------------------------------------------
     pan.addEventListener('click', function () {
         if (!holdingItem()) {
@@ -111,16 +201,17 @@ window.onload = function () {
                 beef.setAttribute('position', '0.5 0 0.2');
             }
             if (carrot.parentNode == pan) {
-                carrot.setAttribute('position', '.1 0 .2');
+                carrot.setAttribute('position', '.25 0 .2');
                 loadCarrotPositions();
             }
+            if (tomatoSauceInPan) tomatoSauce.setAttribute('visible', 'true');
         }
     });
 
     panAddSpot.addEventListener('mouseenter', function () {
         if (carrot.parentNode == cursor) {
             pan.append(carrot);
-            carrot.setAttribute('position', '.1 0 .2');
+            carrot.setAttribute('position', '.25 0 .2');
             hideCarrotPositions();
             loadCarrotPositions();
         }
@@ -128,6 +219,27 @@ window.onload = function () {
             pan.append(beef);
             beef.setAttribute('position', '0.5 0 0.2');
             hideBeefPositions();
+        }
+        if (tomatoCan.parentNode == cursor) {
+            hideTomatoCanPositions()
+            let anim = document.createElement('a-animation');
+            anim.setAttribute('attribute', 'rotation');
+            anim.setAttribute('dur', '1500');
+            anim.setAttribute('to', '0 0 -90');
+            tomatoCan.append(anim);
+            tomatoSauceInPan = true;
+            tomatoSauce.setAttribute('visible', 'true');
+
+            window.setTimeout(function () {
+                let anim3 = document.createElement('a-animation');
+                anim3.setAttribute('attribute', 'rotation');
+                anim3.setAttribute('dur', '1500');
+                anim3.setAttribute('to', '0 0 0');
+                tomatoCan.append(anim3);
+            }, 2500);
+            window.setTimeout(function () {
+                cursor.removeChild(tomatoCan);
+            }, 4000);
         }
     });
 
@@ -143,19 +255,6 @@ window.onload = function () {
         }
     };
 
-    // fridge   --------------------------------------------------------------------------------------------------------
-    document.getElementById('fridgeDoor').addEventListener('click', function () {
-        let anim = document.createElement('a-animation');
-        anim.setAttribute('attribute', 'rotation');
-        anim.setAttribute('dur', '2000');
-        anim.setAttribute('easing', 'linear');
-        if (this.getAttribute('rotation').y == 0) {
-            anim.setAttribute('to', '0 90 0');
-        } else {
-            anim.setAttribute('to', '0 0 0');
-        }
-        this.append(anim);
-    });
 
     // sink ------------------------------------------------------------------------------------------------------------
     document.getElementById('tap_trigger').addEventListener('click', function () {
@@ -198,73 +297,37 @@ window.onload = function () {
     };
 
 
-    // knife    --------------------------------------------------------------------------------------------------------
-    knife.addEventListener('click', function () {
+    // TomatoCan    ----------------------------------------------------------------------------------------------------
+    tomatoCan.addEventListener('click', function () {
         if (!holdingItem()) {
             cursor.append(this);
-            this.setAttribute('position', '0.7 -0.5 0');
-            this.setAttribute('rotation', '-90 90 -20')
-            knifeSpot.setAttribute('visible', 'true');
-        }
-    });
-
-    knifeSpot.addEventListener('click', function () {
-        scene.append(knife);
-        knifeSpot.setAttribute('visible', 'false');
-    });
-
-
-    // Carrot   --------------------------------------------------------------------------------------------------------
-    carrot.addEventListener('click', function () {
-        if (!holdingItem()) {
-            cursor.append(this)
             this.setAttribute('position', '-0.7 -0.5 0');
-            showCarrotPositions();
-            loadCarrotPositions()
-        }
-
-        if (knife.parentNode == cursor
-            && carrot.getAttribute('position').x == '-5.2'
-            && carrot.getAttribute('position').y == '-2.05'
-            && carrot.getAttribute('position').z == '4.8'
-            && carrotCuts[0] < 3) {
-            carrots[carrotCuts[0]].setAttribute('position', carrotCuts[1] + ' 0 0');
-            carrotCuts[0] +=1;
-            carrotCuts[1] +=0.6;
-            saveCarrotPositions();
-            cuttingSound();
+            showTomatoCanPositions();
         }
     });
 
-    carrotFridgeSpot.addEventListener('click', function () {
-        scene.append(carrot);
-        hideCarrotPositions();
-        loadCarrotPositions();
+    tomatoCanFridgeSpot.addEventListener('click', function () {
+        scene.append(tomatoCan);
+        hideTomatoCanPositions();
     });
 
-    function showCarrotPositions() {
-        carrotFridgeSpot.setAttribute('visible', 'true');
-        cutSpot.setAttribute('visible', 'true');
+    tomatoCanCounterSpot.addEventListener('click', function () {
+        scene.append(tomatoCan);
+        tomatoCan.setAttribute('position', '-3.6 -2.05 -5')
+        hideTomatoCanPositions();
+    });
+
+    function showTomatoCanPositions() {
+        tomatoCanFridgeSpot.setAttribute('visible', 'true');
+        tomatoCanCounterSpot.setAttribute('visible', 'true')
         panAddSpot.setAttribute('visible', 'true');
     };
 
-    function hideCarrotPositions() {
-        carrotFridgeSpot.setAttribute('visible', 'false');
-        cutSpot.setAttribute('visible', 'false');
+    function hideTomatoCanPositions() {
+        tomatoCanFridgeSpot.setAttribute('visible', 'false');
+        tomatoCanCounterSpot.setAttribute('visible', 'false')
         panAddSpot.setAttribute('visible', 'false');
     };
-
-    function saveCarrotPositions() {
-        for (i = 0; i < 3; i++) {
-            carrotPositions[i] = carrots[i].getAttribute('position').x;
-        }
-    }
-
-    function loadCarrotPositions() {
-        for (i = 0; i < 3; i++) {
-            carrots[i].setAttribute('position', carrotPositions[i] + ' 0 0');
-        }
-    }
 
 
     // shared stuff ----------------------------------------------------------------------------------------------------
@@ -283,6 +346,7 @@ window.onload = function () {
             || spaghetPan.parentNode == camera
             || carrot.parentNode == cursor
             || knife.parentNode == cursor
+            || tomatoCan.parentNode == cursor
         ) return true;
         else return false;
     }
@@ -294,6 +358,7 @@ window.onload = function () {
         scene.append(sound);
 
     }
+
 
     // Components   ----------------------------------------------------------------------------------------------------
 
@@ -313,7 +378,6 @@ window.onload = function () {
         init: function () {
             var data = this.data;
             this.el.addEventListener('click', function () {
-                console.log('im doing shit')
                 if (pan.parentNode == cursor) {
                     hidePanPositions();
                     scene.append(pan);
@@ -322,10 +386,11 @@ window.onload = function () {
                     if (beef.parentNode == pan) {
                         beef.setAttribute('position', '0.5 0 0.2');
                     }
-                    if (carrot.parentNode== pan) {
-                        carrot.setAttribute('position', '.1 0 .2');
+                    if (carrot.parentNode == pan) {
+                        carrot.setAttribute('position', '.25 0 .2');
                         loadCarrotPositions();
                     }
+                    if (tomatoSauceInPan) tomatoSauce.setAttribute('visible', 'true');
                 }
 
                 ;
