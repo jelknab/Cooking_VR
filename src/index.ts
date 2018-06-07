@@ -5,6 +5,7 @@ import {FridgeDoor} from "./Interactables/FridgeDoor";
 import {Fire} from "./effects/Fire";
 import {GasKnob} from "./Interactables/GasKnob";
 import {Beef} from "./Interactables/Beef";
+import {Knife} from "./Interactables/Knife";
 
 export class Application {
     static world: HTMLElement = document.getElementById('scene');
@@ -16,7 +17,8 @@ export class Application {
     static interactables: Interactable[] = [
         new Pan('pan'),
         new Beef('beef'),
-        new FridgeDoor('fridge_door')
+        new FridgeDoor('fridge_door'),
+        new Knife('knife')
     ];
 
     static loadApplication() {
