@@ -1,4 +1,6 @@
 import {Vec3} from "./Vec3";
+import {Application} from "./index";
+import {PlaceSpot} from "./Interactables/placeSpot";
 
 export abstract class Interactable {
     public html: HTMLElement;
@@ -20,11 +22,23 @@ export abstract class Interactable {
     // Called when item is picked up by user
     onPlayerPickup() {
         console.log(`Warning ${this.id} has no specific pickup functionality.`);
+
+        for (let interactable of Application.interactables) {
+            if (interactable instanceof PlaceSpot) {
+                interactable.show();
+            }
+        }
     }
 
     // Called when item is dropped by player
     onPlayerSetDown() {
         console.log(`Warning ${this.id} has no specific setDown functionality.`);
+
+        for (let interactable of Application.interactables) {
+            if (interactable instanceof PlaceSpot) {
+                interactable.hide();
+            }
+        }
     }
 
     public getPosition(): Vec3 {
