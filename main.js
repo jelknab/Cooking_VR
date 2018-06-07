@@ -56,14 +56,6 @@ window.onload = function () {
         }
     });
 
-    panAddSpot.addEventListener('mouseenter', function () {
-        if (beef.parentNode == cursor) {
-            pan.append(beef);
-            beef.setAttribute('position', '0 0.1 0');
-            hideBeefPositions();
-        }
-    });
-
     beefCounterSpot.addEventListener('click', function () {
         if (beef.parentNode == cursor) {
             scene.append(beef);
@@ -113,11 +105,29 @@ window.onload = function () {
     pan.addEventListener('click', function () {
         if (!holdingItem()) {
             cursor.append(this);
-            this.setAttribute('position', '-0.7 -0.5 0');
+            this.setAttribute('position', '0.8 -0.5 0');
             showPanPositions();
             if (beef.parentNode == pan) {
-                beef.setAttribute('position', '0 0.1 0');
+                beef.setAttribute('position', '0.5 0 0.2');
             }
+            if (carrot.parentNode == pan) {
+                carrot.setAttribute('position', '.1 0 .2');
+                loadCarrotPositions();
+            }
+        }
+    });
+
+    panAddSpot.addEventListener('mouseenter', function () {
+        if (carrot.parentNode == cursor) {
+            pan.append(carrot);
+            carrot.setAttribute('position', '.1 0 .2');
+            hideCarrotPositions();
+            loadCarrotPositions();
+        }
+        if (beef.parentNode == cursor) {
+            pan.append(beef);
+            beef.setAttribute('position', '0.5 0 0.2');
+            hideBeefPositions();
         }
     });
 
@@ -235,11 +245,13 @@ window.onload = function () {
     function showCarrotPositions() {
         carrotFridgeSpot.setAttribute('visible', 'true');
         cutSpot.setAttribute('visible', 'true');
+        panAddSpot.setAttribute('visible', 'true');
     };
 
     function hideCarrotPositions() {
         carrotFridgeSpot.setAttribute('visible', 'false');
         cutSpot.setAttribute('visible', 'false');
+        panAddSpot.setAttribute('visible', 'false');
     };
 
     function saveCarrotPositions() {
@@ -305,10 +317,14 @@ window.onload = function () {
                 if (pan.parentNode == cursor) {
                     hidePanPositions();
                     scene.append(pan);
-                    pan.setAttribute('position', data.x + ' -2.2 ' + data.z);
+                    pan.setAttribute('position', data.x + ' -2.1 ' + data.z);
                     panPositionIndex = data.index;
                     if (beef.parentNode == pan) {
-                        beef.setAttribute('position', '0 0.1 0');
+                        beef.setAttribute('position', '0.5 0 0.2');
+                    }
+                    if (carrot.parentNode== pan) {
+                        carrot.setAttribute('position', '.1 0 .2');
+                        loadCarrotPositions();
                     }
                 }
 
