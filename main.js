@@ -2,6 +2,9 @@ window.onload = function () {
 
     // Objects  --------------------------------------------------------------------------------------------------------
     var beef = document.getElementById('beef');
+    var book = document.getElementById('book');
+    var bookSpotCutting = document.getElementById('bookSpotCutting');
+    var bookSpotFurnace = document.getElementById('bookSpotFurnace');
     var camera = document.getElementById('camera');
     var carrot = document.getElementById('carrot');
     var carrots = []
@@ -18,6 +21,7 @@ window.onload = function () {
     }
     ;
     var knife = document.getElementById('knife');
+    var objectives = [];
     var onion = document.getElementById('onion');
     var onions = []
     for (i = 0; i < 5; i++) {
@@ -32,15 +36,7 @@ window.onload = function () {
     var panwat = document.getElementById('pan-water');
     var tapButton = document.getElementById('tap_trigger');
     var text = document.getElementById('text');
-    var textList = [];
-    var textIndex = -1;
-    textList.push('now turn on the heat');
-    textList.push('Take out an onion out of the fridge and cut it 4 times');
-    textList.push('3 more times.');
-    textList.push('2 more.')
-    textList.push('last one');
-    textList.push('Now add it to the frying pan');
-
+    var textLines = [];
     var tomatoCan = document.getElementById('tomatoCan');
     var tomatoSauce = document.getElementById('tomatoSauce');
 
@@ -68,10 +64,9 @@ window.onload = function () {
     var panHasWater = false;
     var panInSink = false;
     var panPositionIndex = 5;
-    var spaghetPanPositionIndex = 5;
+    var spaghetPanPositionIndex = 6;
     var tapOn = false
     var tomatoSauceInPan = false;
-
 
     // beef ------------------------------------------------------------------------------------------------------------
     beef.addEventListener('click', function () {
@@ -124,6 +119,66 @@ window.onload = function () {
         beefCounterSpot.setAttribute('visible', 'false');
         beefFridgeSpot.setAttribute('visible', 'false');
         panAddSpot.setAttribute('visible', 'false');
+    }
+
+
+    // Book ------------------------------------------------------------------------------------------------------------
+    textLines.push('Place the pot in the sink');
+    textLines.push('Fill it with water');
+    textLines.push('And put it on the stove');
+    for (var i = 0; i < textLines.length; i++) {
+        objectives[i] = false;
+    }
+    updateText();
+    function updateText() {
+        text.setAttribute('value', isDone(0) + textLines[0] + '\n' + isDone(1) + textLines[1] + '\n' + isDone(2) + textLines[2]);
+    }
+
+    function isDone(i) {
+        if (objectives[i]) {
+            return '[x]'
+        }
+        return '[ ]'
+    }
+
+    function objectiveCompleted(i) {
+        if(i == 0 || objectives[i-1]) {
+            objectives[i] = true;
+            updateText();
+        }
+    }
+
+
+    book.addEventListener('click', function () {
+        if(!holdingItem()) {
+            cursor.append(this);
+            this.setAttribute('position', '-0.7 -0.5 0');
+            this.setAttribute('rotation', '-4.846 90 -10.420');
+            this.setAttribute('scale', '3 3 3');
+            showBookPositions();
+        }
+    });
+
+    bookSpotCutting.addEventListener('click', function () {
+        scene.append(book);
+        hideBookPositions();
+    });
+
+    bookSpotFurnace.addEventListener('click', function () {
+        scene.append(book);
+        book.setAttribute('position', '-3.872 -1.691 -7.008');
+        book.setAttribute('rotation', '-4.846 73.968 -10.420');
+        hideBookPositions();
+    });
+
+    function showBookPositions() {
+        bookSpotCutting.setAttribute('visible', 'true');
+        bookSpotFurnace.setAttribute('visible', 'true');
+    }
+
+    function hideBookPositions() {
+        bookSpotCutting.setAttribute('visible', 'false');
+        bookSpotFurnace.setAttribute('visible', 'false');
     }
 
 
@@ -227,9 +282,6 @@ window.onload = function () {
             onionCuts[1] -= 0.6;
             saveOnionPositions();
             cuttingSound();
-            if (textIndex > 0 && textIndex < 5) {
-                nextText();
-            }
         }
     });
 
@@ -328,7 +380,9 @@ window.onload = function () {
 
     function showPanPositions() {
         for (var i = 0; i < panSpots.length; i++) {
-            panSpots[i].setAttribute('visible', 'true');
+            if (i != spaghetPanPositionIndex) {
+                panSpots[i].setAttribute('visible', 'true');
+            }
         }
     };
 
@@ -351,16 +405,6 @@ window.onload = function () {
         }
     });
 
-    document.getElementById('sink_trigger').addEventListener('click', function () {
-        if (spaghetPan.parentNode == camera) {
-            scene.appendChild(spaghetPan);
-            spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
-            spaghetPan.setAttribute('rotation', '180 -44 180');
-            panInSink = true;
-            fillpan();
-        }
-    });
-
     spaghetPan.addEventListener('click', function () {
         if (!holdingItem()) {
             cursor.appendChild(spaghetPan);
@@ -372,6 +416,7 @@ window.onload = function () {
 
     sink_trigger.addEventListener('click', function () {
         if (spaghetPan.parentNode == cursor) {
+            objectiveCompleted(0);
             scene.appendChild(spaghetPan);
             spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
             spaghetPan.setAttribute('rotation', '180 -44 180');
@@ -383,6 +428,7 @@ window.onload = function () {
 
     function fillpan() {
         if (panInSink && tapOn) {
+            objectiveCompleted(1);
             panHasWater = true;
             loadSpaghetPan();
         }
@@ -391,7 +437,9 @@ window.onload = function () {
     function showSpaghetPanPositions() {
         sink_trigger.setAttribute('visible', 'true');
         for (var i = 0; i < panSpots.length-1; i++) {
-            panSpots[i].setAttribute('visible', 'true');
+            if (i != panPositionIndex) {
+                panSpots[i].setAttribute('visible', 'true');
+            }
         }
     };
 
@@ -408,12 +456,6 @@ window.onload = function () {
         }
     }
 
-
-    // Text ------------------------------------------------------------------------------------------------------------
-    function nextText() {
-        textIndex += 1;
-        text.setAttribute('value', textList[textIndex]);
-    }
 
     // TomatoCan    ----------------------------------------------------------------------------------------------------
     tomatoCan.addEventListener('click', function () {
@@ -472,6 +514,7 @@ window.onload = function () {
             || knife.parentNode == cursor
             || tomatoCan.parentNode == cursor
             || onion.parentNode == cursor
+            || book.parentNode == cursor
         ) return true;
         else return false;
     }
@@ -507,9 +550,6 @@ window.onload = function () {
                     scene.append(pan);
                     pan.setAttribute('position', data.x + ' -2.1 ' + data.z);
                     panPositionIndex = data.index;
-                    if (panPositionIndex < 5 && textIndex == -1) {
-                        nextText();
-                    }
                     if (beef.parentNode == pan) {
                         beef.setAttribute('position', '0.5 0 0.2');
                     }
@@ -524,6 +564,7 @@ window.onload = function () {
                     if (tomatoSauceInPan) tomatoSauce.setAttribute('visible', 'true');
                 }
                 if (spaghetPan.parentNode == cursor) {
+                    objectiveCompleted(2);
                     hideSpaghetPanPositions();
                     scene.append(spaghetPan);
                     spaghetPan.setAttribute('position', data.x + ' -2.1 ' + data.z);
@@ -566,9 +607,6 @@ window.onload = function () {
         init: function () {
             var data = this.data;
             this.el.addEventListener('click', function () {
-                if (panPositionIndex == data.index && textIndex == 0) {
-                    nextText();
-                }
                 let anim = document.createElement('a-animation');
                 anim.setAttribute('attribute', 'rotation');
                 anim.setAttribute('dur', '1500');

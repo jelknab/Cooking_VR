@@ -1,7 +1,6 @@
 <head>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script src="main.js"></script>
-    <script src="pan.js"></script>
 </head>
 
 <body>
@@ -76,9 +75,13 @@
            visible='false'></a-box>
 
     <!--Book-->
-    <a-obj-model src="#book-obj" mtl="#book-mtl" scale="5 5 5" position="-1.673 -1.559 5.400" rotation="-4.846 -106.707 -10.420">
-        <a-text id="text" value="Hello this is text" color="black" position="-0.033 0.061 -0.155" rotation="-25.744 -83.600 1.427" scale=".2 .2 .2"></a-text>
+    <a-obj-model id="book" src="#book-obj" mtl="#book-mtl" scale="5 5 5" position="-1.673 -1.559 5.400" rotation="-4.846 -106.707 -10.420">
+        <a-text id="text" color="black" position="-0.033 0.061 -0.155" rotation="-25.744 -83.600 1.427" scale=".12 .12 .12"></a-text>
     </a-obj-model>
+    <a-box id="bookSpotCutting" color="yellow" width="0.2" height="0.2" depth="0.2" position="-1.673 -2 4.5"
+           visible='false'></a-box>
+    <a-box id="bookSpotFurnace" color="yellow" width="0.2" height="0.2" depth="0.2" position="-4 -1.8 -5"
+           visible='false'></a-box>
 
     <!--Camera-->
     <a-camera id="camera" position="0 0 0">
@@ -234,9 +237,6 @@
               position="2 2 -5"></a-entity>
     <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01"
               position="7 2 -5"></a-entity>
-
-    <!--text-->
-    <!--<a-text id="text" value="Start by putting the frying pan on a hop" position="-10.5 0 -8.1" scale="4 4 4"></a-text>-->
 
     <!-- tomatoCan -->
     <a-obj-model id='tomatoCan' src="#tomatoCan-obj" mtl="#tomatoCan-mtl" scale="1 1 1"
