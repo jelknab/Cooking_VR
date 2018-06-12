@@ -19,34 +19,12 @@
     <a-plane position="2 -1.75 -8.2" rotation="0 0 0" color="#DEC" width="32" height="11"></a-plane>
     <a-box depth="7" height="11" width="3.5" position="-12.27 -1.90 -5.07" color="#CDB"></a-box>
 
-    <!-- navigation boxes -->
-    <a-box id="box1" position="-7 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -7 0 0">
-    </a-box>
-    <a-box id="box2" position="-2 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: -2 0 0">
-    </a-box>
-    <a-box id="box3" position="6 -0.5 -8.5" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: 6 0 0">
-    </a-box>
-    <a-box id="box4" position="16 -0.5 0" color="#4CC3D9" src="texture.jpeg" move-on-mouseenter="to: 8 0 0">
-    </a-box>
-
     <!-- gasknoppen -->
     <a-box class="gas-knob" id="gasknop0" color="green" width="0.3" height="0.3" depth="0.3" position="-9.2 -2.1 -2.8"
            furnace-button="index: 0"></a-box>
-    <a-box class="gas-knob" id="gasknop1" color="green" width="0.3" height="0.3" depth="0.3" position="-8.7 -2.1 -2.8"
-           furnace-button="index: 1"></a-box>
-    <a-box class="gas-knob" id="gasknop2" color="green" width="0.3" height="0.3" depth="0.3" position="-8.2 -2.1 -2.8"
-           furnace-button="index: 2"></a-box>
-    <a-box class="gas-knob" id="gasknop3" color="green" width="0.3" height="0.3" depth="0.3" position="-7.7 -2.1 -2.8"
-           furnace-button="index: 3"></a-box>
-    <a-box class="gas-knob" id="gasknop4" color="green" width="0.3" height="0.3" depth="0.3" position="-7.2 -2.1 -2.8"
-           furnace-button="index: 4"></a-box>
 
     <!-- gas -->
     <a-obj-model class="fire" id="gas0" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -4.2" visible="false"></a-obj-model>
-    <a-obj-model class="fire" id="gas1" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -6.1" visible="false"></a-obj-model>
-    <a-obj-model class="fire" id="gas2" src="#fire-obj" mtl="#fire-mtl" position="-7.5 -2.3 -5.15" visible="false"></a-obj-model>
-    <a-obj-model class="fire" id="gas3" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -6.1" visible="false"></a-obj-model>
-    <a-obj-model class="fire" id="gas4" src="#fire-obj" mtl="#fire-mtl" position="-6.6 -2.3 -4.2" visible="false"></a-obj-model>
 
     <a-box id="tap_trigger" position="-0.077 -1.72 -7.036" material="transparent: true; opacity: 0" geometry=""></a-box>
     <a-box id="sink_trigger" position="-0.54 -3 -4.69" visible="false" scale="4.11 0.26 3.16"></a-box>
@@ -79,22 +57,14 @@
         <a-asset-item id="lamp-obj" src="Models/Lamp/lamp.obj"></a-asset-item>
         <a-asset-item id="lamp-mtl" src="Models/Lamp/lamp.mtl"></a-asset-item>
 
-        <!--Source: https://poly.google.com/view/3TnnfzKfHrq-->
-        <a-asset-item id="knife-obj" src="Models/Knife_model/knife.obj"></a-asset-item>
-        <a-asset-item id="knife-mtl" src="Models/Knife_model/knife.mtl"></a-asset-item>
+        <!--&lt;!&ndash;Source: https://poly.google.com/view/3TnnfzKfHrq&ndash;&gt;-->
+        <!--<a-asset-item id="knife-obj" src="Models/Knife_model/knife.obj"></a-asset-item>-->
+        <!--<a-asset-item id="knife-mtl" src="Models/Knife_model/knife.mtl"></a-asset-item>-->
     </a-assets>
 
     <!-- pan plaats knoppen -->
     <a-box id="panSpot0" color="yellow" width="0.2" height="0.2" depth="0.2" position="-8.5 -2.1 -4.2" visible='false'
            place-pan="x: -8.5; z: -4.2; index: 0"></a-box>
-    <a-box id="panSpot1" color="yellow" width="0.2" height="0.2" depth="0.2" position="-8.5 -2.1 -6.1" visible='false'
-           place-pan="x: -8.5; z: -6.1; index: 1"></a-box>
-    <a-box id="panSpot2" color="yellow" width="0.2" height="0.2" depth="0.2" position="-7.5 -2.1 -5.2" visible='false'
-           place-pan="x: -7.5; z: -5.15; index: 2"></a-box>
-    <a-box id="panSpot3" color="yellow" width="0.2" height="0.2" depth="0.2" position="-6.6 -2.1 -6.1" visible='false'
-           place-pan="x: -6.6; z: -6.1; index: 3"></a-box>
-    <a-box id="panSpot4" color="yellow" width="0.2" height="0.2" depth="0.2" position="-6.6 -2.1 -4.2" visible='false'
-           place-pan="x: -6.6; z: -4.2; index: 4"></a-box>
 
     <!-- keuken -->
     <a-obj-model src="#kitchen-obj" mtl="#kitchen-mtl" scale="0.05 0.05 0.05" position="0 -5 -5">
@@ -160,7 +130,7 @@
     <a-entity light="type:point;intensity:0.8;distance:3.99" position="-11 -1 2"></a-entity>
 
     <!-- Instruction text -->
-    <a-text id="instructions" value="" align="center" width="15" color="#000" position="1 1 -8"></a-text>
+    <a-text id="instructions" value="" align="center" width="15" color="#000" position="0 1.5 -8"></a-text>
 
     <!-- Marker arrow -->
     <a-entity id="marker" visible="false">

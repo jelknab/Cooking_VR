@@ -1,33 +1,52 @@
 import {Player} from "./Player";
-import {Interactable} from "./Interactable";
-import {Pan} from "./Interactables/pan";
-import {FridgeDoor} from "./Interactables/FridgeDoor";
-import {Fire} from "./effects/Fire";
-import {GasKnob} from "./Interactables/GasKnob";
-import {Beef} from "./Interactables/Beef";
-import {Knife} from "./Interactables/Knife";
-import {PlaceSpot} from "./Interactables/placeSpot";
+import {AObjective} from "./objectives/AObjective";
+import {Objective01_start} from "./objectives/Objective01_start";
+import {Instruction} from "./helper_items/Instruction";
+import {TextObjective} from "./objectives/TextObjective";
+import {Objective02} from "./objectives/Objective02";
 
 export class Application {
-    static world: HTMLElement = document.getElementById('scene');
-
-    static player: Player = new Player(
-        document.getElementById('camera')
-    );
-
-    static interactables: Interactable[] = [
-        new Pan('pan'),
-        new Beef('beef'),
-        new FridgeDoor('fridge_door'),
-        new Knife('knife'),
-        new PlaceSpot('knifeSpot', null)
-    ];
+    static instance: Application;
+    static objectives: AObjective[];
 
     static loadApplication() {
-        // Load gas knobs
-        GasKnob.load();
-        PlaceSpot.load();
+        // Make new application instance
+        Application.instance = new Application();
+
+        // Add objectives
+        Application.objectives = [
+            new Objective01_start(),    // Start button objective
+            new TextObjective("Awesome!! Let's get started!", 2000),
+            new Objective02(),          // Pan pickup objective
+        ];
+
+        // Start first objective
+        Application.instance.start();
+    }
+
+    private activeObjective: AObjective;
+
+    // Globally needed items
+    public world: HTMLElement;
+    public player: Player;
+    public instruction: Instruction;
+
+    constructor() {
+        this.world = document.getElementById('scene');
+        this.player = new Player('camera');
+        this.instruction = new Instruction('instructions');
+    }
+
+    public progressObjective() {
+        this.activeObjective.finish();
+        this.activeObjective = Application.objectives[Application.objectives.indexOf(this.activeObjective) + 1];
+        this.activeObjective.start();
+    }
+
+    public start() {
+        this.activeObjective = Application.objectives[0];
+        this.activeObjective.start();
     }
 }
 
-Application.loadApplication();
+Application.loadApplication(); // Application starts here

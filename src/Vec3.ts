@@ -3,6 +3,10 @@ export class Vec3 {
 
     }
 
+    public add(that: Vec3) {
+        return new Vec3(this.x + that.x, this.y + that.y, this.z + that.z);
+    }
+
     public distance(that: Vec3): number {
         return this.subtract(that).length();
     }
@@ -13,5 +17,9 @@ export class Vec3 {
 
     public length(): number {
         return Math.sqrt(this.x*this.x + this.y*this.y + this.z*this.z)
+    }
+
+    public toString() {
+        return `${this.x} ${this.y} ${this.z}`;
     }
 }
