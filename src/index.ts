@@ -44,7 +44,7 @@ export class Application {
     }
 
     public start() {
-        this.activeObjective = Application.objectives[0];
+        this.activeObjective = Application.objectives[1];
         this.activeObjective.start();
     }
 }

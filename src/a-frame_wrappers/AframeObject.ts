@@ -27,4 +27,14 @@ export class AframeObject {
     public setPositionStr(position: string) {
         this.html.setAttribute('position', position);
     }
+
+    public getRotation(): Vec3 {
+        const attr =  eval(this.html.getAttribute('rotation'));
+
+        return new Vec3(attr.x, attr.y, attr.z);
+    }
+
+    public setRotation(rotation: Vec3) {
+        this.html.setAttribute('rotation', `${rotation.x} ${rotation.y} ${rotation.z}`)
+    }
 }

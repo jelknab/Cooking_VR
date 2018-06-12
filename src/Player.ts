@@ -15,18 +15,24 @@ export class Player {
     }
 
     public equip(item: AInteractable) {
+        this.equippedItem = item;
+
         // Animate object flying to calculated position for smooth transition
         new Animation(
             { 'dur': '500', 'attribute': 'position', 'to': this.calculateWorldHoldingPosition().toString()},
-            item,
-            () => {
-                // set object position to local holding position and set camera as parent
-                item.setPosition(this.calculateLocalHoldingPosition());
-                this.camera.html.appendChild(item.html);
-            }
+            this.equippedItem,
+            () => {this.equippedItem.setPosition(this.calculateLocalHoldingPosition());}
         ).play();
 
-        this.equippedItem = item;
+        // Animate object rolling to user view rotation
+        new Animation(
+            { 'dur': '500', 'attribute': 'rotation', 'to': new Vec3(-50, 0, 20)},
+            this.equippedItem,
+            () => {
+                this.equippedItem.setRotation(new Vec3(20, 0,-10));
+                this.camera.html.appendChild(this.equippedItem.html);
+            }
+        ).play();
     }
 
     public drop(position: Vec3) {
@@ -37,6 +43,13 @@ export class Player {
         // Animate object flying to target position for smooth transition
         new Animation(
             { 'dur': '500', 'attribute': 'position', 'to': position.toString()},
+            this.equippedItem,
+            () => {}
+        ).play();
+
+        // Animate object taking on default rotation
+        new Animation(
+            { 'dur': '500', 'attribute': 'rotation', 'to': new Vec3(0, 0, 0)},
             this.equippedItem,
             () => {}
         ).play();
