@@ -15,7 +15,8 @@ window.onload = function () {
     var gases = [];
     for (i = 0; i < 5; i++) {
         gases[i] = document.getElementById('gas' + i);
-    };
+    }
+    ;
     var knife = document.getElementById('knife');
     var onion = document.getElementById('onion');
     var onions = []
@@ -26,13 +27,22 @@ window.onload = function () {
     var onionCuts = [0, 2.4];
     var pan = document.getElementById('pan');
     var scene = document.getElementById('scene');
+    var sink_trigger = document.getElementById('sink_trigger');
     var spaghetPan = document.getElementById('spaghet-pan');
+    var panwat = document.getElementById('pan-water');
     var tapButton = document.getElementById('tap_trigger');
+    var text = document.getElementById('text');
+    var textList = [];
+    var textIndex = -1;
+    textList.push('now turn on the heat');
+    textList.push('Take out an onion out of the fridge and cut it 4 times');
+    textList.push('3 more times.');
+    textList.push('2 more.')
+    textList.push('last one');
+    textList.push('Now add it to the frying pan');
+
     var tomatoCan = document.getElementById('tomatoCan');
     var tomatoSauce = document.getElementById('tomatoSauce');
-
-
-
 
     // Placement cubes  ------------------------------------------------------------------------------------------------
     var panSpots = [];
@@ -58,6 +68,7 @@ window.onload = function () {
     var panHasWater = false;
     var panInSink = false;
     var panPositionIndex = 5;
+    var spaghetPanPositionIndex = 5;
     var tapOn = false
     var tomatoSauceInPan = false;
 
@@ -216,6 +227,9 @@ window.onload = function () {
             onionCuts[1] -= 0.6;
             saveOnionPositions();
             cuttingSound();
+            if (textIndex > 0 && textIndex < 5) {
+                nextText();
+            }
         }
     });
 
@@ -338,7 +352,7 @@ window.onload = function () {
     });
 
     document.getElementById('sink_trigger').addEventListener('click', function () {
-        if (spaghetPan.parentNode == camera && !panHasWater) {
+        if (spaghetPan.parentNode == camera) {
             scene.appendChild(spaghetPan);
             spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
             spaghetPan.setAttribute('rotation', '180 -44 180');
@@ -348,23 +362,58 @@ window.onload = function () {
     });
 
     spaghetPan.addEventListener('click', function () {
-        if (spaghetPan.parentNode == camera) {
-            console.log('YES');
-        } else {
-            if (!panHasWater && !panInSink && !holdingItem()) {
-                camera.appendChild(spaghetPan);
-            }
+        if (!holdingItem()) {
+            cursor.appendChild(spaghetPan);
+            showSpaghetPanPositions();
+            panInSink = false;
+            loadSpaghetPan();
         }
     });
 
+    sink_trigger.addEventListener('click', function () {
+        if (spaghetPan.parentNode == cursor) {
+            scene.appendChild(spaghetPan);
+            spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
+            spaghetPan.setAttribute('rotation', '180 -44 180');
+            panInSink = true;
+            hideSpaghetPanPositions();
+            loadSpaghetPan();
+        }
+    })
+
     function fillpan() {
-        if (panInSink && !panHasWater && tapOn) {
-            var panwat = document.getElementById('pan-water');
-            panwat.setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 1');
+        if (panInSink && tapOn) {
             panHasWater = true;
+            loadSpaghetPan();
         }
     };
 
+    function showSpaghetPanPositions() {
+        sink_trigger.setAttribute('visible', 'true');
+        for (var i = 0; i < panSpots.length-1; i++) {
+            panSpots[i].setAttribute('visible', 'true');
+        }
+    };
+
+    function hideSpaghetPanPositions() {
+        sink_trigger.setAttribute('visible', 'false');
+        for (var i = 0; i < panSpots.length-1; i++) {
+            panSpots[i].setAttribute('visible', 'false');
+        }
+    };
+
+    function loadSpaghetPan() {
+        if(panHasWater) {
+            panwat.setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 1');
+        }
+    }
+
+
+    // Text ------------------------------------------------------------------------------------------------------------
+    function nextText() {
+        textIndex += 1;
+        text.setAttribute('value', textList[textIndex]);
+    }
 
     // TomatoCan    ----------------------------------------------------------------------------------------------------
     tomatoCan.addEventListener('click', function () {
@@ -418,7 +467,7 @@ window.onload = function () {
     function holdingItem() {
         if (beef.parentNode == cursor
             || pan.parentNode == cursor
-            || spaghetPan.parentNode == camera
+            || spaghetPan.parentNode == cursor
             || carrot.parentNode == cursor
             || knife.parentNode == cursor
             || tomatoCan.parentNode == cursor
@@ -434,7 +483,6 @@ window.onload = function () {
         scene.append(sound);
 
     }
-
 
     // Components   ----------------------------------------------------------------------------------------------------
 
@@ -459,6 +507,9 @@ window.onload = function () {
                     scene.append(pan);
                     pan.setAttribute('position', data.x + ' -2.1 ' + data.z);
                     panPositionIndex = data.index;
+                    if (panPositionIndex < 5 && textIndex == -1) {
+                        nextText();
+                    }
                     if (beef.parentNode == pan) {
                         beef.setAttribute('position', '0.5 0 0.2');
                     }
@@ -471,6 +522,13 @@ window.onload = function () {
                         loadOnionPositions();
                     }
                     if (tomatoSauceInPan) tomatoSauce.setAttribute('visible', 'true');
+                }
+                if (spaghetPan.parentNode == cursor) {
+                    hideSpaghetPanPositions();
+                    scene.append(spaghetPan);
+                    spaghetPan.setAttribute('position', data.x + ' -2.1 ' + data.z);
+                    spaghetPanPositionIndex = data.index;
+                    loadSpaghetPan();
                 }
 
                 ;
@@ -508,6 +566,9 @@ window.onload = function () {
         init: function () {
             var data = this.data;
             this.el.addEventListener('click', function () {
+                if (panPositionIndex == data.index && textIndex == 0) {
+                    nextText();
+                }
                 let anim = document.createElement('a-animation');
                 anim.setAttribute('attribute', 'rotation');
                 anim.setAttribute('dur', '1500');

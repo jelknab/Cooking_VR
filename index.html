@@ -142,15 +142,17 @@
     </a-obj-model>
 
     <!-- navigation boxes -->
-    <a-box id="box1" position="-7 -0.5 -8.5" color="#4CC3D9" src="Textures/texture.jpeg"
-           move-on-mouseenter="to: -7 0 0">
+    <a-box id="box1" position="-4.4 -7.73 2.1" color="#4CC3D9" src="Textures/texture.jpeg"
+           move-on-mouseenter="to: -4.4 0 2.1">
     </a-box>
-    <a-box id="box2" position="-2 -0.5 -8.5" color="#4CC3D9" src="Textures/texture.jpeg"
-           move-on-mouseenter="to: -2 0 0">
+    <a-box id="box2" position="-8.3 -7.73 0.6" color="#4CC3D9" src="Textures/texture.jpeg"
+           move-on-mouseenter="to: -8.3 0 0.6">
     </a-box>
-    <a-box id="box3" position="6 -0.5 -8.5" color="#4CC3D9" src="Textures/texture.jpeg" move-on-mouseenter="to: 6 0 0">
+    <a-box id="box3" position="-.07 -7.73 -1.15" color="#4CC3D9" src="Textures/texture.jpeg"
+           move-on-mouseenter="to: -.07 0 -1.15">
     </a-box>
-    <a-box id="box4" position="16 -0.5 0" color="#4CC3D9" src="Textures/texture.jpeg" move-on-mouseenter="to: 8 0 0">
+    <a-box id="box4" position="-5 -7.73 -1.15" color="#4CC3D9" src="Textures/texture.jpeg"
+           move-on-mouseenter="to: -5 0 -1.15">
     </a-box>
 
     <!--Onion-->
@@ -180,17 +182,17 @@
     </a-obj-model>
 
     <!-- pan plaats knoppen -->
-    <a-box id="panSpot0" color="yellow" width="0.2" height="0.2" depth="0.2" position="-8 -2.3 -3.8" visible='false'
+    <a-box id="panSpot0" color="yellow" width=".2" height=".2" depth=".2" position="-8 -2.3 -3.8" visible="false"
            place-pan="x: -8; z: -4; index: 0"></a-box>
-    <a-box id="panSpot1" color="yellow" width="0.2" height="0.2" depth="0.2" position="-8 -2.3 -5.7" visible='false'
+    <a-box id="panSpot1" color="yellow" width=".2" height=".2" depth=".2" position="-8 -2.3 -5.7" visible="false"
            place-pan="x: -8; z: -5.85; index: 1"></a-box>
-    <a-box id="panSpot2" color="yellow" width="0.2" height="0.2" depth="0.2" position="-7 -2.3 -4.8" visible='false'
+    <a-box id="panSpot2" color="yellow" width=".2" height=".2" depth=".2" position="-7 -2.3 -4.8" visible="false"
            place-pan="x: -7; z: -4.95; index: 2"></a-box>
-    <a-box id="panSpot3" color="yellow" width="0.2" height="0.2" depth="0.2" position="-6.1 -2.3 -5.7" visible='false'
+    <a-box id="panSpot3" color="yellow" width=".2" height=".2" depth=".2" position="-6.1 -2.3 -5.7" visible="false"
            place-pan="x: -6.1; z: -5.9; index: 3"></a-box>
-    <a-box id="panSpot4" color="yellow" width="0.2" height="0.2" depth="0.2" position="-6.1 -2.3 -3.8" visible='false'
+    <a-box id="panSpot4" color="yellow" width=".2" height=".2" depth=".2" position="-6.1 -2.3 -3.8" visible="false"
            place-pan="x: -6.1; z: -4; index: 4"></a-box>
-    <a-box id="panSpot5" color="yellow" width="0.2" height="0.2" depth="0.2" position="-3.9 -2 -3.3" visible='false'
+    <a-box id="panSpot5" color="yellow" width=".2" height=".2" depth=".2" position="-3.9 -2 -3.3" visible="false"
            place-pan="x: -3.5; z: -3.55; index: 5"></a-box>
 
     <!--Room-->
@@ -199,17 +201,18 @@
     <a-plane position="-14 -1.75 0" rotation="0 90 0" color="#DEC" width="20" height="11"></a-plane>
     <a-plane position="12 -1.75 0" rotation="0 -90 0" color="#DEC" width="20" height="11"></a-plane>
     <a-plane position="2 -1.75 10" rotation="0 180 0" color="#DEC" width="32" height="11"></a-plane>
-    <a-plane position="2 -1.75 -8.2" rotation="0 0 0" color="#DEC" width="32" height="11"></a-plane>
+    <a-plane position="2 -1.75 -8.2" rotation="0 0 0" color="#DEC" width="32" height="11">
+    </a-plane>
     <a-box depth="7" height="11" width="3.5" position="-12.27 -1.90 -5.07" color="#CDB"></a-box>
 
     <!--sink-->
     <a-box id="tap_trigger" position="-0.077 -1.72 -7.036" material="transparent: true; opacity: 0" geometry=""></a-box>
-    <a-box id="sink_trigger" position="-0.38 -3 -4.58" material="transparent:true; opacity: 0" geometry=""></a-box>
+    <a-box id="sink_trigger" position="-0.38 -3 -4.58" width=".2" height=".2" depth=".2" color="yellow" visible="false"></a-box>
     <a-cylinder id="water" material="side: double; color: #0000FF; transparent: true; opacity: 0" position="-.6 -2.4 -6"
                 geometry="segmentsRadial:10;segmentsHeight:1" scale="0.1 2 0.1"></a-cylinder>
 
     <!-- spaghetti pan -->
-    <a-obj-model id='spaghet-pan' src="#pan-obj" mtl="#pan-mtl" scale=".05 .05 .05" position="3 -2.1 -3.75 ">
+    <a-obj-model id='spaghet-pan' src="#pan-obj" mtl="#pan-mtl" scale=".03 .03 .03" position="3 -2.1 -3.75 ">
         <a-cylinder id="pan-water" position="0 10 0" scale="17 10 17"
                     material="side: double; color: #0000FF; transparent: true; opacity: 0"
                     geometry="segmentsRadial:10;segmentsHeight:1"></a-cylinder>
@@ -222,6 +225,9 @@
               position="2 2 -5"></a-entity>
     <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01"
               position="7 2 -5"></a-entity>
+
+    <!--text-->
+    <a-text id="text" value="Start by putting the frying pan on a hop" position="-10.5 0 -8.1" scale="4 4 4"></a-text>
 
     <!-- tomatoCan -->
     <a-obj-model id='tomatoCan' src="#tomatoCan-obj" mtl="#tomatoCan-mtl" scale="1 1 1"
