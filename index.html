@@ -58,6 +58,10 @@
         <a-asset-item id="onion_4-obj" src="Models/Onion/onion_4.obj"></a-asset-item>
         <a-asset-item id="onion-mtl" src="Models/Onion/onion.mtl"></a-asset-item>
 
+        <!--Source: https://poly.google.com/view/31dTPC5ZvZC-->
+        <a-asset-item id="book-obj" src="Models/Book/book.obj"></a-asset-item>
+        <a-asset-item id="book-mtl" src="Models/Book/book.mtl"></a-asset-item>
+
         <!--Source: https://poly.google.com/view/cT4wroU_inf-->
         <a-asset-item id="tomatoCan-obj" src="Models/TomatoCan/tomatoCan.obj"></a-asset-item>
         <a-asset-item id="tomatoCan-mtl" src="Models/TomatoCan/tomatoCan.mtl"></a-asset-item>
@@ -70,6 +74,11 @@
            visible='false'></a-box>
     <a-box id="beefFridgeSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-10.5 -2 0.3"
            visible='false'></a-box>
+
+    <!--Book-->
+    <a-obj-model src="#book-obj" mtl="#book-mtl" scale="5 5 5" position="-1.673 -1.559 5.400" rotation="-4.846 -106.707 -10.420">
+        <a-text id="text" value="Hello this is text" color="black" position="-0.033 0.061 -0.155" rotation="-25.744 -83.600 1.427" scale=".2 .2 .2"></a-text>
+    </a-obj-model>
 
     <!--Camera-->
     <a-camera id="camera" position="0 0 0">
@@ -227,7 +236,7 @@
               position="7 2 -5"></a-entity>
 
     <!--text-->
-    <a-text id="text" value="Start by putting the frying pan on a hop" position="-10.5 0 -8.1" scale="4 4 4"></a-text>
+    <!--<a-text id="text" value="Start by putting the frying pan on a hop" position="-10.5 0 -8.1" scale="4 4 4"></a-text>-->
 
     <!-- tomatoCan -->
     <a-obj-model id='tomatoCan' src="#tomatoCan-obj" mtl="#tomatoCan-mtl" scale="1 1 1"
