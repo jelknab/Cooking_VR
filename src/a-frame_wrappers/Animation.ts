@@ -6,7 +6,7 @@ export class Animation {
     constructor (
         public attributes: any,
         public target: AframeObject,
-        public onComplete: any
+        public onComplete?: any
     ) {}
 
     play() {
@@ -20,7 +20,7 @@ export class Animation {
     }
 
     complete() {
-        this.animation.parentElement.removeChild(this.animation);
-        this.onComplete();
+        if (this.animation.parentElement) this.animation.parentElement.removeChild(this.animation);
+        if (this.onComplete) this.onComplete();
     }
 }

@@ -14,23 +14,22 @@ export class Player {
         this.camera = new AframeObject(null, document.getElementById(camera_id));
     }
 
-    public equip(item: AInteractable) {
+    public equip(item: AInteractable, rotation: Vec3) {
         this.equippedItem = item;
 
         // Animate object flying to calculated position for smooth transition
         new Animation(
-            { 'dur': '500', 'attribute': 'position', 'to': this.calculateWorldHoldingPosition().toString()},
-            this.equippedItem,
-            () => {this.equippedItem.setPosition(this.calculateLocalHoldingPosition());}
-        ).play();
-
-        // Animate object rolling to user view rotation
-        new Animation(
-            { 'dur': '500', 'attribute': 'rotation', 'to': new Vec3(-50, 0, 20)},
+            {'dur': '500', 'attribute': 'position', 'to': this.calculateWorldHoldingPosition().toString()},
             this.equippedItem,
             () => {
-                this.equippedItem.setRotation(new Vec3(20, 0,-10));
+                this.equippedItem.setPosition(this.calculateLocalHoldingPosition());
                 this.camera.html.appendChild(this.equippedItem.html);
+
+                // Animate object rolling to user view rotation
+                new Animation(
+                    { 'dur': '250', 'attribute': 'rotation', 'to': rotation},
+                    this.equippedItem
+                ).play();
             }
         ).play();
     }
@@ -38,20 +37,18 @@ export class Player {
     public drop(position: Vec3) {
         // remove camera as parent and set position to calculated world holding pos
         Application.instance.world.appendChild(this.equippedItem.html);
-        this.equippedItem.setPosition(this.calculateLocalHoldingPosition());
+        this.equippedItem.setPosition(this.calculateWorldHoldingPosition());
 
         // Animate object flying to target position for smooth transition
         new Animation(
             { 'dur': '500', 'attribute': 'position', 'to': position.toString()},
-            this.equippedItem,
-            () => {}
+            this.equippedItem
         ).play();
 
         // Animate object taking on default rotation
         new Animation(
             { 'dur': '500', 'attribute': 'rotation', 'to': new Vec3(0, 0, 0)},
-            this.equippedItem,
-            () => {}
+            this.equippedItem
         ).play();
 
         this.equippedItem = null;

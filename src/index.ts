@@ -1,9 +1,9 @@
 import {Player} from "./Player";
 import {AObjective} from "./objectives/AObjective";
-import {Objective01_start} from "./objectives/Objective01_start";
 import {Instruction} from "./helper_items/Instruction";
 import {TextObjective} from "./objectives/TextObjective";
-import {Objective02} from "./objectives/Objective02";
+import {Marker} from "./helper_items/Marker";
+import * as objectives from "./objectives/index";
 
 export class Application {
     static instance: Application;
@@ -15,9 +15,11 @@ export class Application {
 
         // Add objectives
         Application.objectives = [
-            new Objective01_start(),    // Start button objective
+            new objectives.Objective01_start(),     // Start button objective
             new TextObjective("Awesome!! Let's get started!", 2000),
-            new Objective02(),          // Pan pickup objective
+            new TextObjective("We're going to start\nby making the sauce.", 2000),
+            new objectives.Objective02(),           // Pan pickup objective
+            new objectives.Objective02_A(),         // Pan drop objective
         ];
 
         // Start first objective
@@ -30,11 +32,13 @@ export class Application {
     public world: HTMLElement;
     public player: Player;
     public instruction: Instruction;
+    public marker: Marker;
 
     constructor() {
         this.world = document.getElementById('scene');
         this.player = new Player('camera');
         this.instruction = new Instruction('instructions');
+        this.marker = new Marker('marker');
     }
 
     public progressObjective() {
@@ -44,7 +48,7 @@ export class Application {
     }
 
     public start() {
-        this.activeObjective = Application.objectives[1];
+        this.activeObjective = Application.objectives[2];
         this.activeObjective.start();
     }
 }
