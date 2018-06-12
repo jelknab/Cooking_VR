@@ -1,8 +1,8 @@
-import {AObjective} from "./AObjective";
-import {Application} from "../index";
+import {AObjective} from "../AObjective";
+import {Application} from "../../index";
 
 // This is nothing more than a change of text
-export class TextObjective extends AObjective {
+export class TimeoutObjective extends AObjective {
     constructor (message: string, private duration: number) {
         super(message)
     }

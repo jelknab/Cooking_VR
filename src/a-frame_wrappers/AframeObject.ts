@@ -37,4 +37,8 @@ export class AframeObject {
     public setRotation(rotation: Vec3) {
         this.html.setAttribute('rotation', `${rotation.x} ${rotation.y} ${rotation.z}`)
     }
+
+    public parentTo(other: AframeObject) {
+        other.html.appendChild(this.html);
+    }
 }

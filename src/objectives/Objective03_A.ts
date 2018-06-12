@@ -3,8 +3,8 @@ import {Box} from "../Interactables/Box";
 import {Vec3} from "../Vec3";
 import {Application} from "../index";
 
-export class Objective02_A extends AObjective {
-    static panPos = new Vec3(-8.5, -2.1, -4.2);
+export class Objective03_A extends AObjective {
+    static panPos = new Vec3(-8.5, -2.15, -4.2);
 
     private box: Box;
 
@@ -14,14 +14,15 @@ export class Objective02_A extends AObjective {
 
     protected onInit(): void {
         this.box = new Box(
-            Objective02_A.panPos,
+            Objective03_A.panPos,
+            Application.instance.world,
             () => {
-                Application.instance.player.drop(Objective02_A.panPos);
+                Application.instance.player.drop(Objective03_A.panPos);
                 Application.instance.progressObjective();
             }
         );
 
-        Application.instance.marker.show(Objective02_A.panPos)
+        Application.instance.marker.show(Objective03_A.panPos)
     }
 
     protected onDestroy(): void {

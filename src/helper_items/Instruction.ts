@@ -9,11 +9,10 @@ export class Instruction extends AframeObject{
         rotation: Vec3 = new Vec3(0, 0, 0),
         size: number = 15
     ) {
-        this.html.setAttribute('value', message);
+        this.html.setAttribute('text', `value: ${message}; color: #000; width: ${size}; align: center`);
 
         this.setPosition(position);
         this.setRotation(rotation);
-        this.setSize(size);
     }
 
     public setSize(size: number) {

@@ -6,7 +6,7 @@ import {Vec3} from "../Vec3";
 /* OBJECTIVE GOAL
 * Pick up the sauce pan
 */
-export class Objective02 extends AObjective {
+export class Objective03 extends AObjective {
     private pan: AInteractable;
 
     constructor() {

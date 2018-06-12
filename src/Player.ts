@@ -36,7 +36,7 @@ export class Player {
 
     public drop(position: Vec3) {
         // remove camera as parent and set position to calculated world holding pos
-        Application.instance.world.appendChild(this.equippedItem.html);
+        this.equippedItem.parentTo(Application.instance.world);
         this.equippedItem.setPosition(this.calculateWorldHoldingPosition());
 
         // Animate object flying to target position for smooth transition

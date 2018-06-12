@@ -1,3 +1,3 @@
-export {Objective01_start} from "./Objective01_start";
-export {Objective02} from "./Objective02";
-export {Objective02_A} from "./Objective02_A";
+export {Objective03} from "./Objective03";
+export {Objective03_A} from "./Objective03_A";
+export {ObjectiveFinale} from "./ObjectiveFinale";
