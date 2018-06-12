@@ -161,13 +161,13 @@ window.onload = function () {
 
     bookSpotCutting.addEventListener('click', function () {
         scene.append(book);
+        book.setAttribute('position', '-1.673 -1.559 5.400');
+        book.setAttribute('rotation', '-4.846 -106.707 -10.420"');
         hideBookPositions();
     });
 
     bookSpotFurnace.addEventListener('click', function () {
         scene.append(book);
-        book.setAttribute('position', '-3.872 -1.691 -7.008');
-        book.setAttribute('rotation', '-4.846 73.968 -10.420');
         hideBookPositions();
     });
 
