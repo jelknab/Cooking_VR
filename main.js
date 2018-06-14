@@ -71,6 +71,7 @@ window.onload = function () {
     var spaghetPanPositionIndex = 6;
     var tapOn = false
     var tomatoSauceInPan = false;
+    var spaghettiLoadStorage = 'primitive: cone; height: .5; radiusTop: .6; radiusBottom: .2';
 
 
     // beef ------------------------------------------------------------------------------------------------------------
@@ -489,10 +490,11 @@ window.onload = function () {
     function cookSpaghetti() {
         if (spaghetPanPositionIndex < 5 && gasActive[spaghetPanPositionIndex]) {
             objectiveCompleted(3);
-            if (spaghetti.parentNode == spaghetPan) {
+            if (spaghetti.parentNode == spaghetPan && panHasWater) {
                 spaghetCookingTime += 1;
                 if (spaghetCookingTime > 5) {
-                    beef.setAttribute('src', 'Textures/groundbeefCooked.png');
+                    spaghettiLoadStorage = 'primitive: cone; height: .05; radiusTop: .5; radiusBottom: .2';
+                    loadSpaghetti();
                 };
             }
         };
@@ -513,7 +515,7 @@ window.onload = function () {
             spaghetti.setAttribute('scale', '33 33 33');
             spaghetti.setAttribute('position', '0 15 0');
             spaghetti.setAttribute('rotation', '0 0 0');
-            spaghetti.setAttribute('geometry', 'primitive: cone; height: .5; radiusTop: .6; radiusBottom: .2');
+            spaghetti.setAttribute('geometry', spaghettiLoadStorage);
         }
     }
 
