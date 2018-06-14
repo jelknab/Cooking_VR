@@ -589,13 +589,13 @@ window.onload = function () {
     cutSpot.addEventListener('click', function () {
         if (carrot.parentNode == cursor) {
             cuttingBoard.append(carrot);
-            carrot.setAttribute('position', '0 .17 0');
+            carrot.setAttribute('position', '.35 .17 0');
             hideCarrotPositions();
             loadCarrotPositions();
         }
         if (onion.parentNode == cursor) {
             cuttingBoard.append(onion);
-            onion.setAttribute('position', '0 .17 0');
+            onion.setAttribute('position', '-.35 .17 0');
             hideOnionPositions();
             loadOnionPositions();
         }
