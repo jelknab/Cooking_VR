@@ -72,6 +72,7 @@ window.onload = function () {
     var tapOn = false
     var tomatoSauceInPan = false;
     var spaghettiLoadStorage = 'primitive: cone; height: .5; radiusTop: .6; radiusBottom: .2';
+    var bookPages = [0, 3];
 
 
     // beef ------------------------------------------------------------------------------------------------------------
@@ -127,28 +128,48 @@ window.onload = function () {
     textLines.push('Place the pot in the sink');
     textLines.push('Fill it with water');
     textLines.push('Put it on the stove');
-    textLines.push('And turn on the heat')
+    textLines.push('And turn on the heat');
+    textLines.push("Great, now let's cut an onion while we wait for the water to boil (it is in the fridge)");
+    textLines.push('Do the same with a carrot');
+    textLines.push("Ah lovely, I can hear the water boiling. That means it's time to put the spaghetti in.");
     for (var i = 0; i < textLines.length; i++) {
         objectives[i] = false;
-    }
+    };
     updateText();
+
     function updateText() {
-        text.setAttribute('value', isDone(0) + textLines[0] + '\n' + isDone(1) + textLines[1] + '\n' + isDone(2) + textLines[2] + '\n' + isDone(3) + textLines[3]);
+        let textToShow = '';
+        for (let i = bookPages[0]; i < bookPages[1]+1; i++) {
+            textToShow += isDone(i) + textLines[i] + '\n';
+        }
+        text.setAttribute('value', textToShow);
+    };
+
+    function nextPage(start, end) {
+        bookPages = [start, end];
     }
 
     function isDone(i) {
         if (objectives[i]) {
             return '[x]'
-        }
+        };
         return '[ ]'
-    }
-
+    };
+    
     function objectiveCompleted(i) {
-        if(i == 0 || objectives[i-1]) {
+        if((i == 0 || objectives[i-1]) && !objectives[i]){
             objectives[i] = true;
+            switch (i) {
+                case 3:
+                    nextPage(4, 5);
+                    break;
+                case 5:
+                    nextPage(6, 6);
+                    break;
+            }
             updateText();
-        }
-    }
+        };
+    };
 
 
     book.addEventListener('click', function () {
@@ -158,7 +179,7 @@ window.onload = function () {
             this.setAttribute('rotation', '-4.846 90 -10.420');
             this.setAttribute('scale', '3 3 3');
             showBookPositions();
-        }
+        };
     });
 
     bookSpotCutting.addEventListener('click', function () {
@@ -201,6 +222,9 @@ window.onload = function () {
             carrotCuts[1] += 0.6;
             saveCarrotPositions();
             cuttingSound();
+            if (carrotCuts[0] == 3) {
+                objectiveCompleted(5);
+            }
         };
     });
 
@@ -284,6 +308,9 @@ window.onload = function () {
             onionCuts[1] -= 0.6;
             saveOnionPositions();
             cuttingSound();
+            if (onionCuts[0] == 4) {
+                objectiveCompleted(4);
+            }
         };
     });
 
@@ -424,6 +451,7 @@ window.onload = function () {
             spaghetPan.append(spaghetti);
             loadSpaghetti();
             hidespaghetPositions();
+            objectiveCompleted(6);
         }
     })
 
@@ -482,7 +510,6 @@ window.onload = function () {
     });
 
     spaghettiSpot.addEventListener('click', function() {
-        console.log('pls work');
         if (spaghetti.parentNode == cursor) {
             scene.append(spaghetti);
             hidespaghetPositions();
