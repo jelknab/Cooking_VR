@@ -56,6 +56,11 @@ window.onload = function () {
     var tomatoCanFridgeSpot = document.getElementById('tomatoCanFridgeSpot');
     var tomatoCanCounterSpot = document.getElementById('tomatoCanCounterSpot');
     var spaghettiSpot = document.getElementById('spaghettiSpot');
+    var strainer = document.getElementById('strainer');
+    var strainerInSink = false;
+    var strainerSpot = document.getElementById('strainerSpot');
+    var strainerAddSpot = document.getElementById('strainerAddSpot');
+    var spaghetPanSpot = document.getElementById('spaghetPanSpot');
 
 
     // Variables
@@ -157,6 +162,10 @@ window.onload = function () {
     textLines.push("Now add the canned tomatoes (fridge)");
     //14 Done
     textLines.push("And the carrot you cut earlier");
+    //15 Done
+    textLines.push("Spaghetti time, put the strainer in the sink");
+    //16 Done
+    textLines.push("And poor the spaghetti in there");
     for (var i = 0; i < textLines.length; i++) {
         objectives[i] = false;
     };
@@ -205,6 +214,9 @@ window.onload = function () {
                     break;
                 case 12:
                     nextPage(12, 14);
+                    break;
+                case 14:
+                    nextPage(15, 16);
                     break;
             }
             updateText();
@@ -485,14 +497,17 @@ window.onload = function () {
     // Sink
     document.getElementById('tap_trigger').addEventListener('click', function () {
         tapOn = !tapOn;
+        updateWater();
+    });
 
+    function updateWater() {
         if (tapOn) {
             document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0.5');
             fillpan();
         } else {
             document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0');
         };
-    });
+    }
 
     spaghetPan.addEventListener('click', function () {
         if (!holdingItem()) {
@@ -528,7 +543,25 @@ window.onload = function () {
             panInSink = true;
             hideSpaghetPanPositions();
             loadSpaghetPan();
+            updateWater();
         };
+        if (strainer.parentNode == cursor) {
+            objectiveCompleted(15);
+            scene.appendChild(strainer);
+            strainerInSink = true;
+            strainer.setAttribute('position', '-0.69 -2.75 -5.52');
+            strainer.setAttribute('rotation', '180 -44 180');
+            hideStrainerPositions();
+            loadSpaghetti();
+        };
+    });
+
+    spaghetPanSpot.addEventListener('click', function() {
+        if (spaghetPan.parentNode == cursor) {
+            scene.append(spaghetPan);
+            hideSpaghetPanPositions();
+            loadSpaghetPan();
+        }
     });
 
     function fillpan() {
@@ -540,12 +573,18 @@ window.onload = function () {
     };
 
     function showSpaghetPanPositions() {
-        sink_trigger.setAttribute('visible', 'true');
+        if (!strainerInSink) {
+            sink_trigger.setAttribute('visible', 'true');
+        }
         for (var i = 0; i < panSpots.length - 1; i++) {
             if (i != panPositionIndex) {
                 panSpots[i].setAttribute('visible', 'true');
             };
         };
+        if (strainerInSink) {
+            strainerAddSpot.setAttribute('visible', 'true');
+        }
+        spaghetPanSpot.setAttribute('visible', 'true');
     };
 
     function hideSpaghetPanPositions() {
@@ -553,12 +592,16 @@ window.onload = function () {
         for (var i = 0; i < panSpots.length - 1; i++) {
             panSpots[i].setAttribute('visible', 'false');
         };
+        strainerAddSpot.setAttribute('visible', 'false');
+        spaghetPanSpot.setAttribute('visible', 'false');
     };
 
     function loadSpaghetPan() {
         if (panHasWater) {
-            panwat.setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 1');
-        };
+            panwat.setAttribute('material', 'opacity: 1');
+        } else {
+            panwat.setAttribute('material', 'opacity: 0');
+        }
         loadSpaghetti();
     };
 
@@ -601,6 +644,7 @@ window.onload = function () {
                     window.setTimeout(function () {
                         spaghetti.removeChild(spaghetti.lastChild);
                         spaghetti.removeChild(spaghetti.lastChild);
+                        spaghetti.setAttribute('src', 'Textures/spaghetti2.png');
                     }, 10000);
                 };
             };
@@ -624,8 +668,75 @@ window.onload = function () {
             spaghetti.setAttribute('rotation', '0 0 0');
             spaghetti.setAttribute('geometry', spaghettiLoadStorage);
         }
+        if (spaghetti.parentNode == strainer) {
+            spaghetti.setAttribute('scale', '2 2 2');
+            spaghetti.setAttribute('position', '0 -0.080 0');
+            spaghetti.setAttribute('rotation', '0 0 0');
+            spaghetti.setAttribute('geometry', spaghettiLoadStorage);
+        }
     }
 
+
+    // Strainer
+    strainer.addEventListener('click', function () {
+        if (!holdingItem()) {
+            cursor.append(this);
+            strainerInSink = false;
+            this.setAttribute('position', '-2.220 -1.760 -1.870');
+            this.setAttribute('rotation', '0 140 0');
+            showStrainerPositions();
+            loadSpaghetti();
+        };
+    });
+
+    strainerSpot.addEventListener('click', function () {
+        scene.append(strainer);
+        strainerInSink = false;
+        hideStrainerPositions();
+        loadSpaghetti();
+    });
+
+    strainerAddSpot.addEventListener('click', function() {
+        if (spaghetPan.parentNode == cursor) {
+            let anim = document.createElement('a-animation');
+            anim.setAttribute('attribute', 'rotation');
+            anim.setAttribute('dur', '1500');
+            anim.setAttribute('to', '0 200 90');
+            spaghetPan.append(anim);
+            objectiveCompleted(9);
+
+            window.setTimeout(function () {
+                let anim3 = document.createElement('a-animation');
+                anim3.setAttribute('attribute', 'rotation');
+                anim3.setAttribute('dur', '1500');
+                anim3.setAttribute('to', '0 140 0');
+                spaghetPan.append(anim3);
+                if (panHasWater) {
+                    panHasWater = false;
+                    loadSpaghetPan();
+                };
+                if (spaghetti.parentNode == spaghetPan) {
+                    strainer.append(spaghetti);
+                    loadSpaghetti();
+                    objectiveCompleted(16);
+                }
+            }, 2500);
+            window.setTimeout(function () {
+                spaghetPan.removeChild(spaghetPan.lastChild);
+                spaghetPan.removeChild(spaghetPan.lastChild);
+            }, 4000);
+        };
+    });
+
+    function showStrainerPositions() {
+        sink_trigger.setAttribute('visible', 'true');
+        strainerSpot.setAttribute('visible', 'true');
+    };
+
+    function hideStrainerPositions() {
+        sink_trigger.setAttribute('visible', 'false');
+        strainerSpot.setAttribute('visible', 'false');
+    };
 
     // TomatoCan
     tomatoCan.addEventListener('click', function () {
@@ -688,7 +799,8 @@ window.onload = function () {
             onion.parentNode == cursor ||
             book.parentNode == cursor ||
             spaghetti.parentNode == cursor ||
-            oliveOil.parentNode == cursor
+            oliveOil.parentNode == cursor ||
+            strainer.parentNode == cursor
         ) return true;
         else return false;
     }
@@ -759,17 +871,17 @@ window.onload = function () {
                     panPositionIndex = data.index;
                     if (beef.parentNode == pan) {
                         beef.setAttribute('position', '0.5 0 0.2');
-                    }
+                    };
                     if (carrot.parentNode == pan) {
                         carrot.setAttribute('position', '.25 0 .2');
                         loadCarrotPositions();
-                    }
+                    };
                     if (onion.parentNode == pan) {
                         onion.setAttribute('position', '.65 0 .2');
                         loadOnionPositions();
-                    }
+                    };
                     if (tomatoSauceInPan) tomatoSauce.setAttribute('visible', 'true');
-                }
+                };
                 if (spaghetPan.parentNode == cursor) {
                     objectiveCompleted(2);
                     hideSpaghetPanPositions();
@@ -777,10 +889,7 @@ window.onload = function () {
                     spaghetPan.setAttribute('position', data.x - .4 + ' -2.1 ' + data.z);
                     spaghetPanPositionIndex = data.index;
                     loadSpaghetPan();
-
-                }
-
-                ;
+                };
             });
         },
     });

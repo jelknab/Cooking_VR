@@ -69,6 +69,10 @@
             <a-asset-item id="oliveOil-obj" src="Models/OliveOil/oliveOil.obj"></a-asset-item>
             <a-asset-item id="oliveOil-mtl" src="Models/OliveOil/oliveOil.mtl"></a-asset-item>
 
+            <!-- Source: https://poly.google.com/view/1PiSL-33U5q -->
+            <a-asset-item id="strainer-obj" src="Models/Strainer/strainer.obj"></a-asset-item>
+            <a-asset-item id="strainer-mtl" src="Models/Strainer/strainer.mtl"></a-asset-item>
+
         </a-assets>
 
         <!-- beef -->
@@ -79,8 +83,8 @@
 
         <!--Book-->
         <a-obj-model id="book" color="#D1B48A" src="#book-obj" scale="8 6 8" position="-3.452 -1.450 -7.224" rotation="-4.826 73.848 -5.630">
-            <a-text id="text" color="black" position="-0.015 0.102 -0.149" rotation="-26.608 -75.508 -1.049" scale=".065 .065 .065" wrap-count="18" baseline="top"
-                ></a-text>
+            <a-text id="text" color="black" position="-0.015 0.102 -0.149" rotation="-26.608 -75.508 -1.049" scale=".065 .065 .065" wrap-count="18"
+                baseline="top"></a-text>
         </a-obj-model>
 
         <!--Camera-->
@@ -155,7 +159,8 @@
         </a-box>
 
         <!-- Olive Oil -->
-        <a-obj-model id='oliveOil' src="#oliveOil-obj" mtl="#oliveOil-mtl" scale=".005 .005 .005" position="-10.200 -2.253 -3.843" rotation="0 0 0">
+        <a-obj-model id='oliveOil' src="#oliveOil-obj" mtl="#oliveOil-mtl" scale=".005 .005 .005" position="-10.200 -2.253 -3.843"
+            rotation="0 0 0">
         </a-obj-model>
         <a-box id="oliveOilSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-9.796 -1.638 -4.404" visible='false'></a-box>
 
@@ -218,11 +223,19 @@
                 geometry="segmentsRadial:10;segmentsHeight:1"></a-cylinder>
             <a-box id="spaghetPanAddSpot" color="yellow" width="6.6" height="6.6" depth="6.6" position=".5 25 .2" visible='false'></a-box>
         </a-obj-model>
+        <a-box id="spaghetPanSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="3 -1.2 -3.75" visible='false'></a-box>
+
 
         <!--Spots-->
         <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01" position="-3 2 -5"></a-entity>
         <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01" position="2 2 -5"></a-entity>
         <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01" position="7 2 -5"></a-entity>
+
+        <!-- Strainer -->
+        <a-obj-model id='strainer' src="#strainer-obj" mtl="#strainer-mtl" scale=".5 .5 .5" position="4.395 -1.758 -3.75">
+                <a-box id="strainerAddSpot" color="yellow" width="0.4" height="0.4" depth="0.4" position=".1d .4 .2" visible='false'></a-box>
+        </a-obj-model>
+        <a-box id="strainerSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="4.395 -1.25 -3.75" visible='false'></a-box>
 
         <!-- tomatoCan -->
         <a-obj-model id='tomatoCan' src="#tomatoCan-obj" mtl="#tomatoCan-mtl" scale="1 1 1" position="-10.8 -2.4 1.3"></a-obj-model>
