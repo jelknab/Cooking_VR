@@ -103,13 +103,17 @@ window.onload = function () {
     });
 
     function cookBeef() {
-        if (panPositionIndex < 5 && gasActive[panPositionIndex] && beef.parentNode == pan) {
-            beefCookingTime = beefCookingTime + 1;
-            if (beefCookingTime > 5) {
-                beef.setAttribute('src', 'Textures/groundbeefCooked.png');
+        if (panPositionIndex < 5 && gasActive[panPositionIndex]) {
+            objectiveCompleted(8);
+            if (beef.parentNode == pan) {
+                beefCookingTime = beefCookingTime + 1;
+                if (beefCookingTime > 15) {
+                    objectiveCompleted(12);
+                    beef.setAttribute('src', 'Textures/groundbeefCooked.png');
+                };
             };
         };
-    }
+    };
 
     function showBeefPositions() {
         beefCounterSpot.setAttribute('visible', 'true');
@@ -125,13 +129,36 @@ window.onload = function () {
 
 
     // Book
-    textLines.push('Place the pot in the sink');
-    textLines.push('Fill it with water');
-    textLines.push('Put it on the stove');
-    textLines.push('And turn on the heat');
-    textLines.push("Great, now let's cut an onion while we wait for the water to boil (it is in the fridge)");
-    textLines.push('Do the same with a carrot');
+    //0 Done
+    textLines.push("Place the pot in the sink");
+    //1 Done
+    textLines.push("Fill it with water");
+    //2 Done
+    textLines.push("Put it on the stove");
+    //3 Done
+    textLines.push("And turn on the heat");
+    //4 Done
+    textLines.push("Great, now let's cut an onion while we wait for the water to start boiling (it is in the fridge)");
+    //5 Done
+    textLines.push("Do the same with a carrot");
+    //6 Done
     textLines.push("Ah lovely, I can hear the water boiling. That means it's time to put the spaghetti in.");
+    //7 Done
+    textLines.push("Time to make the sauce, start by putting the frying pan on the stove");
+    //8 Done
+    textLines.push("And turn the heat on");
+    //9 Done
+    textLines.push("Now that the pan is steaming we add some olive Oil");
+    //10 Done
+    textLines.push("And quickly add the sliced onion");
+    //11 Done
+    textLines.push("The onion has gotten some colour now which means it is time to add the minced meat (it's in the fridge)");
+    //12
+    textLines.push("Almost done, wait a little till the meat is completely cooked");
+    //13
+    textLines.push("Now add the canned tomatoes (fridge)");
+    //14
+    textLines.push("And the carrot you cut earlier.");
     for (var i = 0; i < textLines.length; i++) {
         objectives[i] = false;
     };
@@ -165,6 +192,21 @@ window.onload = function () {
                     break;
                 case 5:
                     nextPage(6, 6);
+                    break;
+                case 6:
+                    nextPage(7, 8);
+                    break;
+                case 8:
+                    nextPage(9, 10);
+                    break;
+                case 10:
+                    nextPage(11, 11);
+                    break;
+                case 11:
+                    nextPage(12, 12);
+                    break;
+                case 12:
+                    nextPage(12, 14);
                     break;
             }
             updateText();
@@ -397,24 +439,27 @@ window.onload = function () {
 
     panAddSpot.addEventListener('mouseenter', function () {
         if (carrot.parentNode == cursor) {
+            objectiveCompleted(14);
             pan.append(carrot);
             carrot.setAttribute('position', '.25 0 .2');
             hideCarrotPositions();
             loadCarrotPositions();
         };
         if (onion.parentNode == cursor) {
+            objectiveCompleted(10);
             pan.append(onion);
             onion.setAttribute('position', '.65 0 .2');
             hideOnionPositions();
             loadOnionPositions();
         };
         if (beef.parentNode == cursor) {
+            objectiveCompleted(11);
             pan.append(beef);
             beef.setAttribute('position', '0.5 0 0.2');
             hideBeefPositions();
         };
         if (tomatoCan.parentNode == cursor) {
-            hideTomatoCanPositions()
+            objectiveCompleted(13);
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
@@ -431,16 +476,20 @@ window.onload = function () {
                 tomatoCan.append(anim3);
             }, 2500);
             window.setTimeout(function () {
-                cursor.removeChild(tomatoCan);
+                let clear = document.createElement('a-animation');
+                clear.setAttribute('attribute', 'rotation');
+                clear.setAttribute('dur', '1500');
+                clear.setAttribute('to', '0 0 0');
+                tomatoCan.append(clear);
             }, 4000);
         };
         if (oliveOil.parentNode == cursor) {
-            hideOliveOilPositions()
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
             anim.setAttribute('to', '0 0 -90');
             oliveOil.append(anim);
+            objectiveCompleted(9);
 
             window.setTimeout(function () {
                 let anim3 = document.createElement('a-animation');
@@ -450,7 +499,11 @@ window.onload = function () {
                 oliveOil.append(anim3);
             }, 2500);
             window.setTimeout(function () {
-                cursor.removeChild(oliveOil);
+                let clear = document.createElement('a-animation');
+                clear.setAttribute('attribute', 'rotation');
+                clear.setAttribute('dur', '1500');
+                clear.setAttribute('to', '0 0 0');
+                oliveOil.append(clear);
             }, 4000);
         }
     });
@@ -696,6 +749,7 @@ window.onload = function () {
             var data = this.data;
             this.el.addEventListener('click', function () {
                 if (pan.parentNode == cursor) {
+                    objectiveCompleted(7);
                     hidePanPositions();
                     scene.append(pan);
                     pan.setAttribute('position', data.x + ' -2.1 ' + data.z);
