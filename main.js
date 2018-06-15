@@ -105,7 +105,7 @@ window.onload = function () {
             objectiveCompleted(8);
             if (beef.parentNode == pan) {
                 beefCookingTime = beefCookingTime + 1;
-                if (beefCookingTime > 15) {
+                if (beefCookingTime > 10) {
                     objectiveCompleted(12);
                     beef.setAttribute('src', 'Textures/groundbeefCooked.png');
                 };
