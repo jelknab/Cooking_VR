@@ -153,12 +153,12 @@ window.onload = function () {
     textLines.push("And quickly add the sliced onion");
     //11 Done
     textLines.push("The onion has gotten some colour now which means it is time to add the minced meat (it's in the fridge)");
-    //12
+    //12 Done
     textLines.push("Almost done, wait a little till the meat is completely cooked");
-    //13
+    //13 Done
     textLines.push("Now add the canned tomatoes (fridge)");
-    //14
-    textLines.push("And the carrot you cut earlier.");
+    //14 Done
+    textLines.push("And the carrot you cut earlier");
     for (var i = 0; i < textLines.length; i++) {
         objectives[i] = false;
     };
@@ -214,37 +214,37 @@ window.onload = function () {
     };
 
 
-    book.addEventListener('click', function () {
-        if (!holdingItem()) {
-            cursor.append(this);
-            this.setAttribute('position', '-0.7 -0.5 0');
-            this.setAttribute('rotation', '-4.846 90 -10.420');
-            this.setAttribute('scale', '3 3 3');
-            showBookPositions();
-        };
-    });
+    // book.addEventListener('click', function () {
+    //     if (!holdingItem()) {
+    //         cursor.append(this);
+    //         this.setAttribute('position', '-0.7 -0.5 0');
+    //         this.setAttribute('rotation', '-4.846 90 -10.420');
+    //         this.setAttribute('scale', '3 3 3');
+    //         showBookPositions();
+    //     };
+    // });
 
-    bookSpotCutting.addEventListener('click', function () {
-        scene.append(book);
-        book.setAttribute('position', '-1.673 -1.559 5.400');
-        book.setAttribute('rotation', '-4.846 -106.707 -10.420"');
-        hideBookPositions();
-    });
+    // bookSpotCutting.addEventListener('click', function () {
+    //     scene.append(book);
+    //     book.setAttribute('position', '-1.673 -1.559 5.400');
+    //     book.setAttribute('rotation', '-4.846 -106.707 -10.420"');
+    //     hideBookPositions();
+    // });
 
-    bookSpotFurnace.addEventListener('click', function () {
-        scene.append(book);
-        hideBookPositions();
-    });
+    // bookSpotFurnace.addEventListener('click', function () {
+    //     scene.append(book);
+    //     hideBookPositions();
+    // });
 
-    function showBookPositions() {
-        bookSpotCutting.setAttribute('visible', 'true');
-        bookSpotFurnace.setAttribute('visible', 'true');
-    }
+    // function showBookPositions() {
+    //     bookSpotCutting.setAttribute('visible', 'true');
+    //     bookSpotFurnace.setAttribute('visible', 'true');
+    // }
 
-    function hideBookPositions() {
-        bookSpotCutting.setAttribute('visible', 'false');
-        bookSpotFurnace.setAttribute('visible', 'false');
-    }
+    // function hideBookPositions() {
+    //     bookSpotCutting.setAttribute('visible', 'false');
+    //     bookSpotFurnace.setAttribute('visible', 'false');
+    // }
 
 
     // Carrot
@@ -725,10 +725,37 @@ window.onload = function () {
 
     }
 
+    let y = 0;
     window.setInterval(function () {
         cookBeef();
         cookSpaghetti();
-    }, 1000);
+        switch (y) {
+            case 0:
+                nextPage(4, 5);
+                break;
+            case 1:
+                nextPage(6, 6);
+                break;
+            case 2:
+                nextPage(7, 8);
+                break;
+            case 3:
+                nextPage(9, 10);
+                break;
+            case 4:
+                nextPage(11, 11);
+                break;
+            case 5:
+                nextPage(12, 12);
+                break;
+            case 6:
+                y = -1;
+                nextPage(12, 14);
+                break;
+        }
+        updateText();
+        y+=1;
+    }, 3000);
 
     // Components
 
