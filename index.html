@@ -79,11 +79,9 @@
 
         <!--Book-->
         <a-obj-model id="book" color="#D1B48A" src="#book-obj" scale="8 6 8" position="-3.452 -1.450 -7.224" rotation="-4.826 73.848 -5.630">
-            <a-text id="text" color="black" position="-0.066 0.015 -0.163" rotation="-26.608 -75.508 -1.049" scale=".07 .07 .07" wrap-count="18"
+            <a-text id="text" color="black" position="-0.015 0.102 -0.149" rotation="-26.608 -75.508 -1.049" scale=".065 .065 .065" wrap-count="18" baseline="top"
                 ></a-text>
         </a-obj-model>
-        <a-box id="bookSpotCutting" color="yellow" width="0.2" height="0.2" depth="0.2" position="-1.673 -2 4.5" visible='false'></a-box>
-        <a-box id="bookSpotFurnace" color="yellow" width="0.2" height="0.2" depth="0.2" position="-4 -1.8 -5" visible='false'></a-box>
 
         <!--Camera-->
         <a-camera id="camera" position="0 0 0">
@@ -206,8 +204,8 @@
         <!--sink-->
         <a-box id="tap_trigger" position="-0.077 -1.72 -7.036" material="transparent: true; opacity: 0" geometry=""></a-box>
         <a-box id="sink_trigger" position="-0.38 -3 -4.58" width=".2" height=".2" depth=".2" color="yellow" visible="false"></a-box>
-        <a-cylinder id="water" material="side: double; color: #0000FF; transparent: true; opacity: 0" position="-.6 -2.4 -6" geometry="segmentsRadial:10;segmentsHeight:1"
-            scale="0.1 2 0.1"></a-cylinder>
+        <a-cylinder id="water" material="side: double; color: #0000FF; transparent: true; opacity: 0" position="-.6 -2 -6" geometry="segmentsRadial:10;segmentsHeight:1"
+            scale="0.1 1.5 0.1"></a-cylinder>
 
         <!-- Spaghetti -->
         <a-box id="spaghetti" geometry="primitive: cone; height: .6; radiusTop: .07; radiusBottom: .07" position="-3.814 -2 -5.21"

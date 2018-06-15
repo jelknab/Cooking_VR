@@ -3,8 +3,6 @@ window.onload = function () {
     // Objects
     var beef = document.getElementById('beef');
     var book = document.getElementById('book');
-    var bookSpotCutting = document.getElementById('bookSpotCutting');
-    var bookSpotFurnace = document.getElementById('bookSpotFurnace');
     var camera = document.getElementById('camera');
     var carrot = document.getElementById('carrot');
     var carrots = []
@@ -214,39 +212,6 @@ window.onload = function () {
     };
 
 
-    // book.addEventListener('click', function () {
-    //     if (!holdingItem()) {
-    //         cursor.append(this);
-    //         this.setAttribute('position', '-0.7 -0.5 0');
-    //         this.setAttribute('rotation', '-4.846 90 -10.420');
-    //         this.setAttribute('scale', '3 3 3');
-    //         showBookPositions();
-    //     };
-    // });
-
-    // bookSpotCutting.addEventListener('click', function () {
-    //     scene.append(book);
-    //     book.setAttribute('position', '-1.673 -1.559 5.400');
-    //     book.setAttribute('rotation', '-4.846 -106.707 -10.420"');
-    //     hideBookPositions();
-    // });
-
-    // bookSpotFurnace.addEventListener('click', function () {
-    //     scene.append(book);
-    //     hideBookPositions();
-    // });
-
-    // function showBookPositions() {
-    //     bookSpotCutting.setAttribute('visible', 'true');
-    //     bookSpotFurnace.setAttribute('visible', 'true');
-    // }
-
-    // function hideBookPositions() {
-    //     bookSpotCutting.setAttribute('visible', 'false');
-    //     bookSpotFurnace.setAttribute('visible', 'false');
-    // }
-
-
     // Carrot
     carrot.addEventListener('click', function () {
         if (!holdingItem()) {
@@ -433,7 +398,7 @@ window.onload = function () {
             };
             if (tomatoSauceInPan) {
                 tomatoSauce.setAttribute('visible', 'true');
-            }
+            };
         };
     });
 
@@ -476,11 +441,8 @@ window.onload = function () {
                 tomatoCan.append(anim3);
             }, 2500);
             window.setTimeout(function () {
-                let clear = document.createElement('a-animation');
-                clear.setAttribute('attribute', 'rotation');
-                clear.setAttribute('dur', '1500');
-                clear.setAttribute('to', '0 0 0');
-                tomatoCan.append(clear);
+                tomatoCan.removeChild(tomatoCan.lastChild);
+                tomatoCan.removeChild(tomatoCan.lastChild);
             }, 4000);
         };
         if (oliveOil.parentNode == cursor) {
@@ -499,11 +461,8 @@ window.onload = function () {
                 oliveOil.append(anim3);
             }, 2500);
             window.setTimeout(function () {
-                let clear = document.createElement('a-animation');
-                clear.setAttribute('attribute', 'rotation');
-                clear.setAttribute('dur', '1500');
-                clear.setAttribute('to', '0 0 0');
-                oliveOil.append(clear);
+                oliveOil.removeChild(oliveOil.lastChild);
+                oliveOil.removeChild(oliveOil.lastChild);
             }, 4000);
         }
     });
@@ -544,6 +503,10 @@ window.onload = function () {
             showSpaghetPanPositions();
             panInSink = false;
             loadSpaghetPan();
+
+            if (spaghetti.parentNode == spaghetPan) {
+                loadSpaghetti();
+            }
         };
     });
 
@@ -553,8 +516,8 @@ window.onload = function () {
             loadSpaghetti();
             hidespaghetPositions();
             objectiveCompleted(6);
-        }
-    })
+        };
+    });
 
     sink_trigger.addEventListener('click', function () {
         if (spaghetPan.parentNode == cursor) {
@@ -600,21 +563,21 @@ window.onload = function () {
     };
 
 
-    // Spaghetti    ------------------------------------------------------------------------------------------------------------
+    // Spaghetti
     spaghetti.addEventListener('click', function () {
         if (!holdingItem()) {
             cursor.append(this);
             spaghetti.setAttribute('position', '-1 -.6 0');
             spaghetti.setAttribute('rotation', '0 90 0');
             showspaghetPositions();
-        }
+        };
     });
 
     spaghettiSpot.addEventListener('click', function () {
         if (spaghetti.parentNode == cursor) {
             scene.append(spaghetti);
             hidespaghetPositions();
-        }
+        };
     });
 
 
@@ -623,11 +586,24 @@ window.onload = function () {
             objectiveCompleted(3);
             if (spaghetti.parentNode == spaghetPan && panHasWater) {
                 spaghetCookingTime += 1;
-                if (spaghetCookingTime > 5) {
-                    spaghettiLoadStorage = 'primitive: cone; height: .05; radiusTop: .5; radiusBottom: .2';
-                    loadSpaghetti();
+                if (spaghetCookingTime == 1) {
+                    let anim = document.createElement('a-animation');
+                    anim.setAttribute('attribute', 'geometry.radiusTop');
+                    anim.setAttribute('dur', '10000');
+                    anim.setAttribute('to', '.5');
+                    spaghetti.append(anim);
+                    let anim2 = document.createElement('a-animation');
+                    anim2.setAttribute('attribute', 'geometry.height');
+                    anim2.setAttribute('dur', '10000');
+                    anim2.setAttribute('to', '.05');
+                    spaghetti.append(anim2);
+                    spaghettiLoadStorage = 'height: .05; radiusTop: .5;';
+                    window.setTimeout(function () {
+                        spaghetti.removeChild(spaghetti.lastChild);
+                        spaghetti.removeChild(spaghetti.lastChild);
+                    }, 10000);
                 };
-            }
+            };
         };
     };
 
@@ -729,33 +705,33 @@ window.onload = function () {
     window.setInterval(function () {
         cookBeef();
         cookSpaghetti();
-        switch (y) {
-            case 0:
-                nextPage(4, 5);
-                break;
-            case 1:
-                nextPage(6, 6);
-                break;
-            case 2:
-                nextPage(7, 8);
-                break;
-            case 3:
-                nextPage(9, 10);
-                break;
-            case 4:
-                nextPage(11, 11);
-                break;
-            case 5:
-                nextPage(12, 12);
-                break;
-            case 6:
-                y = -1;
-                nextPage(12, 14);
-                break;
-        }
-        updateText();
-        y+=1;
-    }, 3000);
+        // switch (y) {
+        //     case 0:
+        //         nextPage(4, 5);
+        //         break;
+        //     case 1:
+        //         nextPage(6, 6);
+        //         break;
+        //     case 2:
+        //         nextPage(7, 8);
+        //         break;
+        //     case 3:
+        //         nextPage(9, 10);
+        //         break;
+        //     case 4:
+        //         nextPage(11, 11);
+        //         break;
+        //     case 5:
+        //         nextPage(12, 12);
+        //         break;
+        //     case 6:
+        //         y = -1;
+        //         nextPage(12, 14);
+        //         break;
+        // }
+        // updateText();
+        // y+=1;
+    }, 1000);
 
     // Components
 
