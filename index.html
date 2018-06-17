@@ -73,6 +73,14 @@
             <a-asset-item id="strainer-obj" src="Models/Strainer/strainer.obj"></a-asset-item>
             <a-asset-item id="strainer-mtl" src="Models/Strainer/strainer.mtl"></a-asset-item>
 
+            <!-- Source: https://poly.google.com/view/9RpiicivMJi -->
+            <a-asset-item id="plate-obj" src="Models/Plate/plate.obj"></a-asset-item>
+            <a-asset-item id="plate-mtl" src="Models/Plate/plate.mtl"></a-asset-item>
+
+            <!-- Source: https://poly.google.com/view/00zv9o-Gjo2 -->
+            <a-asset-item id="plateDone-obj" src="Models/PlateDone/plateDone.obj"></a-asset-item>
+            <a-asset-item id="plateDone-mtl" src="Models/PlateDone/plateDone.mtl"></a-asset-item>
+
         </a-assets>
 
         <!-- beef -->
@@ -196,6 +204,15 @@
         <a-box id="panSpot4" color="yellow" width=".2" height=".2" depth=".2" position="-6.1 -2.3 -3.8" visible="false" place-pan="x: -6.1; z: -4; index: 4"></a-box>
         <a-box id="panSpot5" color="yellow" width=".2" height=".2" depth=".2" position="-3.9 -2 -3.3" visible="false" place-pan="x: -3.5; z: -3.55; index: 5"></a-box>
 
+        <!-- Plate -->
+        <a-obj-model id='plate' src="#plate-obj" mtl="#plate-mtl" scale=".02 .02 .02" position="7.682 -2.181 0.308">
+        </a-obj-model>
+        <a-box id="plateAddSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="7.682 -1.5 0.308" visible='true'></a-box>
+
+        <!-- Plate Done -->
+        <a-obj-model id='plateDone' src="#plateDone-obj" mtl="#plateDone-mtl" scale="2.5 2.5 2.5" position="7.604 -2.064 0.288" visible="false">
+        </a-obj-model>
+
         <!--Room-->
         <a-plane position="2 -7.25 0" rotation="-90 0 0" color="#999" width="32" height="20"></a-plane>
         <a-plane position="2 3.5 0" rotation="90 0 0" color="#CCF" width="32" height="20"></a-plane>
@@ -222,6 +239,8 @@
             <a-cylinder id="pan-water" position="0 10 0" scale="17 10 17" material="side: double; color: #0000FF; transparent: true; opacity: 0"
                 geometry="segmentsRadial:10;segmentsHeight:1"></a-cylinder>
             <a-box id="spaghetPanAddSpot" color="yellow" width="6.6" height="6.6" depth="6.6" position=".5 25 .2" visible='false'></a-box>
+            <a-box id="tomatoSaucePot" geometry="primitive: cylinder; height: 15; radius: 12" position=".42 8.33 .465" src="Textures/tomatoSauce.jpg"
+                visible="false"></a-box>
         </a-obj-model>
         <a-box id="spaghetPanSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="3 -1.2 -3.75" visible='false'></a-box>
 
@@ -233,7 +252,7 @@
 
         <!-- Strainer -->
         <a-obj-model id='strainer' src="#strainer-obj" mtl="#strainer-mtl" scale=".5 .5 .5" position="4.395 -1.758 -3.75">
-                <a-box id="strainerAddSpot" color="yellow" width="0.4" height="0.4" depth="0.4" position=".1d .4 .2" visible='false'></a-box>
+            <a-box id="strainerAddSpot" color="yellow" width="0.4" height="0.4" depth="0.4" position=".1d .4 .2" visible='false'></a-box>
         </a-obj-model>
         <a-box id="strainerSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="4.395 -1.25 -3.75" visible='false'></a-box>
 

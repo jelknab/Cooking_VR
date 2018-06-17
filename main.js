@@ -29,6 +29,8 @@ window.onload = function () {
     var onionPositions = [0, 0, 0, 0];
     var onionCuts = [0, 2.4];
     var pan = document.getElementById('pan');
+    var plate = document.getElementById('plate');
+    var plateDone = document.getElementById('plateDone');
     var scene = document.getElementById('scene');
     var sink_trigger = document.getElementById('sink_trigger');
     var spaghetti = document.getElementById('spaghetti');
@@ -39,6 +41,7 @@ window.onload = function () {
     var textLines = [];
     var tomatoCan = document.getElementById('tomatoCan');
     var tomatoSauce = document.getElementById('tomatoSauce');
+    var tomatoSaucePot = document.getElementById('tomatoSaucePot');
 
     // Placement cubes
     var panSpots = [];
@@ -46,6 +49,7 @@ window.onload = function () {
         panSpots[i] = document.getElementById('panSpot' + i);
     };
     var panAddSpot = document.getElementById('panAddSpot');
+    var plateAddSpot = this.document.getElementById('plateAddSpot')
     var spaghetPanAddSpot = document.getElementById('spaghetPanAddSpot');
     var beefCounterSpot = document.getElementById('beefCounterSpot');
     var beefFridgeSpot = document.getElementById('beefFridgeSpot');
@@ -74,6 +78,7 @@ window.onload = function () {
     var spaghetPanPositionIndex = 6;
     var tapOn = false
     var tomatoSauceInPan = false;
+    var tomatoSauceInPot = false;
     var spaghettiLoadStorage = 'primitive: cone; height: .5; radiusTop: .6; radiusBottom: .2';
     var bookPages = [0, 3];
 
@@ -166,6 +171,12 @@ window.onload = function () {
     textLines.push("Spaghetti time, put the strainer in the sink");
     //16 Done
     textLines.push("And poor the spaghetti in there");
+    //17 Done
+    textLines.push("To mix it all up poor the spaghetti back in the pot");
+    //18 Done
+    textLines.push("And do the same with the sauce");
+    //19 Done
+    textLines.push("Final step: plate up")
     for (var i = 0; i < textLines.length; i++) {
         objectives[i] = false;
     };
@@ -217,6 +228,12 @@ window.onload = function () {
                     break;
                 case 14:
                     nextPage(15, 16);
+                    break;
+                case 16:
+                    nextPage(17, 18);
+                    break;
+                case 18:
+                    nextPage(19, 19);
                     break;
             }
             updateText();
@@ -485,14 +502,44 @@ window.onload = function () {
                 panSpots[i].setAttribute('visible', 'true');
             };
         };
+        spaghetPanAddSpot.setAttribute('visible', 'true');
     };
 
     function hidePanPositions() {
         for (var i = 0; i < panSpots.length; i++) {
             panSpots[i].setAttribute('visible', 'false');
         };
+        spaghetPanAddSpot.setAttribute('visible', 'false');
     };
 
+    // Plate
+    plateAddSpot.addEventListener('click', function () {
+        let anim = document.createElement('a-animation');
+        anim.setAttribute('attribute', 'rotation');
+        anim.setAttribute('dur', '1500');
+        anim.setAttribute('to', '0 200 90');
+        spaghetPan.append(anim);
+        window.setTimeout(function () {
+            let anim3 = document.createElement('a-animation');
+            anim3.setAttribute('attribute', 'rotation');
+            anim3.setAttribute('dur', '1500');
+            anim3.setAttribute('to', '0 140 0');
+            spaghetPan.append(anim3);
+            spaghetPan.removeChild(spaghetti);
+            spaghetPan.removeChild(onion);
+            spaghetPan.removeChild(carrot);
+            spaghetPan.removeChild(beef);
+            tomatoSaucePot.setAttribute('visible', 'false');
+            plate.setAttribute('visible', 'false');
+            plateDone.setAttribute('visible', 'true');
+            plateAddSpot.setAttribute('visible', 'false');
+        }, 2500);
+        window.setTimeout(function () {
+            objectiveCompleted(19);
+            spaghetPan.removeChild(spaghetPan.lastChild);
+            spaghetPan.removeChild(spaghetPan.lastChild);
+        }, 4000);
+    });
 
     // Sink
     document.getElementById('tap_trigger').addEventListener('click', function () {
@@ -514,14 +561,9 @@ window.onload = function () {
             cursor.append(spaghetPan);
             spaghetPan.setAttribute('position', '-2.220 -1.760 -1.870');
             spaghetPan.setAttribute('rotation', '0 140 0');
-
             showSpaghetPanPositions();
             panInSink = false;
             loadSpaghetPan();
-
-            if (spaghetti.parentNode == spaghetPan) {
-                loadSpaghetti();
-            }
         };
     });
 
@@ -531,6 +573,68 @@ window.onload = function () {
             loadSpaghetti();
             hidespaghetPositions();
             objectiveCompleted(6);
+        };
+        if (strainer.parentNode == cursor) {
+            let anim = document.createElement('a-animation');
+            anim.setAttribute('attribute', 'rotation');
+            anim.setAttribute('dur', '1500');
+            anim.setAttribute('to', '0 200 90');
+            strainer.append(anim);
+            objectiveCompleted(9);
+
+            window.setTimeout(function () {
+                let anim3 = document.createElement('a-animation');
+                anim3.setAttribute('attribute', 'rotation');
+                anim3.setAttribute('dur', '1500');
+                anim3.setAttribute('to', '0 140 0');
+                strainer.append(anim3);
+                if (spaghetti.parentNode == strainer) {
+                    objectiveCompleted(17);
+                    spaghetPan.append(spaghetti);
+                    loadSpaghetti();
+                };
+            }, 2500);
+            window.setTimeout(function () {
+                strainer.removeChild(strainer.lastChild);
+                strainer.removeChild(strainer.lastChild);
+            }, 4000);
+        };
+        if (pan.parentNode == cursor) {
+            let anim = document.createElement('a-animation');
+            anim.setAttribute('attribute', 'rotation');
+            anim.setAttribute('dur', '1500');
+            anim.setAttribute('to', '50 180 0');
+            pan.append(anim);
+            objectiveCompleted(9);
+
+            window.setTimeout(function () {
+                let anim3 = document.createElement('a-animation');
+                anim3.setAttribute('attribute', 'rotation');
+                anim3.setAttribute('dur', '1500');
+                anim3.setAttribute('to', '0 180 0');
+                pan.append(anim3);
+                if (carrot.parentNode == pan) {
+                    spaghetPan.append(carrot);
+                };
+                if (onion.parentNode == pan) {
+                    spaghetPan.append(onion);
+                };
+                if (beef.parentNode == pan) {
+                    spaghetPan.append(beef);
+                };
+                if (tomatoSauceInPan) {
+                    objectiveCompleted(18);
+                    tomatoSauce.setAttribute('visible', 'false');
+                    tomatoSaucePot.setAttribute('visible', 'true');
+                    tomatoSauceInPan = false;
+                    tomatoSauceInPot = true;
+                }
+                loadSpaghetPan();
+            }, 2500);
+            window.setTimeout(function () {
+                pan.removeChild(pan.lastChild);
+                pan.removeChild(pan.lastChild);
+            }, 4000);
         };
     });
 
@@ -556,7 +660,7 @@ window.onload = function () {
         };
     });
 
-    spaghetPanSpot.addEventListener('click', function() {
+    spaghetPanSpot.addEventListener('click', function () {
         if (spaghetPan.parentNode == cursor) {
             scene.append(spaghetPan);
             hideSpaghetPanPositions();
@@ -585,6 +689,14 @@ window.onload = function () {
             strainerAddSpot.setAttribute('visible', 'true');
         }
         spaghetPanSpot.setAttribute('visible', 'true');
+        if (carrot.parentNode == spaghetPan &&
+            onion.parentNode == spaghetPan &&
+            beef.parentNode == spaghetPan &&
+            tomatoSauceInPot &&
+            spaghetti.parentNode == spaghetPan
+        ) {
+            plateAddSpot.setAttribute('visible', 'true');
+        }
     };
 
     function hideSpaghetPanPositions() {
@@ -603,6 +715,24 @@ window.onload = function () {
             panwat.setAttribute('material', 'opacity: 0');
         }
         loadSpaghetti();
+        if (carrot.parentNode == spaghetPan) {
+            carrot.setAttribute('position', '-8.85 14.28 -5.030');
+            carrot.setAttribute('scale', '2 2 2');
+            carrot.setAttribute('rotation', '0 0 0');
+            loadCarrotPositions();
+        };
+        if (onion.parentNode == spaghetPan) {
+            onion.setAttribute('position', '-2.6 13.25 0');
+            onion.setAttribute('scale', '4 4 4');
+            loadOnionPositions();
+        };
+        if (beef.parentNode == spaghetPan) {
+            beef.setAttribute('position', '-2.6 15.08 0');
+            beef.setAttribute('scale', '30 30 30');
+        };
+        if (tomatoSauceInPot) {
+            tomatoSaucePot.setAttribute('visible', 'true');
+        }
     };
 
 
@@ -696,7 +826,7 @@ window.onload = function () {
         loadSpaghetti();
     });
 
-    strainerAddSpot.addEventListener('click', function() {
+    strainerAddSpot.addEventListener('click', function () {
         if (spaghetPan.parentNode == cursor) {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
@@ -731,11 +861,13 @@ window.onload = function () {
     function showStrainerPositions() {
         sink_trigger.setAttribute('visible', 'true');
         strainerSpot.setAttribute('visible', 'true');
+        spaghetPanAddSpot.setAttribute('visible', 'true');
     };
 
     function hideStrainerPositions() {
         sink_trigger.setAttribute('visible', 'false');
         strainerSpot.setAttribute('visible', 'false');
+        spaghetPanAddSpot.setAttribute('visible', 'false');
     };
 
     // TomatoCan
@@ -817,32 +949,6 @@ window.onload = function () {
     window.setInterval(function () {
         cookBeef();
         cookSpaghetti();
-        // switch (y) {
-        //     case 0:
-        //         nextPage(4, 5);
-        //         break;
-        //     case 1:
-        //         nextPage(6, 6);
-        //         break;
-        //     case 2:
-        //         nextPage(7, 8);
-        //         break;
-        //     case 3:
-        //         nextPage(9, 10);
-        //         break;
-        //     case 4:
-        //         nextPage(11, 11);
-        //         break;
-        //     case 5:
-        //         nextPage(12, 12);
-        //         break;
-        //     case 6:
-        //         y = -1;
-        //         nextPage(12, 14);
-        //         break;
-        // }
-        // updateText();
-        // y+=1;
     }, 1000);
 
     // Components
