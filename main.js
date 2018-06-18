@@ -23,8 +23,11 @@ window.onload = function () {
     var oliveOilSpot = this.document.getElementById('oliveOilSpot');
     var onion = document.getElementById('onion');
     var onions = []
+    var test = this.document.getElementById('onion_0');
+    console.log('why is this null', test);
     for (i = 0; i < 5; i++) {
         onions[i] = document.getElementById('onion_' + i);
+        console.log(i, onions[i]);
     }
     var onionPositions = [0, 0, 0, 0];
     var onionCuts = [0, 2.4];
@@ -36,7 +39,6 @@ window.onload = function () {
     var spaghetti = document.getElementById('spaghetti');
     var spaghetPan = document.getElementById('spaghet-pan');
     var panwat = document.getElementById('pan-water');
-    var tapButton = document.getElementById('tap_trigger');
     var text = document.getElementById('text');
     var textLines = [];
     var tomatoCan = document.getElementById('tomatoCan');
@@ -104,7 +106,6 @@ window.onload = function () {
     beefFridgeSpot.addEventListener('click', function () {
         if (beef.parentNode == cursor) {
             scene.append(beef);
-            beef.setAttribute('position', '-10.5 -2.5 0.3');
             panAddSpot.setAttribute('visible', 'false');
             hideBeefPositions();
         };
@@ -302,7 +303,7 @@ window.onload = function () {
         anim.setAttribute('dur', '2000');
         anim.setAttribute('easing', 'linear');
         if (this.getAttribute('rotation').y == 0) {
-            anim.setAttribute('to', '0 90 0');
+            anim.setAttribute('to', '0 -90 0');
         } else {
             anim.setAttribute('to', '0 0 0');
         };
@@ -324,7 +325,6 @@ window.onload = function () {
         scene.append(knife);
         knifeSpot.setAttribute('visible', 'false');
     });
-
 
     // Olive oil
     oliveOil.addEventListener('click', function () {
@@ -351,7 +351,6 @@ window.onload = function () {
         oliveOilSpot.setAttribute('visible', 'false');
         panAddSpot.setAttribute('visible', 'false');
     };
-
 
     // Onion
     onion.addEventListener('click', function () {
@@ -530,6 +529,7 @@ window.onload = function () {
             spaghetPan.removeChild(carrot);
             spaghetPan.removeChild(beef);
             tomatoSaucePot.setAttribute('visible', 'false');
+            tomatoSauceInPot = false;
             plate.setAttribute('visible', 'false');
             plateDone.setAttribute('visible', 'true');
             plateAddSpot.setAttribute('visible', 'false');
@@ -872,6 +872,7 @@ window.onload = function () {
 
     // TomatoCan
     tomatoCan.addEventListener('click', function () {
+        console.log("WORKS");
         if (!holdingItem()) {
             cursor.append(this);
             this.setAttribute('position', '-0.7 -0.5 0');
@@ -996,26 +997,6 @@ window.onload = function () {
                     spaghetPanPositionIndex = data.index;
                     loadSpaghetPan();
                 };
-            });
-        },
-    });
-
-    // Verplaatst de camera naar de mee gegeven coordinaten bij een mouseenter event
-    AFRAME.registerComponent('move-on-mouseenter', {
-        schema: {
-            to: {
-                default: '0 0 0',
-            },
-        },
-        init: function () {
-            var data = this.data;
-            this.el.addEventListener('click', function () {
-                let anim = document.createElement('a-animation');
-                anim.setAttribute('attribute', 'position');
-                anim.setAttribute('dur', '2000');
-                anim.setAttribute('easing', 'linear');
-                anim.setAttribute('to', data.to);
-                camera.append(anim);
             });
         },
     });
