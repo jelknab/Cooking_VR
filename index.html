@@ -207,7 +207,7 @@
         <!-- Plate -->
         <a-obj-model id='plate' src="#plate-obj" mtl="#plate-mtl" scale=".02 .02 .02" position="7.682 -2.181 0.308">
         </a-obj-model>
-        <a-box id="plateAddSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="7.682 -1.5 0.308" visible='true'></a-box>
+        <a-box id="plateAddSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="7.682 -1.5 0.308" visible='false'></a-box>
 
         <!-- Plate Done -->
         <a-obj-model id='plateDone' src="#plateDone-obj" mtl="#plateDone-mtl" scale="2.5 2.5 2.5" position="7.604 -2.064 0.288" visible="false">
@@ -216,12 +216,13 @@
         <!--Room-->
         <a-plane position="2 -7.25 0" rotation="-90 0 0" color="#999" width="32" height="20"></a-plane>
         <a-plane position="2 3.5 0" rotation="90 0 0" color="#CCF" width="32" height="20"></a-plane>
-        <a-plane position="-14 -1.75 0" rotation="0 90 0" color="#DEC" width="20" height="11"></a-plane>
-        <a-plane position="12 -1.75 0" rotation="0 -90 0" color="#DEC" width="20" height="11"></a-plane>
-        <a-plane position="2 -1.75 10" rotation="0 180 0" color="#DEC" width="32" height="11"></a-plane>
-        <a-plane position="2 -1.75 -8.2" rotation="0 0 0" color="#DEC" width="32" height="11">
-        </a-plane>
-        <a-box depth="7" height="11" width="3.5" position="-12.27 -1.90 -5.07" color="#CDB"></a-box>
+        <a-plane position="-14 -1.75 0" rotation="0 90 0" src="Textures/tomatoSauce.jpg" width="20" height="11"></a-plane>
+        <a-plane position="12 -1.75 0" rotation="0 -90 0" src="Textures/tomatoSauce.jpg" width="20" height="11"></a-plane>
+        <a-plane position="2 -1.75 10" rotation="0 180 0" src="Textures/tomatoSauce.jpg" width="32" height="11"></a-plane>
+        <a-plane position="2 -1.75 -8.2" rotation="0 0 0" src="Textures/tomatoSauce.jpg" width="32" height="11"></a-plane>
+        <a-plane src="Images/window.jpg" position="2 0.573d -8.19" rotation="0 0 0" width="13" height="5"></a-plane>
+        <a-box depth="7" height="11" width="3.5" position="-12.27 -1.90 -5.07" src="Textures/tomatoSauce.jpg"></a-box>
+        
 
         <!--sink-->
         <a-box id="tap_trigger" position="-0.077 -1.72 -7.036" material="transparent: true; opacity: 0" geometry=""></a-box>
