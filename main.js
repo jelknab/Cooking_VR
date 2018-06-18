@@ -65,6 +65,8 @@ window.onload = function () {
     var strainerSpot = document.getElementById('strainerSpot');
     var strainerAddSpot = document.getElementById('strainerAddSpot');
     var spaghetPanSpot = document.getElementById('spaghetPanSpot');
+    var moveGreen = this.document.getElementById('moveGreen');
+    var moveOrange = this.document.getElementById('moveOrange');
 
 
     // Variables
@@ -325,6 +327,55 @@ window.onload = function () {
         knifeSpot.setAttribute('visible', 'false');
     });
 
+
+    // Movement
+    moveGreen.addEventListener('mouseenter', function() {
+        let x = camera.getAttribute('position').x -1;
+        let z = camera.getAttribute('position').z;
+        let anim = document.createElement('a-animation');
+        anim.setAttribute('attribute', 'position');
+        anim.setAttribute('dur', '500');
+        anim.setAttribute('easing', 'linear');
+        anim.setAttribute('to', x + ' 0 ' + z);
+        camera.append(anim);
+        let anim2 = document.createElement('a-animation');
+        anim2.setAttribute('attribute', 'position');
+        anim2.setAttribute('dur', '500');
+        anim2.setAttribute('easing', 'linear');
+        anim2.setAttribute('to', x + ' -7.224 ' + z);
+        let anim3 = document.createElement('a-animation');
+        anim3.setAttribute('attribute', 'position');
+        anim3.setAttribute('dur', '500');
+        anim3.setAttribute('easing', 'linear');
+        anim3.setAttribute('to', x + ' -7.224 ' + z);
+        camera.append(anim);
+        this.append(anim2);
+        moveOrange.append(anim3);
+    });
+
+    moveOrange.addEventListener('mouseenter', function() {
+        let x = camera.getAttribute('position').x +1;
+        let z = camera.getAttribute('position').z;
+        let anim = document.createElement('a-animation');
+        anim.setAttribute('attribute', 'position');
+        anim.setAttribute('dur', '500');
+        anim.setAttribute('easing', 'linear');
+        anim.setAttribute('to', x + ' 0 ' + z);
+        camera.append(anim);
+        let anim2 = document.createElement('a-animation');
+        anim2.setAttribute('attribute', 'position');
+        anim2.setAttribute('dur', '500');
+        anim2.setAttribute('easing', 'linear');
+        anim2.setAttribute('to', x + ' -7.224 ' + z);
+        let anim3 = document.createElement('a-animation');
+        anim3.setAttribute('attribute', 'position');
+        anim3.setAttribute('dur', '500');
+        anim3.setAttribute('easing', 'linear');
+        anim3.setAttribute('to', x + ' -7.224 ' + z);
+        camera.append(anim);
+        this.append(anim2);
+        moveGreen.append(anim3);
+    });
 
     // Olive oil
     oliveOil.addEventListener('click', function () {
