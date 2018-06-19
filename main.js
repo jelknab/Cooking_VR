@@ -11,6 +11,8 @@ window.onload = function () {
     }
     var carrotPositions = [0, 0, 0];
     var carrotCuts = [0, -1.8];
+    var clockLeft = document.getElementById('clockLeft');
+    var clockRight = document.getElementById('clockRight');
     var cursor = document.getElementById('cursor');
     var cuttingBoard = document.getElementById('cuttingBoard')
     var gases = [];
@@ -82,6 +84,8 @@ window.onload = function () {
     var tomatoSauceInPot = false;
     var spaghettiLoadStorage = 'primitive: cone; height: .5; radiusTop: .6; radiusBottom: .2';
     var bookPages = [0, 3];
+    var moveLeft = false;
+    var moveRight = false;
 
 
     // Beef
@@ -293,6 +297,50 @@ window.onload = function () {
             carrots[i].setAttribute('position', carrotPositions[i] + ' 0 0');
         };
     };
+
+
+    // Clock
+
+    clockLeft.addEventListener('mouseenter', function () {
+        moveLeft = true;
+    });
+
+    clockLeft.addEventListener('mouseleave', function () {
+        moveLeft = false;
+    });
+
+    clockRight.addEventListener('mouseenter', function () {
+        moveRight = true;
+    });
+
+    clockRight.addEventListener('mouseleave', function () {
+        moveRight = false;
+    });
+
+    function moveToLeft() {
+        if (moveLeft) {
+            let x = camera.getAttribute('position').x - .05;
+            if (x > -10) {
+                let z = camera.getAttribute('position').z;
+                camera.setAttribute('position', x + " 0 " + z);
+            }
+        }
+    };
+
+    function moveToRight() {
+        if (moveRight) {
+            let x = camera.getAttribute('position').x + .05;
+            if (x < 6.5) {
+                let z = camera.getAttribute('position').z;
+                camera.setAttribute('position', x + " 0 " + z);
+            }
+        }
+    };
+
+    window.setInterval(function () {
+        moveToLeft();
+        moveToRight();
+    }, 20);
 
 
     // Fridge
