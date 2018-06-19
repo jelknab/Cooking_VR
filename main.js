@@ -264,10 +264,10 @@ window.onload = function () {
             carrotCuts[0] += 1;
             carrotCuts[1] += 0.6;
             saveCarrotPositions();
-            cuttingSound();
+            playSound('carrotCut.mpeg');
             if (carrotCuts[0] == 3) {
                 objectiveCompleted(5);
-                boilingSound();
+                playSound('waterBoiling.mp3');
             }
         };
     });
@@ -428,7 +428,7 @@ window.onload = function () {
             onionCuts[0] += 1;
             onionCuts[1] -= 0.6;
             saveOnionPositions();
-            cuttingSound();
+            playSound('carrotCut.mpeg');
             if (onionCuts[0] == 4) {
                 objectiveCompleted(4);
             }
@@ -509,6 +509,7 @@ window.onload = function () {
         };
         if (beef.parentNode == hand) {
             objectiveCompleted(11);
+            playSound('cookingBeef.mp3');
             pan.append(beef);
             beef.setAttribute('position', '0.5 0 0.2');
             hideBeefPositions();
@@ -1009,24 +1010,9 @@ window.onload = function () {
         else return false;
     }
 
-    // sounds
-    function cuttingSound() {
+    function playSound(file) {
         let sound = document.createElement('a-sound');
-        sound.setAttribute('src', 'Sounds/carrotCut.mpeg');
-        sound.setAttribute('autoplay', 'true');
-        scene.append(sound);
-    }
-
-    function boilingSound() {
-        let sound = document.createElement('a-sound');
-        sound.setAttribute('src', 'Sounds/waterBoiling.mp3');
-        sound.setAttribute('autoplay', 'true');
-        scene.append(sound);
-    }
-
-    function gasIgnitionSound() {
-        let sound = document.createElement('a-sound');
-        sound.setAttribute('src', 'Sounds/gasIgnition.mp3');
+        sound.setAttribute('src', 'Sounds/' + file);
         sound.setAttribute('autoplay', 'true');
         scene.append(sound);
     }
@@ -1107,7 +1093,7 @@ window.onload = function () {
                     anim.setAttribute('to', '0 -180 0');
                     gasActive[data.index] = true;
                     gases[data.index].setAttribute('visible', 'true');
-                    gasIgnitionSound();
+                    playSound('gasIgnition.mp3');
                 }
 
                 this.append(anim);
