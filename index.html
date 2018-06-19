@@ -99,9 +99,11 @@
         </a-obj-model>
 
         <!--Camera-->
-        <a-camera id="camera" position="0 0 0">
-            <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor>
-        </a-camera>
+        <a-entity id="cameraBox">
+            <a-camera id="camera" position="0 0 0">
+                <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor>
+            </a-camera>
+        </a-entity>
 
         <!--Carrot-->
         <a-entity id="carrot" position="-13 -2.5 -3" scale=".06 .06 .06">

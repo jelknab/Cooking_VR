@@ -3,7 +3,7 @@ window.onload = function () {
     // Objects
     var beef = document.getElementById('beef');
     var book = document.getElementById('book');
-    var camera = document.getElementById('camera');
+    var camera = document.getElementById('cameraBox');
     var carrot = document.getElementById('carrot');
     var carrots = []
     for (i = 0; i < 4; i++) {
