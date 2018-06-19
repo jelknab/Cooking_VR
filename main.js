@@ -811,8 +811,8 @@ window.onload = function () {
         if (!holdingItem()) {
             hand.append(this);
             strainerInSink = false;
-            this.setAttribute('position', '-2.220 -1.760 -1.870');
-            this.setAttribute('rotation', '0 140 0');
+            this.setAttribute('position', '0.5 -1.760 -1.870');
+            this.setAttribute('rotation', '0 180 0');
             showStrainerPositions();
             loadSpaghetti();
         };
