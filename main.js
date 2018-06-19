@@ -365,7 +365,7 @@ window.onload = function () {
     knife.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this);
-            this.setAttribute('position', '.5 -1.76 -1.87');
+            this.setAttribute('position', '0 0 0');
             this.setAttribute('rotation', '-90 110 -20');
             knifeSpot.setAttribute('visible', 'true');
         };
