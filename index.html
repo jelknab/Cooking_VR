@@ -6,8 +6,10 @@
 <body>
 
     <a-scene stats id='scene'>
-        <a-entity tracked-controls="id: Daydream Controller" daydream-controller raycaster="objects: .selectable">
-            <a-entity id="hand"></a-entity>
+        <a-entity id="handBox">
+            <a-entity tracked-controls="id: Daydream Controller" daydream-controller raycaster="objects: .selectable">
+                <a-entity id="hand"></a-entity>
+            </a-entity>
         </a-entity>
 
         <!--Ambient-->

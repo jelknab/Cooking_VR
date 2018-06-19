@@ -20,6 +20,7 @@ window.onload = function () {
         gases[i] = document.getElementById('gas' + i);
     };
     var hand = document.getElementById('hand');
+    var handBox = document.getElementById('handBox');
     var knife = document.getElementById('knife');
     var objectives = [];
     var oliveOil = document.getElementById('oliveOil');
@@ -323,6 +324,7 @@ window.onload = function () {
             if (x > -10) {
                 let z = camera.getAttribute('position').z;
                 camera.setAttribute('position', x + " 0 " + z);
+                handBox.setAttribute('position', x + " 0 " + z);
             }
         }
     };
@@ -333,6 +335,7 @@ window.onload = function () {
             if (x < 6.5) {
                 let z = camera.getAttribute('position').z;
                 camera.setAttribute('position', x + " 0 " + z);
+                handBox.setAttribute('position', x + " 0 " + z);
             }
         }
     };
