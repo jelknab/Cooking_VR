@@ -614,6 +614,7 @@ window.onload = function () {
 
     function updateWater() {
         if (tapOn) {
+            playSound('waterTap.mp3');
             document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0.5');
             fillpan();
         } else {
@@ -735,7 +736,6 @@ window.onload = function () {
 
     function fillpan() {
         if (panInSink && tapOn) {
-            playSound('waterTap.mp3');
             objectiveCompleted(1);
             panHasWater = true;
             loadSpaghetPan();
