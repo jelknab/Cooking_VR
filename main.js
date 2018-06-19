@@ -735,6 +735,7 @@ window.onload = function () {
 
     function fillpan() {
         if (panInSink && tapOn) {
+            playSound(waterTap.mp3);
             objectiveCompleted(1);
             panHasWater = true;
             loadSpaghetPan();
