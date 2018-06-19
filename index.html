@@ -7,6 +7,11 @@
 
     <a-scene stats id='scene'>
 
+        <a-entity tracked-controls="id: Daydream Controller">
+            <a-cursor id='controller'></a-cursor>
+        </a-entity>
+
+
         <!--Ambient-->
         <a-entity light="type:ambient;intensity:.4;color:#fff"></a-entity>
         <a-light type="directional" target="#directionaltarget" light="target:#directionaltarget">
