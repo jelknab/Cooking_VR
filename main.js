@@ -17,6 +17,7 @@ window.onload = function () {
     for (i = 0; i < 5; i++) {
         gases[i] = document.getElementById('gas' + i);
     };
+    var hand = document.getElementById('hand');
     var knife = document.getElementById('knife');
     var objectives = [];
     var oliveOil = document.getElementById('oliveOil');
@@ -809,10 +810,10 @@ window.onload = function () {
     // Strainer
     strainer.addEventListener('click', function () {
         if (!holdingItem()) {
-            cursor.append(this);
+            hand.append(this);
             strainerInSink = false;
-            this.setAttribute('position', '-2.220 -1.760 -1.870');
-            this.setAttribute('rotation', '0 140 0');
+            // this.setAttribute('position', '-2.220 -1.760 -1.870');
+            // this.setAttribute('rotation', '0 140 0');
             showStrainerPositions();
             loadSpaghetti();
         };
