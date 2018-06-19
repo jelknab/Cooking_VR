@@ -7,8 +7,7 @@
 
     <a-scene stats id='scene'>
         <a-entity tracked-controls="id: Daydream Controller" daydream-controller raycaster="objects: .selectable">
-            <a-cone id="ray" color="cyan" position="0 0 -2" rotation="-90 0 0" radius-bottom="0.005" radius-top="0.001" height="4"></a-cone>
-            <a-box id="position-guide" visible="false" position="0 0 -2"></a-box>
+            <a-cone id="cursor" color="cyan" position="0 0 -2" rotation="-90 0 0" radius-bottom="0.005" radius-top="0.001" height="4"></a-cone>
         </a-entity>
         <!-- <a-entity tracked-controls="id: Daydream Controller"></a-entity> -->
 
@@ -103,7 +102,7 @@
 
         <!--Camera-->
         <a-camera id="camera" position="0 0 0">
-            <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor>
+            <!-- <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor> -->
         </a-camera>
 
         <!--Carrot-->
