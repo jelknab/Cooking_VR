@@ -1,4 +1,5 @@
 window.onload = function () {
+    console.log(navigator.getGamepads());
 
     // Objects
     var beef = document.getElementById('beef');
@@ -13,7 +14,6 @@ window.onload = function () {
     var carrotCuts = [0, -1.8];
     var clockLeft = document.getElementById('clockLeft');
     var clockRight = document.getElementById('clockRight');
-    var cursor = document.getElementById('cursor');
     var cuttingBoard = document.getElementById('cuttingBoard')
     var gases = [];
     for (i = 0; i < 5; i++) {
@@ -30,7 +30,6 @@ window.onload = function () {
     var onions = []
     for (i = 0; i < 5; i++) {
         onions[i] = document.getElementById('onion_' + i);
-        console.log(i, onions[i]);
     }
     var onionPositions = [0, 0, 0, 0];
     var onionCuts = [0, 2.4];

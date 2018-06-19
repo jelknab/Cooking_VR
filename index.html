@@ -8,14 +8,22 @@
     <a-scene stats id='scene'>
 
         <a-entity id="handBox">
-                <a-entity daydream-controls="model: false">
-                    <a-entity id="hand">
-                        <a-obj-model id="handModel" src="#hand-obj" mtl="#hand-mtl" scale="1.5 1.5 1.5" position="0.5 -1.760 -1.870" rotation="-55.695 -8.264 -93.788">
-                        </a-obj-model>
-                    </a-entity>
+            <a-entity daydream-controls="model: false" laser-controls="hand: right">
+                <a-entity id="hand">
+                    <a-obj-model id="handModel" src="#hand-obj" mtl="#hand-mtl" scale="1.5 1.5 1.5" position="0.5 -1.760 -1.870" rotation="-55.695 -8.264 -93.788">
+                    </a-obj-model>
                 </a-entity>
             </a-entity>
-        
+        </a-entity>
+
+        <!--Camera-->
+        <a-entity id="cameraBox">
+            <a-camera position="0 0 0">
+                <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor>
+            </a-camera>
+        </a-entity>
+
+
         <!--Ambient-->
         <a-entity light="type:ambient;intensity:.4;color:#fff"></a-entity>
         <a-light type="directional" target="#directionaltarget" light="target:#directionaltarget">
@@ -111,13 +119,6 @@
             <a-text id="text" color="black" position="-0.015 0.102 -0.149" rotation="-26.608 -75.508 -1.049" scale=".065 .065 .065" wrap-count="18"
                 baseline="top"></a-text>
         </a-obj-model>
-
-        <!--Camera-->
-        <a-entity id="cameraBox">
-            <a-camera id="camera" position="0 0 0">
-                <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor>
-            </a-camera>
-        </a-entity>
 
         <!--Carrot-->
         <a-entity id="carrot" position="-13 -2.5 -3" scale=".06 .06 .06">
@@ -239,12 +240,15 @@
         <a-plane position="10.254 -1.75 -8.2" rotation="0 0 0" color="#9fa8ad" width="4" height="11"></a-plane>
         <a-plane position="-1.944 -5.903 -8.2" rotation="0 0 0" color="#9fa8ad" width="30" height="11"></a-plane>
         <a-plane position="-1.944 3.886 -8.2" rotation="0 0 0" color="#9fa8ad" width="30" height="4"></a-plane>
-        <a-obj-model id='window1' src="#window-obj" mtl="#window-mtl" scale="4 4 4" position="-3.286 0.735 -8.213" rotation="0 90 0"í>
-            </a-obj-model>
-        <a-obj-model id='window2' src="#window-obj" mtl="#window-mtl" scale="4 4 4" position="1.786 0.735 -8.213" rotation="0 90 0"í>
-            </a-obj-model>
-        <a-obj-model id='window3í' src="#window-obj" mtl="#window-mtl" scale="4 4 4" position="7.184 0.735 -8.213" rotation="0 90 0"í>
-            </a-obj-model>
+        <a-obj-model id='window1' src="#window-obj" mtl="#window-mtl" scale="4 4 4" position="-3.286 0.735 -8.213" rotation="0 90 0"
+            í>
+        </a-obj-model>
+        <a-obj-model id='window2' src="#window-obj" mtl="#window-mtl" scale="4 4 4" position="1.786 0.735 -8.213" rotation="0 90 0"
+            í>
+        </a-obj-model>
+        <a-obj-model id='window3í' src="#window-obj" mtl="#window-mtl" scale="4 4 4" position="7.184 0.735 -8.213" rotation="0 90 0"
+            í>
+        </a-obj-model>
         <a-plane src="Images/view.jpg" position="-0.5 -2.735 -8.976" rotation="0 0 0" width="20.564" height="12.309"></a-plane>
 
         <!--sink-->
