@@ -558,8 +558,8 @@ window.onload = function () {
     spaghetPan.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(spaghetPan);
-            spaghetPan.setAttribute('position', '-1 -1.760 -1.870');
-            spaghetPan.setAttribute('rotation', '0 210 0');
+            spaghetPan.setAttribute('position', '0 -1.760 -1.870');
+            spaghetPan.setAttribute('rotation', '0 180 0');
             showSpaghetPanPositions();
             panInSink = false;
             loadSpaghetPan();
