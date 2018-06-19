@@ -7,7 +7,8 @@
 
     <a-scene stats id='scene'>
         <a-entity tracked-controls="id: Daydream Controller" daydream-controller raycaster="objects: .selectable">
-            <a-cone id="cursor" color="cyan" position="0 0 -2" rotation="-90 0 0" radius-bottom="0.005" radius-top="0.001" height="4"></a-cone>
+            <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor>
+            <!-- <a-cone color="cyan" position="0 0 -2" rotation="-90 0 0" radius-bottom="0.005" radius-top="0.001" height="4"></a-cone> -->
         </a-entity>
         <!-- <a-entity tracked-controls="id: Daydream Controller"></a-entity> -->
 

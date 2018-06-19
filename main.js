@@ -24,7 +24,6 @@ window.onload = function () {
     var onion = document.getElementById('onion');
     var onions = []
     var test = this.document.getElementById('onion_0');
-    console.log('why is this null', test);
     for (i = 0; i < 5; i++) {
         onions[i] = document.getElementById('onion_' + i);
         console.log(i, onions[i]);
@@ -1028,5 +1027,5 @@ window.onload = function () {
             });
         },
     });
-    
+
 };
