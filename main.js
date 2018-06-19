@@ -88,7 +88,7 @@ window.onload = function () {
     beef.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this);
-            this.setAttribute('position', '-0.7 -0.5 0');
+            this.setAttribute('position', '0.5 -1.760 -1.870');
             showBeefPositions();
         }
     });
@@ -245,7 +245,7 @@ window.onload = function () {
     carrot.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this)
-            this.setAttribute('position', '-0.7 -0.5 0');
+            this.setAttribute('position', '.5 -1.760 -1.870');
             showCarrotPositions();
             loadCarrotPositions()
         };
@@ -314,8 +314,8 @@ window.onload = function () {
     knife.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this);
-            this.setAttribute('position', '0.7 -0.5 0');
-            this.setAttribute('rotation', '-90 90 -20')
+            this.setAttribute('position', '.5 -1.76 -1.87');
+            this.setAttribute('rotation', '-90 110 -20');
             knifeSpot.setAttribute('visible', 'true');
         };
     });
@@ -330,7 +330,7 @@ window.onload = function () {
         if (!holdingItem()) {
             hand.append(this);
             showOliveOilPositions();
-            this.setAttribute('position', '-2 -1.5 -1');
+            this.setAttribute('position', '0.5 -1.760 -1.870');
         }
     });
 
@@ -355,7 +355,7 @@ window.onload = function () {
     onion.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this)
-            this.setAttribute('position', '-0.7 -0.5 0');
+            this.setAttribute('position', '.5 -1.760 -1.870');
             showOnionPositions();
             loadOnionPositions()
         };
@@ -410,7 +410,8 @@ window.onload = function () {
     pan.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this);
-            this.setAttribute('position', '0.8 -0.5 0');
+            this.setAttribute('position', '0.5 -1.760 -1.870');
+            this.setAttribute('rotation', '0 110 0');
             showPanPositions();
             if (beef.parentNode == pan) {
                 beef.setAttribute('position', '0.5 0 0.2');
@@ -558,7 +559,7 @@ window.onload = function () {
     spaghetPan.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(spaghetPan);
-            spaghetPan.setAttribute('position', '0 -1.760 -1.870');
+            spaghetPan.setAttribute('position', '0.5 -1.760 -1.870');
             spaghetPan.setAttribute('rotation', '0 180 0');
             showSpaghetPanPositions();
             panInSink = false;
@@ -739,7 +740,7 @@ window.onload = function () {
     spaghetti.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this);
-            spaghetti.setAttribute('position', '-1 -.6 0');
+            spaghetti.setAttribute('position', '0.5 -1.760 -1.870');
             spaghetti.setAttribute('rotation', '0 90 0');
             showspaghetPositions();
         };
@@ -874,7 +875,7 @@ window.onload = function () {
         console.log("WORKS");
         if (!holdingItem()) {
             hand.append(this);
-            this.setAttribute('position', '-0.7 -0.5 0');
+            this.setAttribute('position', '.5 -1.76 -1.87');
             showTomatoCanPositions();
         }
     });
