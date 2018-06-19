@@ -88,14 +88,14 @@ window.onload = function () {
     // Beef
     beef.addEventListener('click', function () {
         if (!holdingItem()) {
-            cursor.append(this);
+            hand.append(this);
             this.setAttribute('position', '-0.7 -0.5 0');
             showBeefPositions();
         }
     });
 
     beefCounterSpot.addEventListener('click', function () {
-        if (beef.parentNode == cursor) {
+        if (beef.parentNode == hand) {
             scene.append(beef);
             beef.setAttribute('position', '-4.4 -2.1 -5');
             panAddSpot.setAttribute('visible', 'false');
@@ -104,7 +104,7 @@ window.onload = function () {
     });
 
     beefFridgeSpot.addEventListener('click', function () {
-        if (beef.parentNode == cursor) {
+        if (beef.parentNode == hand) {
             scene.append(beef);
             panAddSpot.setAttribute('visible', 'false');
             hideBeefPositions();
@@ -245,13 +245,13 @@ window.onload = function () {
     // Carrot
     carrot.addEventListener('click', function () {
         if (!holdingItem()) {
-            cursor.append(this)
+            hand.append(this)
             this.setAttribute('position', '-0.7 -0.5 0');
             showCarrotPositions();
             loadCarrotPositions()
         };
 
-        if (knife.parentNode == cursor &&
+        if (knife.parentNode == hand &&
             this.parentNode == cuttingBoard &&
             carrotCuts[0] < 3) {
             carrots[carrotCuts[0]].setAttribute('position', carrotCuts[1] + ' 0 0');
@@ -314,7 +314,7 @@ window.onload = function () {
     // Knife
     knife.addEventListener('click', function () {
         if (!holdingItem()) {
-            cursor.append(this);
+            hand.append(this);
             this.setAttribute('position', '0.7 -0.5 0');
             this.setAttribute('rotation', '-90 90 -20')
             knifeSpot.setAttribute('visible', 'true');
@@ -329,14 +329,14 @@ window.onload = function () {
     // Olive oil
     oliveOil.addEventListener('click', function () {
         if (!holdingItem()) {
-            cursor.append(this);
+            hand.append(this);
             showOliveOilPositions();
             this.setAttribute('position', '-2 -1.5 -1');
         }
     });
 
     oliveOilSpot.addEventListener('click', function () {
-        if (oliveOil.parentNode == cursor) {
+        if (oliveOil.parentNode == hand) {
             scene.append(oliveOil);
             hideOliveOilPositions();
         }
@@ -355,13 +355,13 @@ window.onload = function () {
     // Onion
     onion.addEventListener('click', function () {
         if (!holdingItem()) {
-            cursor.append(this)
+            hand.append(this)
             this.setAttribute('position', '-0.7 -0.5 0');
             showOnionPositions();
             loadOnionPositions()
         };
 
-        if (knife.parentNode == cursor &&
+        if (knife.parentNode == hand &&
             this.parentNode == cuttingBoard &&
             onionCuts[0] < 4) {
             console.log("doing this")
@@ -410,7 +410,7 @@ window.onload = function () {
     // Pan
     pan.addEventListener('click', function () {
         if (!holdingItem()) {
-            cursor.append(this);
+            hand.append(this);
             this.setAttribute('position', '0.8 -0.5 0');
             showPanPositions();
             if (beef.parentNode == pan) {
@@ -431,27 +431,27 @@ window.onload = function () {
     });
 
     panAddSpot.addEventListener('mouseenter', function () {
-        if (carrot.parentNode == cursor) {
+        if (carrot.parentNode == hand) {
             objectiveCompleted(14);
             pan.append(carrot);
             carrot.setAttribute('position', '.25 0 .2');
             hideCarrotPositions();
             loadCarrotPositions();
         };
-        if (onion.parentNode == cursor) {
+        if (onion.parentNode == hand) {
             objectiveCompleted(10);
             pan.append(onion);
             onion.setAttribute('position', '.65 0 .2');
             hideOnionPositions();
             loadOnionPositions();
         };
-        if (beef.parentNode == cursor) {
+        if (beef.parentNode == hand) {
             objectiveCompleted(11);
             pan.append(beef);
             beef.setAttribute('position', '0.5 0 0.2');
             hideBeefPositions();
         };
-        if (tomatoCan.parentNode == cursor) {
+        if (tomatoCan.parentNode == hand) {
             objectiveCompleted(13);
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
@@ -473,7 +473,7 @@ window.onload = function () {
                 tomatoCan.removeChild(tomatoCan.lastChild);
             }, 4000);
         };
-        if (oliveOil.parentNode == cursor) {
+        if (oliveOil.parentNode == hand) {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
@@ -558,7 +558,7 @@ window.onload = function () {
 
     spaghetPan.addEventListener('click', function () {
         if (!holdingItem()) {
-            cursor.append(spaghetPan);
+            hand.append(spaghetPan);
             spaghetPan.setAttribute('position', '-2.220 -1.760 -1.870');
             spaghetPan.setAttribute('rotation', '0 140 0');
             showSpaghetPanPositions();
@@ -568,13 +568,13 @@ window.onload = function () {
     });
 
     spaghetPanAddSpot.addEventListener('mouseenter', function () {
-        if (spaghetti.parentNode == cursor) {
+        if (spaghetti.parentNode == hand) {
             spaghetPan.append(spaghetti);
             loadSpaghetti();
             hidespaghetPositions();
             objectiveCompleted(6);
         };
-        if (strainer.parentNode == cursor) {
+        if (strainer.parentNode == hand) {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
@@ -599,7 +599,7 @@ window.onload = function () {
                 strainer.removeChild(strainer.lastChild);
             }, 4000);
         };
-        if (pan.parentNode == cursor) {
+        if (pan.parentNode == hand) {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
@@ -639,7 +639,7 @@ window.onload = function () {
     });
 
     sink_trigger.addEventListener('click', function () {
-        if (spaghetPan.parentNode == cursor) {
+        if (spaghetPan.parentNode == hand) {
             objectiveCompleted(0);
             scene.appendChild(spaghetPan);
             spaghetPan.setAttribute('position', '-0.69 -3.21 -5.52');
@@ -649,7 +649,7 @@ window.onload = function () {
             loadSpaghetPan();
             updateWater();
         };
-        if (strainer.parentNode == cursor) {
+        if (strainer.parentNode == hand) {
             objectiveCompleted(15);
             scene.appendChild(strainer);
             strainerInSink = true;
@@ -661,7 +661,7 @@ window.onload = function () {
     });
 
     spaghetPanSpot.addEventListener('click', function () {
-        if (spaghetPan.parentNode == cursor) {
+        if (spaghetPan.parentNode == hand) {
             scene.append(spaghetPan);
             hideSpaghetPanPositions();
             loadSpaghetPan();
@@ -739,7 +739,7 @@ window.onload = function () {
     // Spaghetti
     spaghetti.addEventListener('click', function () {
         if (!holdingItem()) {
-            cursor.append(this);
+            hand.append(this);
             spaghetti.setAttribute('position', '-1 -.6 0');
             spaghetti.setAttribute('rotation', '0 90 0');
             showspaghetPositions();
@@ -747,7 +747,7 @@ window.onload = function () {
     });
 
     spaghettiSpot.addEventListener('click', function () {
-        if (spaghetti.parentNode == cursor) {
+        if (spaghetti.parentNode == hand) {
             scene.append(spaghetti);
             hidespaghetPositions();
         };
@@ -827,7 +827,7 @@ window.onload = function () {
     });
 
     strainerAddSpot.addEventListener('click', function () {
-        if (spaghetPan.parentNode == cursor) {
+        if (spaghetPan.parentNode == hand) {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
@@ -874,7 +874,7 @@ window.onload = function () {
     tomatoCan.addEventListener('click', function () {
         console.log("WORKS");
         if (!holdingItem()) {
-            cursor.append(this);
+            hand.append(this);
             this.setAttribute('position', '-0.7 -0.5 0');
             showTomatoCanPositions();
         }
@@ -886,7 +886,7 @@ window.onload = function () {
     });
 
     tomatoCanCounterSpot.addEventListener('click', function () {
-        if (tomatoCan.parentNode == cursor) {
+        if (tomatoCan.parentNode == hand) {
             scene.append(tomatoCan);
             tomatoCan.setAttribute('position', '-3.6 -2.05 -5')
             hideTomatoCanPositions();
@@ -908,13 +908,13 @@ window.onload = function () {
 
     // shared stuff
     cutSpot.addEventListener('click', function () {
-        if (carrot.parentNode == cursor) {
+        if (carrot.parentNode == hand) {
             cuttingBoard.append(carrot);
             carrot.setAttribute('position', '.35 .17 0');
             hideCarrotPositions();
             loadCarrotPositions();
         }
-        if (onion.parentNode == cursor) {
+        if (onion.parentNode == hand) {
             cuttingBoard.append(onion);
             onion.setAttribute('position', '-.35 .17 0');
             hideOnionPositions();
@@ -923,17 +923,17 @@ window.onload = function () {
     })
 
     function holdingItem() {
-        if (beef.parentNode == cursor ||
-            pan.parentNode == cursor ||
-            spaghetPan.parentNode == cursor ||
-            carrot.parentNode == cursor ||
-            knife.parentNode == cursor ||
-            tomatoCan.parentNode == cursor ||
-            onion.parentNode == cursor ||
-            book.parentNode == cursor ||
-            spaghetti.parentNode == cursor ||
-            oliveOil.parentNode == cursor ||
-            strainer.parentNode == cursor
+        if (beef.parentNode == hand ||
+            pan.parentNode == hand ||
+            spaghetPan.parentNode == hand ||
+            carrot.parentNode == hand ||
+            knife.parentNode == hand ||
+            tomatoCan.parentNode == hand ||
+            onion.parentNode == hand ||
+            book.parentNode == hand ||
+            spaghetti.parentNode == hand ||
+            oliveOil.parentNode == hand ||
+            strainer.parentNode == hand
         ) return true;
         else return false;
     }
@@ -970,7 +970,7 @@ window.onload = function () {
         init: function () {
             var data = this.data;
             this.el.addEventListener('click', function () {
-                if (pan.parentNode == cursor) {
+                if (pan.parentNode == hand) {
                     objectiveCompleted(7);
                     hidePanPositions();
                     scene.append(pan);
@@ -989,7 +989,7 @@ window.onload = function () {
                     };
                     if (tomatoSauceInPan) tomatoSauce.setAttribute('visible', 'true');
                 };
-                if (spaghetPan.parentNode == cursor) {
+                if (spaghetPan.parentNode == hand) {
                     objectiveCompleted(2);
                     hideSpaghetPanPositions();
                     scene.append(spaghetPan);
