@@ -267,6 +267,7 @@ window.onload = function () {
             cuttingSound();
             if (carrotCuts[0] == 3) {
                 objectiveCompleted(5);
+                boilingSound();
             }
         };
     });
@@ -1010,10 +1011,16 @@ window.onload = function () {
 
     function cuttingSound() {
         let sound = document.createElement('a-sound');
-        sound.setAttribute('src', 'Sound/carrotCut.mpeg');
+        sound.setAttribute('src', 'Sounds/carrotCut.mpeg');
         sound.setAttribute('autoplay', 'true');
         scene.append(sound);
+    }
 
+    function boilingSound() {
+        let sound = document.createElement('a-sound');
+        sound.setAttribute('src', 'Sounds/waterBoiling.mp3');
+        sound.setAttribute('autoplay', 'true');
+        scene.append(sound);
     }
 
     let y = 0;
