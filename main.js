@@ -24,7 +24,6 @@ window.onload = function () {
     var oliveOilSpot = this.document.getElementById('oliveOilSpot');
     var onion = document.getElementById('onion');
     var onions = []
-    var test = this.document.getElementById('onion_0');
     for (i = 0; i < 5; i++) {
         onions[i] = document.getElementById('onion_' + i);
         console.log(i, onions[i]);
@@ -559,8 +558,8 @@ window.onload = function () {
     spaghetPan.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(spaghetPan);
-            spaghetPan.setAttribute('position', '-2.220 -1.760 -1.870');
-            spaghetPan.setAttribute('rotation', '0 140 0');
+            spaghetPan.setAttribute('position', '-1 -1.760 -1.870');
+            spaghetPan.setAttribute('rotation', '0 210 0');
             showSpaghetPanPositions();
             panInSink = false;
             loadSpaghetPan();
