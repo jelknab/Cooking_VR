@@ -21,6 +21,7 @@ window.onload = function () {
     };
     var hand = document.getElementById('hand');
     var handBox = document.getElementById('handBox');
+    var handModel = document.getElementById('handModel');
     var knife = document.getElementById('knife');
     var objectives = [];
     var oliveOil = document.getElementById('oliveOil');
@@ -132,12 +133,14 @@ window.onload = function () {
         beefCounterSpot.setAttribute('visible', 'true');
         beefFridgeSpot.setAttribute('visible', 'true');
         panAddSpot.setAttribute('visible', 'true');
+        handModel.setAttribute('visible', 'false');
     }
 
     function hideBeefPositions() {
         beefCounterSpot.setAttribute('visible', 'false');
         beefFridgeSpot.setAttribute('visible', 'false');
         panAddSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     }
 
 
@@ -279,12 +282,14 @@ window.onload = function () {
         carrotFridgeSpot.setAttribute('visible', 'true');
         cutSpot.setAttribute('visible', 'true');
         panAddSpot.setAttribute('visible', 'true');
+        handModel.setAttribute('visible', 'false');
     };
 
     function hideCarrotPositions() {
         carrotFridgeSpot.setAttribute('visible', 'false');
         cutSpot.setAttribute('visible', 'false');
         panAddSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     };
 
     function saveCarrotPositions() {
@@ -368,12 +373,14 @@ window.onload = function () {
             this.setAttribute('position', '.5 -1.76 -1.87');
             this.setAttribute('rotation', '-90 110 -20');
             knifeSpot.setAttribute('visible', 'true');
+            handModel.setAttribute('visible', 'false');
         };
     });
 
     knifeSpot.addEventListener('click', function () {
         scene.append(knife);
         knifeSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     });
 
     // Olive oil
@@ -395,11 +402,13 @@ window.onload = function () {
     function showOliveOilPositions() {
         oliveOilSpot.setAttribute('visible', 'true');
         panAddSpot.setAttribute('visible', 'true');
+        handModel.setAttribute('visible', 'false');
     };
 
     function hideOliveOilPositions() {
         oliveOilSpot.setAttribute('visible', 'false');
         panAddSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     };
 
     // Onion
@@ -436,12 +445,14 @@ window.onload = function () {
         onionFridgeSpot.setAttribute('visible', 'true');
         cutSpot.setAttribute('visible', 'true');
         panAddSpot.setAttribute('visible', 'true');
+        handModel.setAttribute('visible', 'false');
     };
 
     function hideOnionPositions() {
         onionFridgeSpot.setAttribute('visible', 'false');
         cutSpot.setAttribute('visible', 'false');
         panAddSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     };
 
     function saveOnionPositions() {
@@ -553,6 +564,7 @@ window.onload = function () {
             };
         };
         spaghetPanAddSpot.setAttribute('visible', 'true');
+        handModel.setAttribute('visible', 'false');
     };
 
     function hidePanPositions() {
@@ -560,6 +572,7 @@ window.onload = function () {
             panSpots[i].setAttribute('visible', 'false');
         };
         spaghetPanAddSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     };
 
     // Plate
@@ -748,6 +761,7 @@ window.onload = function () {
         ) {
             plateAddSpot.setAttribute('visible', 'true');
         }
+        handModel.setAttribute('visible', 'false');
     };
 
     function hideSpaghetPanPositions() {
@@ -757,6 +771,7 @@ window.onload = function () {
         };
         strainerAddSpot.setAttribute('visible', 'false');
         spaghetPanSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     };
 
     function loadSpaghetPan() {
@@ -835,11 +850,13 @@ window.onload = function () {
     function showspaghetPositions() {
         spaghettiSpot.setAttribute('visible', 'true');
         spaghetPanAddSpot.setAttribute('visible', 'true');
+        handModel.setAttribute('visible', 'false');
     };
 
     function hidespaghetPositions() {
         spaghettiSpot.setAttribute('visible', 'false');
         spaghetPanAddSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     };
 
     function loadSpaghetti() {
@@ -913,12 +930,14 @@ window.onload = function () {
         sink_trigger.setAttribute('visible', 'true');
         strainerSpot.setAttribute('visible', 'true');
         spaghetPanAddSpot.setAttribute('visible', 'true');
+        handModel.setAttribute('visible', 'false');
     };
 
     function hideStrainerPositions() {
         sink_trigger.setAttribute('visible', 'false');
         strainerSpot.setAttribute('visible', 'false');
         spaghetPanAddSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     };
 
     // TomatoCan
@@ -946,14 +965,16 @@ window.onload = function () {
 
     function showTomatoCanPositions() {
         tomatoCanFridgeSpot.setAttribute('visible', 'true');
-        tomatoCanCounterSpot.setAttribute('visible', 'true')
+        tomatoCanCounterSpot.setAttribute('visible', 'true');
         panAddSpot.setAttribute('visible', 'true');
+        handModel.setAttribute('visible', 'false');
     };
 
     function hideTomatoCanPositions() {
         tomatoCanFridgeSpot.setAttribute('visible', 'false');
-        tomatoCanCounterSpot.setAttribute('visible', 'false')
+        tomatoCanCounterSpot.setAttribute('visible', 'false');
         panAddSpot.setAttribute('visible', 'false');
+        handModel.setAttribute('visible', 'true');
     };
 
 
