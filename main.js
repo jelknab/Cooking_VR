@@ -807,7 +807,7 @@ window.onload = function () {
 
 
     // Strainer
-    strainer.addEventListener('click', function () {
+    strainer.addEventListener('mouseenter', function () {
         if (!holdingItem()) {
             cursor.append(this);
             strainerInSink = false;
