@@ -518,7 +518,7 @@ window.onload = function () {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
-            anim.setAttribute('to', '0 0 -90');
+            anim.setAttribute('to', '0 0 90');
             tomatoCan.append(anim);
             tomatoSauceInPan = true;
 
@@ -539,7 +539,7 @@ window.onload = function () {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
-            anim.setAttribute('to', '0 0 -90');
+            anim.setAttribute('to', '0 0 90');
             oliveOil.append(anim);
             objectiveCompleted(9);
 
@@ -642,7 +642,7 @@ window.onload = function () {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
-            anim.setAttribute('to', '0 200 90');
+            anim.setAttribute('to', '0 180 -90');
             strainer.append(anim);
             objectiveCompleted(9);
 
@@ -650,7 +650,7 @@ window.onload = function () {
                 let anim3 = document.createElement('a-animation');
                 anim3.setAttribute('attribute', 'rotation');
                 anim3.setAttribute('dur', '1500');
-                anim3.setAttribute('to', '0 140 0');
+                anim3.setAttribute('to', '0 180 0');
                 strainer.append(anim3);
                 if (spaghetti.parentNode == strainer) {
                     objectiveCompleted(17);
@@ -667,7 +667,7 @@ window.onload = function () {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
-            anim.setAttribute('to', '50 180 0');
+            anim.setAttribute('to', '-50 110 0');
             pan.append(anim);
             objectiveCompleted(9);
 
@@ -675,7 +675,7 @@ window.onload = function () {
                 let anim3 = document.createElement('a-animation');
                 anim3.setAttribute('attribute', 'rotation');
                 anim3.setAttribute('dur', '1500');
-                anim3.setAttribute('to', '0 180 0');
+                anim3.setAttribute('to', '0 110 0');
                 pan.append(anim3);
                 if (carrot.parentNode == pan) {
                     spaghetPan.append(carrot);
@@ -899,7 +899,7 @@ window.onload = function () {
             let anim = document.createElement('a-animation');
             anim.setAttribute('attribute', 'rotation');
             anim.setAttribute('dur', '1500');
-            anim.setAttribute('to', '0 200 90');
+            anim.setAttribute('to', '0 180 -90');
             spaghetPan.append(anim);
             objectiveCompleted(9);
 
@@ -907,7 +907,7 @@ window.onload = function () {
                 let anim3 = document.createElement('a-animation');
                 anim3.setAttribute('attribute', 'rotation');
                 anim3.setAttribute('dur', '1500');
-                anim3.setAttribute('to', '0 140 0');
+                anim3.setAttribute('to', '0 180 0');
                 spaghetPan.append(anim3);
                 if (panHasWater) {
                     panHasWater = false;
@@ -942,7 +942,6 @@ window.onload = function () {
 
     // TomatoCan
     tomatoCan.addEventListener('click', function () {
-        console.log("WORKS");
         if (!holdingItem()) {
             hand.append(this);
             this.setAttribute('position', '.5 -1.76 -1.87');
@@ -960,7 +959,7 @@ window.onload = function () {
             scene.append(tomatoCan);
             tomatoCan.setAttribute('position', '-3.6 -2.05 -5')
             hideTomatoCanPositions();
-        }
+        };
     });
 
     function showTomatoCanPositions() {
