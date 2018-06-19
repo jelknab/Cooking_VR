@@ -1009,6 +1009,7 @@ window.onload = function () {
         else return false;
     }
 
+    // sounds
     function cuttingSound() {
         let sound = document.createElement('a-sound');
         sound.setAttribute('src', 'Sounds/carrotCut.mpeg');
@@ -1019,6 +1020,13 @@ window.onload = function () {
     function boilingSound() {
         let sound = document.createElement('a-sound');
         sound.setAttribute('src', 'Sounds/waterBoiling.mp3');
+        sound.setAttribute('autoplay', 'true');
+        scene.append(sound);
+    }
+
+    function gasIgnitionSound() {
+        let sound = document.createElement('a-sound');
+        sound.setAttribute('src', 'Sounds/gasIgnition.mp3');
         sound.setAttribute('autoplay', 'true');
         scene.append(sound);
     }
@@ -1099,6 +1107,7 @@ window.onload = function () {
                     anim.setAttribute('to', '0 -180 0');
                     gasActive[data.index] = true;
                     gases[data.index].setAttribute('visible', 'true');
+                    gasIgnitionSound();
                 }
 
                 this.append(anim);
