@@ -581,13 +581,13 @@ window.onload = function () {
         let anim = document.createElement('a-animation');
         anim.setAttribute('attribute', 'rotation');
         anim.setAttribute('dur', '1500');
-        anim.setAttribute('to', '0 200 90');
+        anim.setAttribute('to', '0 180 -90');
         spaghetPan.append(anim);
         window.setTimeout(function () {
             let anim3 = document.createElement('a-animation');
             anim3.setAttribute('attribute', 'rotation');
             anim3.setAttribute('dur', '1500');
-            anim3.setAttribute('to', '0 140 0');
+            anim3.setAttribute('to', '0 1800 0');
             spaghetPan.append(anim3);
             spaghetPan.removeChild(spaghetti);
             spaghetPan.removeChild(onion);
