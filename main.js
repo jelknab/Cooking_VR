@@ -19,7 +19,7 @@ window.onload = function () {
     for (i = 0; i < 5; i++) {
         gases[i] = document.getElementById('gas' + i);
     };
-    var hand = document.getElementById('hand');
+    var hand = document.getElementById('cursor');
     var handBox = document.getElementById('handBox');
     var handModel = document.getElementById('handModel');
     var knife = document.getElementById('knife');
@@ -1042,6 +1042,7 @@ window.onload = function () {
         init: function () {
             var data = this.data;
             this.el.addEventListener('click', function () {
+                console.log("this works");
                 if (pan.parentNode == hand) {
                     objectiveCompleted(7);
                     hidePanPositions();
