@@ -461,7 +461,7 @@ window.onload = function () {
     pan.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this);
-            this.setAttribute('position', '0.5 -1.760 -1.870');
+            this.setAttribute('position', '0.5 -1 -1.870');
             this.setAttribute('rotation', '0 110 0');
             showPanPositions();
             if (beef.parentNode == pan) {
