@@ -92,7 +92,7 @@ window.onload = function () {
     beef.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this);
-            this.setAttribute('position', '0.5 -1.760 -1.870');
+            this.setAttribute('position', '0.5 -1 -1.870');
             showBeefPositions();
         }
     });
@@ -249,7 +249,7 @@ window.onload = function () {
     carrot.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this)
-            this.setAttribute('position', '.5 -1.760 -1.870');
+            this.setAttribute('position', '.5 -1 -1.870');
             showCarrotPositions();
             loadCarrotPositions()
         };
@@ -381,7 +381,7 @@ window.onload = function () {
         if (!holdingItem()) {
             hand.append(this);
             showOliveOilPositions();
-            this.setAttribute('position', '0.5 -1.760 -1.870');
+            this.setAttribute('position', '0.5 -1 -1.870');
         }
     });
 
@@ -406,7 +406,7 @@ window.onload = function () {
     onion.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this)
-            this.setAttribute('position', '.5 -1.760 -1.870');
+            this.setAttribute('position', '.5 -1 -1.870');
             showOnionPositions();
             loadOnionPositions()
         };
@@ -607,7 +607,7 @@ window.onload = function () {
         } else {
             document.getElementById('water').setAttribute('material', 'side: double; color: #0000FF; transparent: true; opacity: 0');
         };
-    }
+    };
 
     spaghetPan.addEventListener('click', function () {
         if (!holdingItem()) {
@@ -793,7 +793,7 @@ window.onload = function () {
     spaghetti.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this);
-            spaghetti.setAttribute('position', '0.5 -1.760 -1.870');
+            spaghetti.setAttribute('position', '0.5 -1 -1.870');
             spaghetti.setAttribute('rotation', '0 90 0');
             showspaghetPositions();
         };
@@ -865,7 +865,7 @@ window.onload = function () {
         if (!holdingItem()) {
             hand.append(this);
             strainerInSink = false;
-            this.setAttribute('position', '0.5 -1.760 -1.870');
+            this.setAttribute('position', '0.5 -0.850 -1.870');
             this.setAttribute('rotation', '0 180 0');
             showStrainerPositions();
             loadSpaghetti();
@@ -912,7 +912,9 @@ window.onload = function () {
     });
 
     function showStrainerPositions() {
-        sink_trigger.setAttribute('visible', 'true');
+        if (!panInSink) {
+            sink_trigger.setAttribute('visible', 'true');
+        };
         strainerSpot.setAttribute('visible', 'true');
         spaghetPanAddSpot.setAttribute('visible', 'true');
     };
