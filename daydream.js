@@ -179,7 +179,7 @@ window.onload = function () {
     //16 Done
     textLines.push("And poor the spaghetti in there");
     //17 Done
-    textLines.push("To mix it all up poor the spaghetti back in the pot");
+    textLines.push("To mix it all up pour the spaghetti back in the pot");
     //18 Done
     textLines.push("And do the same with the sauce");
     //19 Done
