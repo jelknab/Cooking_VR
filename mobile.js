@@ -87,10 +87,9 @@ window.onload = function () {
     var moveLeft = false;
     var moveRight = false;
 
-    document.getElementById('confirmIntro').addEventListener('click', function() {
+    document.getElementById('confirmIntro').addEventListener('mouseenter', function() {
         scene.removeChild(document.getElementById('intro'));
     })
-
 
     // Beef
     beef.addEventListener('click', function () {
