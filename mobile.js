@@ -249,7 +249,7 @@ window.onload = function () {
     carrot.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this)
-            this.setAttribute('position', '.5 -1 -1.870');
+            this.setAttribute('position', '.25 -1 -1.870');
             showCarrotPositions();
             loadCarrotPositions()
         };
