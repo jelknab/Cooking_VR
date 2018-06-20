@@ -948,7 +948,7 @@ window.onload = function () {
     tomatoCan.addEventListener('click', function () {
         if (!holdingItem()) {
             hand.append(this);
-            this.setAttribute('position', '.5 -1.76 -1.87');
+            this.setAttribute('position', '.5 -1 -1.87');
             showTomatoCanPositions();
         }
     });
