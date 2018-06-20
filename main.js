@@ -19,7 +19,7 @@ window.onload = function () {
     for (i = 0; i < 5; i++) {
         gases[i] = document.getElementById('gas' + i);
     };
-    var hand = document.getElementById('cursor');
+    var hand = document.getElementById('hand');
     var handBox = document.getElementById('handBox');
     var handModel = document.getElementById('handModel');
     var knife = document.getElementById('knife');
