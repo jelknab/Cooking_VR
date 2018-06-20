@@ -328,8 +328,8 @@ window.onload = function () {
             let x = camera.getAttribute('position').x - .05;
             if (x > -10) {
                 let z = camera.getAttribute('position').z;
-                camera.setAttribute('position', x + " -.5 " + z);
-                handBox.setAttribute('position', x + " -.5 " + z);
+                camera.setAttribute('position', x + " -1 " + z);
+                handBox.setAttribute('position', x + " -1 " + z);
             }
         }
     };
@@ -339,8 +339,8 @@ window.onload = function () {
             let x = camera.getAttribute('position').x + .05;
             if (x < 6.5) {
                 let z = camera.getAttribute('position').z;
-                camera.setAttribute('position', x + " -.5 " + z);
-                handBox.setAttribute('position', x + " -.5 " + z);
+                camera.setAttribute('position', x + " -1 " + z);
+                handBox.setAttribute('position', x + " -1 " + z);
             }
         }
     };
