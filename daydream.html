@@ -8,6 +8,17 @@
 
     <a-scene stats id='scene'>
 
+        <a-plane id="intro" scale=".7 .7 .7" color="gray" geometry="width: 5; height: 3;" position="0 0 -5">
+            <a-text align="left" anchor="center" value="Hey welcome, keeping it breeth: \n
+                    -Point at an object with the laser and click the touchpad on your controler to pick it up.\n
+                    -Yellow balls are for dropping. \n
+                    -Move by pointing at one of the 2 clocks. \n
+                    -Follow the instructions in the cookbook or don't, completely up to you."></a-text>
+            <a-plane id="confirmIntro" color="green" geometry="height: .4" position="1.989 -1.292 .1">
+                <a-text position="-.35 0 0" value="Gotcha"></a-text>
+            </a-plane>
+        </a-plane>
+
         <a-entity id="handBox" position="0 -1 1">
             <a-entity daydream-controls="model: false" laser-controls="hand: right">
                 <a-entity id="hand">

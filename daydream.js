@@ -1,6 +1,4 @@
 window.onload = function () {
-    console.log(navigator.getGamepads());
-
     // Objects
     var beef = document.getElementById('beef');
     var book = document.getElementById('book');
@@ -70,7 +68,6 @@ window.onload = function () {
     var strainerAddSpot = document.getElementById('strainerAddSpot');
     var spaghetPanSpot = document.getElementById('spaghetPanSpot');
 
-
     // Variables
     var beefCookingTime = 0;
     var spaghetCookingTime = 0;
@@ -88,6 +85,9 @@ window.onload = function () {
     var moveLeft = false;
     var moveRight = false;
 
+    document.getElementById('confirmIntro').addEventListener('click', function() {
+        scene.removeChild(document.getElementById('intro'));
+    });
 
     // Beef
     beef.addEventListener('click', function () {
