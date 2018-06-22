@@ -28,7 +28,7 @@ export class Objective05_A extends AObjective {
                             spaghettipan,
                             () => {
                                 spaghettipan.setPosition(new Vec3(2.5, -2, -3));
-                                new AframeObject('pan-water').hide();
+                                new AframeObject('pan-water').remove();
                                 this.progressObjective();
                             }
                         ).play();

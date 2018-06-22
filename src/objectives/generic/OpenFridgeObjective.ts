@@ -3,6 +3,7 @@ import {AInteractable} from "../../Interactables/AInteractable";
 import {Animation} from "../../a-frame_wrappers/Animation";
 import {Application} from "../../index";
 import {Vec3} from "../../Vec3";
+import {Sound} from "../../Interactables/Sound";
 
 export class OpenFridgeObjective extends AObjective {
     fridge_door: AInteractable;
@@ -25,6 +26,8 @@ export class OpenFridgeObjective extends AObjective {
         this.fridge_door = new AInteractable(
             'fridge_door',
             () => {
+                new Sound('sound/open_fridge.wav', false);
+
                 new Animation(
                     {
                         'dur': '1000', 'attribute': 'rotation', 'to': new Vec3(0, 0, 0)

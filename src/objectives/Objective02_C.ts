@@ -22,6 +22,10 @@ export class Objective02_C extends AObjective {
 
                         beef.parentTo(pan);
 
+                        const sound = this.playSound('Sound/frying.wav', true);
+                        sound.html.setAttribute('volume', '.4');
+                        sound.setPosition(pan.getPosition());
+
                         this.progressObjective();
                     }
                 );

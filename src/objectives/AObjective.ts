@@ -33,7 +33,7 @@ export abstract class AObjective {
         Application.instance.progressObjective();
     }
 
-    protected playSound(file: string, looping: boolean) {
-        new Sound(file, looping);
+    protected playSound(file: string, looping: boolean): Sound {
+        return new Sound(file, looping);
     }
 }

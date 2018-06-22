@@ -50,6 +50,8 @@ export class Objective01_A extends AObjective {
                     { 'dur': '500', 'attribute': 'rotation', 'to': '-90 0 -90'},
                     this.knife,
                     () => {
+                        this.playSound('sound/carrotCut.mpeg', false);
+
                         new Animation(
                             { 'dur': '500', 'attribute': 'rotation', 'to': '-130 0 -90'},
                             this.knife,

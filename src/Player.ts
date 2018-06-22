@@ -3,6 +3,7 @@ import {Application} from "./index";
 import {Vec3} from "./Vec3";
 import {AframeObject} from "./a-frame_wrappers/AframeObject";
 import {Animation} from "./a-frame_wrappers/Animation";
+import {Sound} from "./Interactables/Sound";
 
 export class Player extends AframeObject {
     private static toDeg = Math.PI / 180;
@@ -20,6 +21,8 @@ export class Player extends AframeObject {
         if (this.equippedItem != null) {
             throw `Cannot pick ${item.id}, ${this.equippedItem.id} is already being helt`;
         }
+
+        new Sound('sound/coin_sound.wav', false);
 
         this.equippedItem = item;
 
@@ -41,6 +44,8 @@ export class Player extends AframeObject {
     }
 
     moveTo(where: Vec3) {
+        new Sound('sound/woosh_1.wav', false);
+
         this.html.setAttribute('position', where.toString());
     }
 
