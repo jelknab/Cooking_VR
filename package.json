@@ -4,6 +4,8 @@
   "description": "VR school project (IKMEDT)",
   "private": true,
   "dependencies": {
+    "@types/three": "^0.92.7",
+    "aframe": "^0.8.2",
     "lodash": "^4.17.10",
     "webpack": "^4.11.0",
     "webpack-cli": "^3.0.2"

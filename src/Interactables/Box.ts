@@ -10,5 +10,8 @@ export class Box extends AInteractable {
 
         this.parentTo(parent);
         this.setPosition(position);
+
+        this.html.setAttribute('scale', '.4 .6 .4');
+        this.html.setAttribute('material', 'color: #FFFF00;')
     }
 }

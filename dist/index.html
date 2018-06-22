@@ -1,14 +1,16 @@
 <head>
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="aframe-v0.8.2.js"></script>
     <!--<script src="main.js"></script>-->
 </head>
 
 <body>
 
 <a-scene stats id='scene'>
-    <a-camera id="camera" position="0 0 0">
-        <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor>
-    </a-camera>
+    <a-entity id='cameraWrapper' position="0 0 0">
+        <a-camera id="camera" position="0 0 0">
+            <a-cursor fuse='true;' fuse-timeout='500' id='cursor'></a-cursor>
+        </a-camera>
+    </a-entity>
 
     <!--Room-->
     <a-plane position="2 -7.25 0" rotation="-90 0 0" color="#999" width="32" height="20"></a-plane>
@@ -18,18 +20,6 @@
     <a-plane position="2 -1.75 10" rotation="0 180 0" color="#DEC" width="32" height="11"></a-plane>
     <a-plane position="2 -1.75 -8.2" rotation="0 0 0" color="#DEC" width="32" height="11"></a-plane>
     <a-box depth="7" height="11" width="3.5" position="-12.27 -1.90 -5.07" color="#CDB"></a-box>
-
-    <!-- gasknoppen -->
-    <a-box class="gas-knob" id="gasknop0" color="green" width="0.3" height="0.3" depth="0.3" position="-9.2 -2.1 -2.8"
-           furnace-button="index: 0"></a-box>
-
-    <!-- gas -->
-    <a-obj-model class="fire" id="gas0" src="#fire-obj" mtl="#fire-mtl" position="-8.5 -2.3 -4.2" visible="false"></a-obj-model>
-
-    <a-box id="tap_trigger" position="-0.077 -1.72 -7.036" material="transparent: true; opacity: 0" geometry=""></a-box>
-    <a-box id="sink_trigger" position="-0.54 -3 -4.69" visible="false" scale="4.11 0.26 3.16"></a-box>
-    <a-cylinder id="water" material="side: double; color: #0000FF;" visible="false" position="-.6 -2.4 -6"
-                geometry="segmentsRadial:10;segmentsHeight:1" scale="0.1 2 0.1"></a-cylinder>
 
     <!-- assets imports -->
     <a-assets>
@@ -41,12 +31,20 @@
         <a-asset-item id="fire-mtl" src="Models/Fire_model/fire.mtl"></a-asset-item>
 
         <!-- Source: https://poly.google.com/view/adp5MvenMQm -->
-        <a-asset-item id="Saucepan-obj" src="Models/Saucepan_model/Saucepan.obj"></a-asset-item>
-        <a-asset-item id="Saucepan-mtl" src="Models/Saucepan_model/Saucepan.mtl"></a-asset-item>
+        <a-asset-item id="Saucepan-obj" src="Models/Saucepan/Saucepan.obj"></a-asset-item>
+        <a-asset-item id="Saucepan-mtl" src="Models/Saucepan/Saucepan.mtl"></a-asset-item>
 
         <!--Source: https://poly.google.com/view/9W7fuCdO6j2-->
-        <a-asset-item id="pan-obj" src="Models/Pan_model/506 Sauce Pan.obj"></a-asset-item>
-        <a-asset-item id="pan-mtl" src="Models/Pan_model/506 Sauce Pan.mtl"></a-asset-item>
+        <a-asset-item id="pan-obj" src="Models/Pan/506 Sauce Pan.obj"></a-asset-item>
+        <a-asset-item id="pan-mtl" src="Models/Pan/506 Sauce Pan.mtl"></a-asset-item>
+
+        <!--Source: https://poly.google.com/view/cT4wroU_inf-->
+        <a-asset-item id="tomatoCan-obj" src="Models/TomatoCan/tomatoCan.obj"></a-asset-item>
+        <a-asset-item id="tomatoCan-mtl" src="Models/TomatoCan/tomatoCan.mtl"></a-asset-item>
+
+        <!-- Source: https://poly.google.com/view/9cIBrL3pbex -->
+        <a-asset-item id="oliveOil-obj" src="Models/OliveOil/oliveOil.obj"></a-asset-item>
+        <a-asset-item id="oliveOil-mtl" src="Models/OliveOil/oliveOil.mtl"></a-asset-item>
 
         <a-asset-item id="fridge-obj" src="Models/Fridge/fridge.obj"></a-asset-item>
         <a-asset-item id="fridge-mtl" src="Models/Fridge/fridge.mtl"></a-asset-item>
@@ -58,13 +56,33 @@
         <a-asset-item id="lamp-mtl" src="Models/Lamp/lamp.mtl"></a-asset-item>
 
         <!--&lt;!&ndash;Source: https://poly.google.com/view/3TnnfzKfHrq&ndash;&gt;-->
-        <!--<a-asset-item id="knife-obj" src="Models/Knife_model/knife.obj"></a-asset-item>-->
-        <!--<a-asset-item id="knife-mtl" src="Models/Knife_model/knife.mtl"></a-asset-item>-->
-    </a-assets>
+        <a-asset-item id="knife-obj" src="Models/Knife/knife.obj"></a-asset-item>
+        <a-asset-item id="knife-mtl" src="Models/Knife/knife.mtl"></a-asset-item>
 
-    <!-- pan plaats knoppen -->
-    <a-box id="panSpot0" color="yellow" width="0.2" height="0.2" depth="0.2" position="-8.5 -2.1 -4.2" visible='false'
-           place-pan="x: -8.5; z: -4.2; index: 0"></a-box>
+        <a-asset-item id="bowl-obj" src="Models/Bowl/bowl.obj"></a-asset-item>
+        <a-asset-item id="bowl-mtl" src="Models/Bowl/bowl.mtl"></a-asset-item>
+
+        <a-asset-item id="carrot_0-obj" src="Models/Carrot/carrot_0.obj"></a-asset-item>
+        <a-asset-item id="carrot_1-obj" src="Models/Carrot/carrot_1.obj"></a-asset-item>
+        <a-asset-item id="carrot_2-obj" src="Models/Carrot/carrot_2.obj"></a-asset-item>
+        <a-asset-item id="carrot_3-obj" src="Models/Carrot/carrot_3.obj"></a-asset-item>
+        <a-asset-item id="carrot-mtl" src="Models/Carrot/carrot.mtl"></a-asset-item>
+
+        <a-asset-item id="onion_0-obj" src="Models/Onion/onion_0.obj"></a-asset-item>
+        <a-asset-item id="onion_1-obj" src="Models/Onion/onion_1.obj"></a-asset-item>
+        <a-asset-item id="onion_2-obj" src="Models/Onion/onion_2.obj"></a-asset-item>
+        <a-asset-item id="onion_3-obj" src="Models/Onion/onion_3.obj"></a-asset-item>
+        <a-asset-item id="onion_4-obj" src="Models/Onion/onion_4.obj"></a-asset-item>
+        <a-asset-item id="onion-mtl" src="Models/Onion/onion.mtl"></a-asset-item>
+
+        <!--Source: https://poly.google.com/view/cT4wroU_inf-->
+        <a-asset-item id="tomatoCan-obj" src="Models/TomatoCan/tomatoCan.obj"></a-asset-item>
+        <a-asset-item id="tomatoCan-mtl" src="Models/TomatoCan/tomatoCan.mtl"></a-asset-item>
+
+        <!-- Source: https://poly.google.com/view/1PiSL-33U5q -->
+        <a-asset-item id="strainer-obj" src="Models/Strainer/strainer.obj"></a-asset-item>
+        <a-asset-item id="strainer-mtl" src="Models/Strainer/strainer.mtl"></a-asset-item>
+    </a-assets>
 
     <!-- keuken -->
     <a-obj-model src="#kitchen-obj" mtl="#kitchen-mtl" scale="0.05 0.05 0.05" position="0 -5 -5">
@@ -76,6 +94,41 @@
                  rotation="0 90 0">
     </a-obj-model>
 
+    <a-cylinder id="water" material="side: double; color: #0000FF; transparent: true; opacity: 0" position="-.6 -2 -6" geometry="segmentsRadial:10;segmentsHeight:1"
+                scale="0.1 1.5 0.1"></a-cylinder>
+
+    <!--Onion-->
+    <a-entity id="onion" position="-10.5 -2.45 1.8" scale=".15 .15 .15" rotation="0 270 0">
+        <a-obj-model id='onion_0' src="#onion_0-obj" mtl="#onion-mtl">
+        </a-obj-model>
+        <a-obj-model id='onion_1' src="#onion_1-obj" mtl="#onion-mtl">
+        </a-obj-model>
+        <a-obj-model id='onion_2' src="#onion_2-obj" mtl="#onion-mtl">
+        </a-obj-model>
+        <a-obj-model id='onion_3' src="#onion_3-obj" mtl="#onion-mtl">
+        </a-obj-model>
+        <a-obj-model id='onion_4' src="#onion_4-obj" mtl="#onion-mtl">
+        </a-obj-model>
+    </a-entity>
+    <a-box id="onionFridgeSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-10.5 -2 1.8" visible='false'></a-box>
+
+    <!--Carrot-->
+    <a-entity id="carrot" position="-11.2 -2.5 0.8" scale=".06 .06 .06">
+        <a-obj-model id='carrot_0' src="#carrot_0-obj" mtl="#carrot-mtl" rotation="0 0 0">
+        </a-obj-model>
+        <a-obj-model id='carrot_1' src="#carrot_1-obj" mtl="#carrot-mtl" rotation="0 0 0">
+        </a-obj-model>
+        <a-obj-model id='carrot_2' src="#carrot_2-obj" mtl="#carrot-mtl" rotation="0 0 0">
+        </a-obj-model>
+        <a-obj-model id='carrot_3' src="#carrot_3-obj" mtl="#carrot-mtl" rotation="0 0 0">
+        </a-obj-model>
+    </a-entity>
+    <a-box id="carrotFridgeSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-10.5 -2 0.8" visible='false'></a-box>
+
+    <!--cuttingboard-->
+    <a-box id="cuttingBoard" src="Textures/wood.jpg" width="2" height="0.2" depth="1.5" position="-4.8 -2.2 4.8"></a-box>
+    <a-box id="cutSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-4.8 -1.9 4.8" visible='false'></a-box>
+
     <a-obj-model src="#lamp-obj" mtl="#lamp-mtl" scale=".5 .5 .5" position="-3 2 -5" rotation="0 0 0">
     </a-obj-model>
     <a-obj-model src="#lamp-obj" mtl="#lamp-mtl" scale=".5 .5 .5" position="2 2 -5" rotation="0 0 0">
@@ -84,32 +137,35 @@
     </a-obj-model>
 
     <!-- pan -->
-    <a-obj-model id='pan' src="#Saucepan-obj" mtl="#Saucepan-mtl" scale="1 1 1" position="-4.4 -2.1 -3.75 ">
-        <!-- toevoeg knop -->
-        <a-box id="panAddSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="0 0.4 0"
-               visible='false'></a-box>
+    <a-obj-model id='pan' src="#Saucepan-obj" mtl="#Saucepan-mtl" scale="1 1 1" position="-4.4 -2.1 -3.75" rotation="0 120 0">
+        <a-box id="tomatoSauce" geometry="primitive: cylinder; height: .02; radius: .4" position="0.481 -0.026 0.192" src="Textures/tomatoSauce.jpg"
+               visible="false"></a-box>
     </a-obj-model>
 
     <!-- spaghetti pan -->
-    <a-obj-model id='spaghet-pan' src="#pan-obj" mtl="#pan-mtl" scale=".05 .05 .05" position="4.4 -2.1 -3.75 ">
-        <a-cylinder id="pan-water" position="0 10 0" scale="17 10 17"
+    <a-obj-model id='spaghet-pan' src="#pan-obj" mtl="#pan-mtl" scale=".04 .04 .04" position="3 -2.1 -3.75" rotation="0 -120 0">
+        <a-cylinder id="pan-water" position="0 10 0" scale="15 0 15"
                     material="side: double; color: #0000FF;"
-                    visible="false"
+                    visible="true"
                     geometry="segmentsRadial:10;segmentsHeight:1"></a-cylinder>
+        <a-sphere id="tomatoSaucePot" geometry="primitive: cylinder; height: 15; radius: 15" position=".42 8.33 .465" src="Textures/tomatoSauce.jpg"
+                  visible="false"></a-sphere>
     </a-obj-model>
 
-    <!-- gehakt -->
-    <a-box id='beef' src="groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-4.4 -2.1 -5">
-    </a-box>
+    <a-box id="spaghetti" geometry="primitive: cone; height: .6; radiusTop: .07; radiusBottom: .07" position="-3.814 -2 -5.21"
+           rotation="0 0 90" src="Textures/spaghetti.jpg"></a-box>
 
-    <!-- gehakt op aanrecht spot -->
-    <a-box id="beefCounterSpot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-4.4 -1.8 -5"
-           visible='false'></a-box>
+    <!-- gehakt -->
+    <a-box id='beef' src="groundbeef.jpg" width="0.45" height="0.05" depth="0.45" position="-11 -2.5 -.6">
+    </a-box>
 
     <!--knife-->
     <a-obj-model id='knife' src="#knife-obj" mtl="#knife-mtl" scale="1 1 1" position="-6.5 -2.2 4.5" rotation="0 -90 0">
     </a-obj-model>
-    <a-box id="placeSpot0" class="place-spot" color="yellow" width="0.2" height="0.2" depth="0.2" position="-7 -2 4.5" visible='false'></a-box>
+
+    <!--knife-->
+    <a-obj-model id='bowl' src="#bowl-obj" mtl="#bowl-mtl" scale=".5 .5 .5" position="-7 -2.2 4.5" rotation="0 -90 0">
+    </a-obj-model>
 
     <!--Ambient-->
     <a-entity light="type:ambient;intensity:.4;color:#fff"></a-entity>
@@ -126,8 +182,19 @@
     <a-entity light="type:spot;angle:50;intensity:1;distance:8;penumbra:0.5" rotation="-90 0 0.01"
               position="7 2 -5"></a-entity>
 
+    <!--Strainer-->
+    <a-obj-model id='strainer' src="#strainer-obj" mtl="#strainer-mtl" scale=".5 .5 .5" position="0.55 -1.75 -7.35" rotation="0 90 -70"></a-obj-model>
+
+    <!--Tomato can-->
+    <a-obj-model id='tomatoCan' src="#tomatoCan-obj" mtl="#tomatoCan-mtl" scale="1 1 1" position="-10.7 -4.6 -.5"></a-obj-model>
+
     <!--FridgeDoor-->
     <a-entity light="type:point;intensity:0.8;distance:3.99" position="-11 -1 2"></a-entity>
+
+    <!-- Olive Oil -->
+    <a-obj-model id='oliveOil' src="#oliveOil-obj" mtl="#oliveOil-mtl" scale=".005 .005 .005" position="-10.200 -2.253 -3.843"
+                 rotation="0 0 0">
+    </a-obj-model>
 
     <!-- Instruction text -->
     <a-entity id="instructions" text="" align="center" width="15" color="#000" position="0 1.5 -8"></a-entity>

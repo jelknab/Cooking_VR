@@ -1,33 +1,38 @@
 import {AObjective} from "./AObjective";
-import {AInteractable} from "../Interactables/AInteractable";
-import {Application} from "../index";
+import {AframeObject} from "../a-frame_wrappers/AframeObject";
+import {Animation} from "../a-frame_wrappers/Animation";
 import {Vec3} from "../Vec3";
 
-/* OBJECTIVE GOAL
-* Pick up the sauce pan
-*/
 export class Objective03 extends AObjective {
-    private pan: AInteractable;
+    completed: boolean = false;
 
-    constructor() {
-        super("I've marked the spaghetti pan.\nLook at it to pick it up.")
+    constructor () {
+        super('')
     }
 
-    onInit(): void {
-        this.pan = new AInteractable(
-            "pan",
+    protected onInit(): void {
+        const water = new AframeObject('water');
+        water.show();
+
+        const pan_water = new AframeObject('pan-water');
+        pan_water.show();
+
+        new Animation(
+            {'dur': '5000', 'attribute': 'scale', 'to': new Vec3(16, 10, 16)},
+            pan_water,
             () => {
-                Application.instance.player.equip(this.pan, new Vec3(25, 50, 0));
-                Application.instance.progressObjective();
-            }
-        );
+                water.hide();
+                pan_water.show();
 
-        Application.instance.marker.show(this.pan.getPosition());
+                if (!this.completed) {
+                    this.progressObjective()
+                }
+                this.completed = true;
+            }
+        ).play();
     }
 
-    onDestroy(): void {
-        this.pan.stopListening();
-        Application.instance.marker.hide();
+    protected onDestroy(): void {
     }
 
 }

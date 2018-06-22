@@ -12,7 +12,7 @@ export class TimeoutObjective extends AObjective {
     }
 
     protected onInit(): void {
-        setTimeout(() => Application.instance.progressObjective(), this.duration)
+        setTimeout(() => this.progressObjective(), this.duration)
     }
 
 }

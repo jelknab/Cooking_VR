@@ -4,17 +4,23 @@ import {Vec3} from "./Vec3";
 import {AframeObject} from "./a-frame_wrappers/AframeObject";
 import {Animation} from "./a-frame_wrappers/Animation";
 
-export class Player {
+export class Player extends AframeObject {
     private static toDeg = Math.PI / 180;
 
     public equippedItem: AInteractable;
-    private camera: AframeObject;
+    public camera: AframeObject;
 
-    constructor (public camera_id: string) {
-        this.camera = new AframeObject(null, document.getElementById(camera_id));
+    constructor(public camera_wrapper_id: string, camera_id:string) {
+        super(camera_wrapper_id);
+
+        this.camera = new AframeObject(camera_id)
     }
 
-    public equip(item: AInteractable, rotation: Vec3) {
+    public equip(item: AInteractable, rotation: Vec3 = new Vec3(0, 0, 0)) {
+        if (this.equippedItem != null) {
+            throw `Cannot pick ${item.id}, ${this.equippedItem.id} is already being helt`;
+        }
+
         this.equippedItem = item;
 
         // Animate object flying to calculated position for smooth transition
@@ -23,7 +29,7 @@ export class Player {
             this.equippedItem,
             () => {
                 this.equippedItem.setPosition(this.calculateLocalHoldingPosition());
-                this.camera.html.appendChild(this.equippedItem.html);
+                this.equippedItem.parentTo(this.camera);
 
                 // Animate object rolling to user view rotation
                 new Animation(
@@ -34,10 +40,14 @@ export class Player {
         ).play();
     }
 
+    moveTo(where: Vec3) {
+        this.html.setAttribute('position', where.toString());
+    }
+
     public drop(position: Vec3) {
         // remove camera as parent and set position to calculated world holding pos
-        this.equippedItem.parentTo(Application.instance.world);
         this.equippedItem.setPosition(this.calculateWorldHoldingPosition());
+        this.equippedItem.parentTo(null);
 
         // Animate object flying to target position for smooth transition
         new Animation(
@@ -55,10 +65,9 @@ export class Player {
     }
 
     private calculateWorldHoldingPosition(): Vec3 {
-        const rotation = eval(this.camera.html.getAttribute('rotation'));
-        const yaw = (rotation.y + 30)* Player.toDeg;
+        const yaw = (this.camera.getRotation().y + 30)* Player.toDeg;
 
-        return this.camera.getPosition().add(
+        return this.getPosition().add(
             new Vec3(
                 -Math.sin(yaw) * 2,
                 -1,

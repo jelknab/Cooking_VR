@@ -1,4 +1,3 @@
-import {Vec3} from "../Vec3";
 import {AframeObject} from "../a-frame_wrappers/AframeObject";
 
 export class AInteractable extends AframeObject{
