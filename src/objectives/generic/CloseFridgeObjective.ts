@@ -26,7 +26,7 @@ export class CloseFridgeObjective extends AObjective {
         this.fridge_door = new AInteractable(
             'fridge_door',
             () => {
-                new Sound('sound/close_fridge.wav', false);
+                new Sound('Sound/close_fridge.wav', false);
 
                 new Animation(
                     {

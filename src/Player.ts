@@ -22,7 +22,7 @@ export class Player extends AframeObject {
             throw `Cannot pick ${item.id}, ${this.equippedItem.id} is already being helt`;
         }
 
-        new Sound('sound/coin_sound.wav', false);
+        new Sound('Sound/coin_sound.wav', false);
 
         this.equippedItem = item;
 
@@ -44,7 +44,7 @@ export class Player extends AframeObject {
     }
 
     moveTo(where: Vec3) {
-        new Sound('sound/woosh_1.wav', false);
+        new Sound('Sound/woosh_1.wav', false);
 
         this.html.setAttribute('position', where.toString());
     }
