@@ -19,10 +19,13 @@ export class AframeObject {
     }
 
     public moveTo(to: Vec3, duration: number = 500, after?: any) {
+        console.log(`Animating position of ${this.id} to ${to.toString()}`);
         new Animation(
             { 'dur': String(duration), 'attribute': 'position', 'to': to.toString()},
             this,
-            () => {if (after) after();}
+            () => {
+                if (after) after();
+            }
         ).play();
     }
 
@@ -41,6 +44,7 @@ export class AframeObject {
     }
 
     public setPosition(position: Vec3) {
+        console.log(`Setting position of ${this.id} to ${position.toString()}`);
         // (<any>this.html).object3D.position.set(position.x, position.y, position.z);
         this.moveTo(position, 200);
     }

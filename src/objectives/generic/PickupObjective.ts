@@ -6,7 +6,7 @@ export class PickupObjective extends AObjective {
     private target: AInteractable;
 
     constructor (private target_id: string, instruction_pos: Vec3, instruction_rot: Vec3, private hold_rot: Vec3) {
-        super('Please pick up the marked item', instruction_pos, instruction_rot);
+        super(`Pick up the ${target_id}`, instruction_pos, instruction_rot);
     }
 
     protected onDestroy(): void {

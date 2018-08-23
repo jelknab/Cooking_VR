@@ -12,6 +12,7 @@ import {Vec3} from "./Vec3";
 import {TakeAndPlaceObjective} from "./objectives/generic/TakeAndPlaceObjective";
 import {PickupObjective} from "./objectives/generic/PickupObjective";
 import {CloseFridgeObjective} from "./objectives/generic/CloseFridgeObjective";
+import {PlayerMoveObjective} from "./objectives/generic/PlayerMoveObjective";
 
 export class Application {
     static instance: Application;
@@ -28,24 +29,26 @@ export class Application {
             new TimeoutObjective("We're going to start\nby making the sauce.", 5000),
             new TimeoutObjective("For the sauce we need\nto cut some vegetables.", 5000),
             new TurnToBackObjective(),
+            new PlayerMoveObjective(new Vec3(-5, 0, 0)),
             new OpenFridgeObjective(new Vec3(-3, -1, 8), new Vec3(0, 180, 0)),
-            new TakeAndPlaceObjective('carrot', new Vec3(-4.8, -2, 4.8), new Vec3(-10, -1.7, .5), new Vec3(0, 90, 0)),
-            new TakeAndPlaceObjective('onion', new Vec3(-5.2, -2, 4.8), new Vec3(-10, -1.7, 1), new Vec3(0, 90, 0)),
+            new TakeAndPlaceObjective('carrot', new Vec3(-4.8, -2, 4.8), 'on the cutting board', 5, new Vec3(-10, -1.7, .5), new Vec3(0, 90, 0)),
+            new TakeAndPlaceObjective('onion', new Vec3(-5.2, -2, 4.8), 'on the cutting board', 5, new Vec3(-10, -1.7, 1), new Vec3(0, 90, 0)),
             new CloseFridgeObjective(new Vec3(-3, -1,   8), new Vec3(0, 180, 0)),
             new PickupObjective('knife', new Vec3(-3, -1, 8), new Vec3(0, 180, 0), new Vec3(218, 180, 270)),
             new objectives.Objective01_A(),
             new objectives.Objective01_B(),
             new objectives.Objective01_C(),
-            new TakeAndPlaceObjective('bowl', new Vec3(-4, -2.2, -6.25), new Vec3(-5, -.5, 7), new Vec3(0, 180, 0)),
+            new TakeAndPlaceObjective('bowl', new Vec3(-4, -2.2, -6.25), 'near the stove', 15, new Vec3(-5, -.5, 7), new Vec3(0, 180, 0)),
+            new PlayerMoveObjective(new Vec3(-1,0,0)),
             new objectives.Objective02(),
             new objectives.Objective02_A(),
             new objectives.Objective02_B(),
             new OpenFridgeObjective(),
             new objectives.Objective02_C(),
             new CloseFridgeObjective(),
-            new TakeAndPlaceObjective('spaghet-pan', new Vec3(-0.55, -3, -5.72)),
+            new TakeAndPlaceObjective('spaghet-pan', new Vec3(-0.55, -3, -5.72), 'in the sink'),
             new objectives.Objective03(),
-            new TakeAndPlaceObjective('spaghet-pan', new Vec3(-6.5, -2.2, -6)),
+            new TakeAndPlaceObjective('spaghet-pan', new Vec3(-6.5, -2.2, -6),'on the stove'),
             new TimeoutObjective("Don't forget to steer\nthe grounded beef.", 5000),
             new objectives.Objective04(),
             new OpenFridgeObjective(),
@@ -54,7 +57,7 @@ export class Application {
             new objectives.Objective04_B(),
             new TimeoutObjective('Put the sauce on a low fire', 5000),
             new TimeoutObjective('wait for about\n15 minutes', 5000),
-            new TakeAndPlaceObjective('strainer', new Vec3(-0.55, -2.5, -4)),
+            new TakeAndPlaceObjective('strainer', new Vec3(-0.55, -2.5, -4), 'in the sink'),
             new objectives.Objective05_A(),
             new objectives.Objective05_B(),
             new objectives.ObjectiveFinale(),

@@ -16,9 +16,6 @@ export class TurnToBackObjective extends AObjective {
     protected onInit(): void {
         this.button = new Button("Go", "#0C0", null, () => {
             this.button.remove();
-            this.player.moveTo(
-                new Vec3(-5, 0, 0)
-            );
             this.progressObjective();
         });
         this.button.setPosition(new Vec3(-5, 0, 4));

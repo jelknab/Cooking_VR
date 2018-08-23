@@ -14,8 +14,6 @@ export class Objective02 extends AObjective {
     }
 
     onInit(): void {
-        this.player.moveTo(new Vec3(-1,0,0));
-
         this.pan = new AInteractable(
             "pan",
             () => {

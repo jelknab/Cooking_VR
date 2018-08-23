@@ -22,30 +22,31 @@ export class Player extends AframeObject {
             throw `Cannot pick ${item.id}, ${this.equippedItem.id} is already being helt`;
         }
 
-        new Sound('Sound/coin_sound.wav', false);
+        new Sound('Sound/woosh_1.wav', false);
 
         this.equippedItem = item;
 
         // Animate object flying to calculated position for smooth transition
         new Animation(
             {'dur': '500', 'attribute': 'position', 'to': this.calculateWorldHoldingPosition().toString()},
-            this.equippedItem,
+            item,
             () => {
-                this.equippedItem.setPosition(this.calculateLocalHoldingPosition());
-                this.equippedItem.parentTo(this.camera);
+                item.setPosition(this.calculateLocalHoldingPosition());
+                item.parentTo(this.camera);
 
                 // Animate object rolling to user view rotation
                 new Animation(
                     { 'dur': '250', 'attribute': 'rotation', 'to': rotation},
-                    this.equippedItem
+                    item,
+                    () => {
+                        // this.equippedItem.setPosition(this.calculateLocalHoldingPosition());
+                    }
                 ).play();
             }
         ).play();
     }
 
     moveTo(where: Vec3) {
-        new Sound('Sound/woosh_1.wav', false);
-
         this.html.setAttribute('position', where.toString());
     }
 

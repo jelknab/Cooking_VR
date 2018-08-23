@@ -22,7 +22,7 @@ export class Objective01_C extends AObjective {
             this.bowl.getPosition().add(new Vec3(0, 2, 0)),
             500,
             () => {
-                items[0].moveTo(this.bowl.getPosition().add(new Vec3(0, .75, 0)), 500);
+                items[0].moveTo(this.bowl.getPosition().add(new Vec3(0, -.75, 0)), 500);
                 items[1].moveTo(
                     this.bowl.getPosition().add(new Vec3(0, 2, 0)),
                     500,

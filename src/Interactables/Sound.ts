@@ -1,4 +1,5 @@
 import {AframeObject} from "../a-frame_wrappers/AframeObject";
+import {Application} from "../index";
 
 export class Sound extends AframeObject {
     constructor (private soundFile: string, private looping: boolean) {
@@ -8,6 +9,6 @@ export class Sound extends AframeObject {
         this.html.setAttribute('autoplay', 'true');
         this.html.setAttribute('loop', String(looping));
 
-        this.parentTo(null);
+        this.parentTo(Application.instance.player);
     }
 }

@@ -6,7 +6,7 @@ import {Vec3} from "../Vec3";
 
 export class Objective05_A extends AObjective {
     constructor() {
-        super('Time to filter the spaghetti\nand the water.');
+        super('Time to filter the spaghetti\nfrom the water.');
     }
 
     protected onInit(): void {
