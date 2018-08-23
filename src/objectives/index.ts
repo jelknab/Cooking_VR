@@ -9,5 +9,7 @@ export {Objective03} from "./Objective03";
 export {Objective04} from "./Objective04";
 export {Objective04_A} from "./Objective04_A";
 export {Objective04_B} from "./Objective04_B";
+export {Objective05_A} from "./Objective05_A";
+export {Objective05_B} from "./Objective05_B";
 export {ObjectiveFinale} from "./ObjectiveFinale";
 export {TurnToBackObjective} from "./TurnToBackObjective"
